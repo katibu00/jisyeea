@@ -1,7 +1,7 @@
 <section class="main-slider">
     <div class="main-slider-swiper owl-carousel owl-theme">
         <div class="item">
-            <div class="item-slider-bg"  style="background-image: url(/images/banner1.jpeg)"></div>
+            <div class="item-slider-bg"  style="background-image: url(/images/bg3.jpeg)"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="item">
-            <div class="item-slider-bg"  style="background-image: url(/images/banner2.jpeg)"></div>
+            <div class="item-slider-bg"  style="background-image: url(/images/banner1.jpeg)"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
