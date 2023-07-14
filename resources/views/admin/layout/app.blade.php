@@ -237,16 +237,15 @@
     <script src="/admin/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
 
     <!-- apexcharts -->
-    <script src="/admin/libs/apexcharts/apexcharts.min.js"></script>
+    {{-- <script src="/admin/libs/apexcharts/apexcharts.min.js"></script> --}}
 
     <!-- jquery.vectormap map -->
-    <script src="/admin/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="/admin/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
+    {{-- <script src="/admin/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script> --}}
+    {{-- <script src="/admin/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script> --}}
 
     <script src="/admin/js/pages/dashboard.init.js"></script>
-
-    <script src="/admin/js/app.js"></script>
     @yield('js')
+    <script src="/admin/js/app.js"></script>
 </body>
 
 </html>

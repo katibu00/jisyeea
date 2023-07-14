@@ -73,8 +73,8 @@
 
                         </div>
                     </div>
-                    <div class="mt-5 text-center">
-                        <p>Don't have an account ? <a href="#"
+                    <div class="mt-3 text-center">
+                        <p>Don't have an account ? <a href="{{ route('register') }}"
                                 class="fw-medium text-primary"> Signup now </a> </p>
                         <p>©
                             <script>document.write(new Date().getFullYear())</script> JISYEEA.

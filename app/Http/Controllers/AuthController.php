@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -13,6 +16,38 @@ class AuthController extends Controller
     {
         return view('admin.auth.login');
     }
+    public function registerIndex()
+    {
+        return view('admin.auth.register');
+    }
+
+
+    public function registerStore(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'name' => 'required',
+        'email' => 'nullable|email|unique:users',
+        'phone' => 'required|unique:users',
+        'password' => 'required|min:6',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
+    }
+
+    $user = new User();
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->phone = $request->phone;
+    $user->password = Hash::make($request->password);
+    $user->save();
+
+    return response()->json([
+        'status' => 200,
+        'message' => 'Registration successful',
+    ]);
+}
+
 
     public function login(Request $request)
     {

@@ -20,12 +20,19 @@ Route::get('/', [HomeController::class, 'guest'])->name('home');
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/register', [AuthController::class, 'registerIndex'])->name('register');
+Route::post('/register', [AuthController::class, 'registerStore']);
+
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/system-admin', [AuthController::class, 'index'])->name('system-admin');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/home', [HomeController::class, 'admin'])->name('admin.home');
+});
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/regular/home', [HomeController::class, 'regular'])->name('regular.home');
 });
 
 

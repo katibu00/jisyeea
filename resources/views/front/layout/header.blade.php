@@ -73,7 +73,7 @@
 					</a>
 				</div><!-- search-box -->
 				<div class="main-menu-right-button">
-					<a href="contact.html" class="btn btn-primary">Report Issue</a>
+					<a href="{{ route('login') }}" class="btn btn-primary">Login/Register</a>
 				</div><!-- main-menu-right-button -->
 			</div><!-- main-menu-right -->
 		</div>

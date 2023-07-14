@@ -18,4 +18,9 @@ class HomeController extends Controller
         $data['blogs'] = Blog::all();
         return view('front.pages.home', $data);
     }
+
+    public function regular()
+    {
+        return view('user.home');
+    }
 }
