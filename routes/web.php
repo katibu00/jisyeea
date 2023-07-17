@@ -49,11 +49,9 @@ Route::group(['prefix' => 'blogs', 'middleware' => ['auth']], function () {
     Route::get('/{blog}/edit', [BlogsController::class, 'edit'])->name('blogs.edit');
     Route::put('/{blog}', [BlogsController::class, 'update'])->name('blogs.update');
     Route::delete('/{blog}', [BlogsController::class, 'destroy'])->name('blogs.destroy');
-    Route::get('/{id}',  [BlogsController::class, 'show'])->name('blogs.show');
-
-
-
-
 
 });
+
+Route::get('/blogs/{id}',  [BlogsController::class, 'show'])->name('blogs.show');
+
 
