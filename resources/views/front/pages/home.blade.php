@@ -88,12 +88,12 @@
                 <div class="col-lg-6">
                     <div class="about-image">
                         <div class="about-image-inner img-one">
-                            <img src="/images/director.jpeg" class="img-fluid" alt="img-2">
-                            <div class="sign-text">Kevin Martin</div>
+                            <img src="/images/director3.jpeg" class="img-fluid" alt="img-2">
+                            <div class="sign-text">Dr. Habib</div>
                             <div class="about-image-caption">
                                 <div class="about-image-caption-inner">
-                                    <span class="about-caption-number">18</span>
-                                    <span class="about-caption-text">Years of<br>experience</span>
+                                    {{-- <span class="about-caption-number">Excellence</span> --}}
+                                    <span class="about-caption-text">Excellence and <br>Progress</span>
                                 </div>
                             </div>
                         </div>
@@ -352,16 +352,19 @@
         <div class="container">
             <div class="client-carousel owl-carousel owl-theme">
                 <div class="item">
-                    <img src="/theme/image/shapes/client-1.png" class="img-fluid" alt="img-13">
+                    <img src="/images/partner1.jpeg" class="img-fluid" alt="img-13">
                 </div>
                 <div class="item">
-                    <img src="/theme/image/shapes/client-1.png" class="img-fluid" alt="img-14">
+                    <img src="/images/partner2.jpeg" class="img-fluid" alt="img-14">
                 </div>
                 <div class="item">
-                    <img src="/theme/image/shapes/client-1.png" class="img-fluid" alt="img-15">
+                    <img src="/images/partner3.jpeg" class="img-fluid" alt="img-15">
                 </div>
                 <div class="item">
-                    <img src="/theme/image/shapes/client-1.png" class="img-fluid" alt="img-16">
+                    <img src="/images/partner4.jpeg" class="img-fluid" alt="img-16">
+                </div>
+                <div class="item">
+                    <img src="/images/partner5.jpeg" class="img-fluid" alt="img-16">
                 </div>
             </div>
         </div>

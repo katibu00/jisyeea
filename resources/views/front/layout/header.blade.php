@@ -15,7 +15,7 @@
 								<i class="fa-solid fa-envelope"></i>
 							</div><!-- topbar-icon -->
 							<div class="topbar-text">
-								<a href="mailto:needhelp@company.com">info@company.com</a>
+								<a href="mailto:needhelp@company.com">support@jisyeea.com</a>
 							</div><!-- topbar-text -->
 						</li>
 						<li>
@@ -31,9 +31,9 @@
 			</div><!-- topbar-left -->
 			<div class="topbar-right">
 				<ul>
-					<li><a href="department-details.html">Council</a></li>
-					<li><a href="departments.html">Government</a></li>
-					<li><a href="contact.html">Complaints</a></li>
+					<li><a href="#">Empowerment</a></li>
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">Complaints</a></li>
 				</ul><!-- ul -->
 			</div><!--topbar-right-->
 		</div><!-- topbar-inner -->
