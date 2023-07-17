@@ -88,12 +88,12 @@
                 <div class="col-lg-6">
                     <div class="about-image">
                         <div class="about-image-inner img-one">
-                            <img src="/images/director3.jpeg" class="img-fluid" alt="img-2">
-                            <div class="sign-text">Dr. Habib</div>
+                            <img src="/images/gov.jpeg" class="img-fluid" alt="img-2">
+                            <div class="sign-text">Umar Namadi</div>
                             <div class="about-image-caption">
                                 <div class="about-image-caption-inner">
                                     {{-- <span class="about-caption-number">Excellence</span> --}}
-                                    <span class="about-caption-text">Excellence and <br>Progress</span>
+                                    <span class="about-caption-text">His Excellency</span>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="about-author-box">
                             <div class="about-author-image">
-                                <img src="/images/gov.jpeg" class="img-fluid" alt="img-5" width="100">
+                                <img src="/images/gov.png" class="img-fluid" alt="img-5" width="100">
                             </div>
                             <div class="about-author-box-meta">
                                 <h5>Malam Umar A. Namadi, Fca</h5>
@@ -290,7 +290,7 @@
                 <div class="col-lg-6">
                     <div class="mayor-img">
                         <img src="/theme/image/shapes/shape-1.png" class="floated-image-one" alt="img-7">
-                        <img src="/images/director2.jpg" alt="img-8">
+                        <img src="/images/director3.jpeg" alt="img-8">
                         <div class="mayor-name">
                             Dr. Habib Muhammad Ubale
                         </div>
@@ -567,7 +567,7 @@
 </section> --}}
 
 
-    <section class="cta-five-section">
+    {{-- <section class="cta-five-section">
         <div class="container">
             <div class="cta-five-card">
                 <div class="cta-five-card-icon">
@@ -586,7 +586,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
     <section class="blog-section">

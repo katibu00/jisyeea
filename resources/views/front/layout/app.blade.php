@@ -54,17 +54,17 @@
 		</div><!-- logo-box -->
 		<div class="mobile-nav-container"></div><!-- mobile-nav-container -->
 		<ul class="mobile-nav-contact list-unstyled">
-			<li>
+			{{-- <li>
 				<i class="fa-solid fa-phone"></i>
 				<a href="tel:+8898006802">+ 88 ( 9800 ) 6802</a>
-			</li>
+			</li> --}}
 			<li>
 				<i class="fa-solid fa-envelope"></i>
-				<a href="mailto:needhelp@company.com">needhelp@company.com</a>
+				<a href="mailto:needhelp@company.com">info@jisyeea.com</a>
 			</li>
 			<li>
 				<i class="fa-solid fa-map-marker-alt"></i>
-				88 Broklyn Golden Road Street <br> New York. USA
+				Block A, New Secretariat Complex,3 Arms Zone,<br> Takur Dutse, Jigawa State-Nigeria.
 			</li>
 		</ul><!-- mobile-nav-contact -->
 		<ul class="mobile-nav-social list-unstyled">

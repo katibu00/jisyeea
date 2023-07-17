@@ -15,7 +15,7 @@
 								<i class="fa-solid fa-envelope"></i>
 							</div><!-- topbar-icon -->
 							<div class="topbar-text">
-								<a href="mailto:needhelp@company.com">support@jisyeea.com</a>
+								<a href="mailto:needhelp@company.com">info@jisyeea.com</a>
 							</div><!-- topbar-text -->
 						</li>
 						<li>

@@ -4,10 +4,10 @@
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="footer-widget-logo">
-						<a href="index.html"><img src="/theme/image/logo-light.png" class="img-fluid" alt="img-25"></a>
+						<a href="{{ route('home') }}"><img src="/images/logo.jpeg" class="img-fluid" alt="img-25"></a>
 					</div><!-- footer-widget-logo -->
 					<div class="footer-widget-text">
-						<p>The gowrnx official guide to living, working, visiting and investing in the Texas</p>
+						<p>Jigawa State Youth Empowernment Agency</p>
 					</div><!-- footer-widget-text -->
 					<div class="footer-widget-socials">
 						<a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -48,18 +48,18 @@
 					<div class="footer-widget">
 						<div class="footer-widget-contact">
 							<h4 class="footer-widget-title">Contact</h4>
-							<p>88 Broklyn Golden Road Street,<br>New York. USA</p>
+							<p>Block A, New Secretariat Complex,3 Arms Zone, <br>Takur Dutse, Jigawa State-Nigeria.</p>
 						</div><!-- footer-widget-contact -->
 						<div class="footer-widget-contact-list">
 							<i class="fa-solid fa-envelope"></i>
 							<div class="footer-widget-contact-item">
-								<a href="mailto:needhelp@company.com">needhelp@company.com</a>
+								<a href="mailto:needhelp@company.com">info@jisyeea.com</a>
 							</div><!-- footer-widget-contact-item -->
 						</div><!-- footer-widget-contact-list -->
 						<div class="footer-widget-contact-list">
 							<i class="fa-solid fa-phone"></i>
 							<div class="footer-widget-contact-item">
-								<a href="tel:+92-003-68-090">+92 (003) 68-090</a>
+								{{-- <a href="tel:+92-003-68-090">+92 (003) 68-090</a> --}}
 							</div><!-- footer-widget-contact-item -->
 						</div><!-- footer-widget-contact-list -->
 					</div><!--footer-widget-->
@@ -69,7 +69,7 @@
 	</div><!--footer-inner-->
 	<div class="bottom-footer">
 		<div class="conatiner">
-			<p>© Copyright 2023 by Company.com</p>
+			<p>© Copyright 2023 by JISYEEA</p>
 		</div>
 	</div><!--bottom-footer-->
 </section><!--footer-->
