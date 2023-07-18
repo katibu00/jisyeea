@@ -15,12 +15,14 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Applications</a></li>
-                                <li class="breadcrumb-item active">Graduate Programs</li>
+                                <li class="breadcrumb-item active">Empowerment Programs</li>
                             </ol>
                         </div>
 
                     </div>
                 </div>
+                <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+
             </div>
             <!-- end page title -->
 
@@ -29,112 +31,124 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Jigawa State Empowerment Application</h4>
-                            <p class="card-title-desc">Please complete the following form to apply for the empowerment program in Jigawa State.</p>
+                            <p class="card-title-desc">Please complete the following form to apply for the empowerment
+                                program in Jigawa State.</p>
 
-                            <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                            <form id="form-horizontal" class="form-horizontal form-wizard-wrapper"
+                                action="{{ route('application.submit') }}" method="POST">
                                 <h3>Personal Information</h3>
                                 <fieldset>
-                                    <div class="row">
+                                    <div class="row mb-3">
                                         <div class="col-md-12">
                                             <h3>Personal Information</h3>
+                                            <div class="mandatory-info">
+                                                Fields marked with <span class="text-danger">*</span> are mandatory.
+                                            </div>
                                         </div>
                                     </div>
 
                                     <style>
-                                      /* CSS styles for the custom file input button */
-                                      .custom-file-input {
-                                        position: absolute;
-                                        top: 0;
-                                        right: 0;
-                                        width: 100%;
-                                        height: 100%;
-                                        opacity: 0;
-                                        cursor: pointer;
-                                      }
-                                    
-                                      /* CSS styles for the custom file input button wrapper */
-                                      .custom-file-wrapper {
-                                        position: relative;
-                                        display: inline-block;
-                                        border-radius: 5px;
-                                        overflow: hidden;
-                                      }
-                                    
-                                      /* CSS styles for the image preview */
-                                      .img-preview {
-                                        width: 100px;
-                                        height: 100px;
-                                        object-fit: cover;
-                                        border-radius: 5px;
-                                      }
-                                    
-                                      /* CSS styles for the upload button */
-                                      .upload-button {
-                                        display: inline-block;
-                                        padding: 6px 12px;
-                                        background-color: #007bff;
-                                        color: #fff;
-                                        border: none;
-                                        border-radius: 4px;
-                                        transition: background-color 0.3s ease;
-                                        cursor: pointer;
-                                      }
-                                    
-                                      .upload-button:hover {
-                                        background-color: #0056b3;
-                                      }
-                                    </style>
-                                    
-                                    <script>
-                                      document.addEventListener('DOMContentLoaded', function() {
-                                        var fileInput = document.getElementById('profile-picture');
-                                        var uploadButton = document.querySelector('.upload-button');
-                                    
-                                        uploadButton.addEventListener('click', function() {
-                                          fileInput.click();
-                                        });
-                                    
-                                        fileInput.addEventListener('change', function() {
-                                          var previewImage = document.getElementById('profile-picture-preview');
-                                          var file = this.files[0];
-                                          var reader = new FileReader();
-                                    
-                                          reader.onload = function(e) {
-                                            previewImage.src = e.target.result;
-                                          };
-                                    
-                                          reader.readAsDataURL(file);
-                                        });
-                                      });
-                                    </script>
-                                    
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="mb-3 row">
-                                          <label for="profile-picture" class="col-lg-2 col-form-label">Profile Picture</label>
-                                          <div class="col-lg-10">
-                                            <div class="input-group">
-                                              <div class="custom-file-wrapper">
-                                                <img id="profile-picture-preview" src="/default.png" alt="No Image" class="img-thumbnail img-preview">
-                                                <label for="profile-picture" class="upload-button">Change</label>
-                                                <input id="profile-picture" name="profile-picture" type="file" class="form-control custom-file-input">
-                                              </div>
-                                            </div>
-                                            <small class="form-text text-muted">Upload an image in PNG or JPG format.</small>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    
+                                        /* CSS styles for the custom file input button */
+                                        .custom-file-input {
+                                            position: absolute;
+                                            top: 0;
+                                            right: 0;
+                                            width: 100%;
+                                            height: 100%;
+                                            opacity: 0;
+                                            cursor: pointer;
+                                        }
 
-                                    
+                                        /* CSS styles for the custom file input button wrapper */
+                                        .custom-file-wrapper {
+                                            position: relative;
+                                            display: inline-block;
+                                            border-radius: 5px;
+                                            overflow: hidden;
+                                        }
+
+                                        /* CSS styles for the image preview */
+                                        .img-preview {
+                                            width: 100px;
+                                            height: 100px;
+                                            object-fit: cover;
+                                            border-radius: 5px;
+                                        }
+
+                                        /* CSS styles for the upload button */
+                                        .upload-button {
+                                            display: inline-block;
+                                            padding: 6px 12px;
+                                            background-color: #007bff;
+                                            color: #fff;
+                                            border: none;
+                                            border-radius: 4px;
+                                            transition: background-color 0.3s ease;
+                                            cursor: pointer;
+                                        }
+
+                                        .upload-button:hover {
+                                            background-color: #0056b3;
+                                        }
+                                    </style>
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            var fileInput = document.getElementById('profile-picture');
+                                            var uploadButton = document.querySelector('.upload-button');
+
+                                            uploadButton.addEventListener('click', function() {
+                                                fileInput.click();
+                                            });
+
+                                            fileInput.addEventListener('change', function() {
+                                                var previewImage = document.getElementById('profile-picture-preview');
+                                                var file = this.files[0];
+                                                var reader = new FileReader();
+
+                                                reader.onload = function(e) {
+                                                    previewImage.src = e.target.result;
+                                                };
+
+                                                reader.readAsDataURL(file);
+                                            });
+                                        });
+                                    </script>
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="full-name" class="col-lg-2 col-form-label">Full Name</label>
+                                                <label for="profile-picture" class="col-lg-2 col-form-label">Profile
+                                                    Picture<span class="text-danger"> *</span></label>
+                                                <div class="col-lg-10">
+                                                    <div class="input-group">
+                                                        <div class="custom-file-wrapper">
+                                                            <img id="profile-picture-preview" src="/default.png"
+                                                                alt="No Image" class="img-thumbnail img-preview">
+                                                            <label for="profile-picture"
+                                                                class="upload-button">Change</label>
+                                                            <input id="profile-picture" name="profile-picture"
+                                                                type="file" class="form-control custom-file-input">
+                                                        </div>
+                                                    </div>
+                                                    <small class="form-text text-muted">Upload an image in PNG or JPG
+                                                        format.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="full-name" class="col-lg-2 col-form-label">Full Name<span
+                                                        class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <input id="full-name" name="full-name" type="text"
-                                                        class="form-control" placeholder="Enter your full name">
+                                                        class="form-control mandatory" value="{{ auth()->user()->name }}"
+                                                        placeholder="Enter your full name">
                                                 </div>
                                             </div>
                                         </div>
@@ -144,10 +158,11 @@
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
                                                 <label for="date-of-birth" class="col-lg-2 col-form-label">Date of
-                                                    Birth</label>
+                                                    Birth<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <input id="date-of-birth" name="date-of-birth" type="date"
-                                                        class="form-control">
+                                                        class="form-control mandatory"
+                                                        placeholder="Enter your Date of Birth">
                                                 </div>
                                             </div>
                                         </div>
@@ -156,13 +171,14 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="gender" class="col-lg-2 col-form-label">Gender</label>
+                                                <label for="gender" class="col-lg-2 col-form-label">Gender<span
+                                                        class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
-                                                    <select id="gender" name="gender" class="form-select">
+                                                    <select id="gender" name="gender" class="form-select mandatory"
+                                                        placeholder="Choose your Gender">
                                                         <option value=""></option>
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
-                                                        <option value="other">Other</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -172,10 +188,11 @@
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
                                                 <label for="contact-number" class="col-lg-2 col-form-label">Contact
-                                                    Number</label>
+                                                    Number<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <input id="contact-number" name="contact-number" type="text"
-                                                        class="form-control" placeholder="Enter your contact number">
+                                                        class="form-control mandatory"
+                                                        placeholder="Enter your contact number">
                                                 </div>
                                             </div>
                                         </div>
@@ -184,9 +201,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="address" class="col-lg-2 col-form-label">Address</label>
+                                                <label for="address" class="col-lg-2 col-form-label">Address<span
+                                                        class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
-                                                    <textarea id="address" name="address" class="form-control" rows="3" placeholder="Enter your address"></textarea>
+                                                    <textarea id="address" name="address" class="form-control mandatory" rows="3"
+                                                        placeholder="Enter your address"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,9 +215,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="email" class="col-lg-2 col-form-label">Email Address</label>
+                                                <label for="email" class="col-lg-2 col-form-label">Email
+                                                    Address</label>
                                                 <div class="col-lg-10">
-                                                    <input id="email" name="email" type="email" class="form-control"
+                                                    <input id="email" name="email" type="email"
+                                                        class="form-control mandatory"
                                                         placeholder="Enter your email address">
                                                 </div>
                                             </div>
@@ -209,12 +230,13 @@
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
                                                 <label for="lga-origin" class="col-lg-2 col-form-label">LGA of
-                                                    Origin</label>
+                                                    Origin<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
 
-                                                    <select class="form-select" aria-label="Select Local Government Area"
-                                                        id="lga-origin">
-                                                        <option selected disabled></option>
+                                                    <select class="form-select mandatory"
+                                                        aria-label="Select Local Government Area" id="lga-origin"
+                                                        name="lga-origin" placeholder="Choose your LGA">
+                                                        <option value=""></option>
                                                         <option value="Auyo">Auyo</option>
                                                         <option value="Babura">Babura</option>
                                                         <option value="Biriniwa">Biriniwa</option>
@@ -252,9 +274,13 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="local-govt" class="col-lg-2 col-form-label">Ward</label>
+                                                <label for="ward" class="col-lg-2 col-form-label">Ward<span
+                                                        class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
-                                                    <select id="ward" name="ward" class="form-select"></select>
+                                                    <select id="ward" name="ward" class="form-select mandatory"
+                                                        placeholder="Enter your Ward">
+                                                        <option value=""></option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -264,10 +290,11 @@
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
                                                 <label for="marital-status" class="col-lg-2 col-form-label">Marital
-                                                    Status</label>
+                                                    Status<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <select id="marital-status" name="marital-status"
-                                                        class="form-select">
+                                                        class="form-select mandatory"
+                                                        placeholder="Choose Your Marital Status">
                                                         <option value=""></option>
                                                         <option value="single">Single</option>
                                                         <option value="married">Married</option>
@@ -279,13 +306,17 @@
                                         </div>
                                     </div>
 
+
                                 </fieldset>
                                 <h3>Education and Skills</h3>
                                 <fieldset>
 
-                                    <div class="row">
+                                    <div class="row mb-3">
                                         <div class="col-md-12">
                                             <h3>Education and Skills</h3>
+                                            <div class="mandatory-info">
+                                                Fields marked with <span class="text-danger">*</span> are mandatory.
+                                            </div>
                                         </div>
                                     </div>
 
@@ -293,11 +324,13 @@
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
                                                 <label for="highest-education" class="col-lg-2 col-form-label">Highest
-                                                    Education</label>
+                                                    Education<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <select id="highest-education" name="highest-education"
-                                                        class="form-control">
+                                                        class="form-control mandatory"
+                                                        placeholder="Choose your Highest Qualification ">
                                                         <option value="">Select your highest education</option>
+                                                        <option value="none">None</option>
                                                         <option value="primary-school">Primary School</option>
                                                         <option value="secondary-school">Secondary School</option>
                                                         <option value="vocational-training">Vocational Training</option>
@@ -327,7 +360,7 @@
                                     <div class="row" id="area-of-study-div" style="display: none;">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="area-of-study" class="col-lg-2 col-form-label">Course of
+                                                <label for="course-of-study" class="col-lg-2 col-form-label">Course of
                                                     Study</label>
                                                 <div class="col-lg-10">
                                                     <input id="area-of-study" name="area-of-study" type="text"
@@ -342,11 +375,13 @@
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
                                                 <label for="artisan-skills" class="col-lg-2 col-form-label">Artisan
-                                                    Skills</label>
+                                                    Skills<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <select id="artisan-skills" name="artisan-skills"
-                                                        class="form-control">
-                                                        <option value="">No Skill</option>
+                                                        class="form-control mandatory"
+                                                        placeholder="Choose your Artisan Skill">
+                                                        <option value=""></option>
+                                                        <option value="No Skill">No Skill</option>
                                                         <option value="plumbing">Plumbing</option>
                                                         <option value="carpentry">Carpentry</option>
                                                         <option value="electrician">Electrician</option>
@@ -377,11 +412,13 @@
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
                                                 <label for="computer-skills" class="col-lg-2 col-form-label">Computer
-                                                    Skills</label>
+                                                    Skills<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <select id="computer-skills" name="computer-skills"
-                                                        class="form-control">
-                                                        <option value="">No Skill</option>
+                                                        class="form-control mandatory"
+                                                        placeholder="Choose your Computer Skill">
+                                                        <option value=""></option>
+                                                        <option value="No Skill">No Skill</option>
                                                         <option value="programming">Programming</option>
                                                         <option value="networking">Networking</option>
                                                         <option value="database">Database Management</option>
@@ -402,129 +439,140 @@
                                 <h3>Choice of Program</h3>
                                 <fieldset>
 
-                                    <div class="row">
+                                    <div class="row mb-3">
                                         <div class="col-md-12">
                                             <h3>Choice of Program</h3>
+                                            <div class="mandatory-info">
+                                                Fields marked with <span class="text-danger">*</span> are mandatory.
+                                            </div>
                                         </div>
                                     </div>
 
                                     <script>
-                                      // Populate the programs based on the selected category
-                                      function populatePrograms() {
-                                        var categorySelect = document.getElementById('category');
-                                        var programsSelect = document.getElementById('programs');
-                                        var selectedCategory = categorySelect.value;
-                                    
-                                        // Clear the existing options
-                                        programsSelect.innerHTML = '';
-                                    
-                                        // Define the programs for each category
-                                        var programs = {
-                                          student: ['','Student Loan', 'Scholarship', 'NECO/WAEC/JAMB'],
-                                          unemployed: ['','Vocational training'],
-                                          entrepreneur: ['','MSMEs Grand'],
-                                          graduate: ['','Digital Literacy'],
-                                          farmer: ['','FarmRise Program']
-                                        };
-                                    
-                                        // Populate the programs select field with options
-                                        programs[selectedCategory].forEach(function(program) {
-                                          var option = document.createElement('option');
-                                          option.value = program;
-                                          option.text = program;
-                                          programsSelect.appendChild(option);
-                                        });
-                                      }
-                                    
-                                      // Event listener for category change
-                                      document.getElementById('category').addEventListener('change', populatePrograms);
+                                        // Populate the programs based on the selected category
+                                        function populatePrograms() {
+                                            var categorySelect = document.getElementById('category');
+                                            var programsSelect = document.getElementById('programs');
+                                            var selectedCategory = categorySelect.value;
+
+                                            // Clear the existing options
+                                            programsSelect.innerHTML = '';
+
+                                            // Define the programs for each category
+                                            var programs = {
+                                                student: ['', 'Student Loan', 'Scholarship', 'NECO/WAEC/JAMB'],
+                                                unemployed: ['', 'Vocational training'],
+                                                entrepreneur: ['', 'MSMEs Grand'],
+                                                graduate: ['', 'Digital Literacy'],
+                                                farmer: ['', 'FarmRise Program']
+                                            };
+
+                                            // Populate the programs select field with options
+                                            programs[selectedCategory].forEach(function(program) {
+                                                var option = document.createElement('option');
+                                                option.value = program;
+                                                option.text = program;
+                                                programsSelect.appendChild(option);
+                                            });
+                                        }
+
+                                        // Event listener for category change
+                                        document.getElementById('category').addEventListener('change', populatePrograms);
                                     </script>
-                                    
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="mb-3 row">
-                                          <label for="category" class="col-lg-2 col-form-label">Category</label>
-                                          <div class="col-lg-10">
-                                            <select id="category" name="category" class="form-control">
-                                              <option value=""></option>
-                                              <option value="student">Student</option>
-                                              <option value="unemployed">Un-Employed</option>
-                                              <option value="entrepreneur">Entrepreneur</option>
-                                              <option value="graduate">Graduate</option>
-                                              <option value="farmer">Farmer</option>
-                                            </select>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="mb-3 row">
-                                          <label for="programs" class="col-lg-2 col-form-label">Programs</label>
-                                          <div class="col-lg-10">
-                                            <select id="programs" name="programs" class="form-control">
-                                            </select>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="category" class="col-lg-2 col-form-label">Category<span
+                                                        class="text-danger"> *</span></label>
+                                                <div class="col-lg-10">
+                                                    <select id="category" name="category" class="form-control mandatory"
+                                                        placeholder="Choose your Program category">
+                                                        <option value=""></option>
+                                                        <option value="student">Student</option>
+                                                        <option value="unemployed">Un-Employed</option>
+                                                        <option value="entrepreneur">Entrepreneur</option>
+                                                        <option value="graduate">Graduate</option>
+                                                        <option value="farmer">Farmer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="programs" class="col-lg-2 col-form-label">Programs<span
+                                                        class="text-danger"> *</span></label>
+                                                <div class="col-lg-10">
+                                                    <select id="programs" name="programs" class="form-control mandatory"
+                                                        placeholder="Choose your Preferred Program">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </fieldset>
                                 <h3>Uploads</h3>
                                 <fieldset>
 
-                                    <div class="row">
+                                    <div class="row mb-3">
                                         <div class="col-md-12">
                                             <h3>File Uploads</h3>
+                                            <div class="mandatory-info">
+                                                Fields marked with <span class="text-danger">*</span> are mandatory.
+                                            </div>
                                         </div>
                                     </div>
-
-
 
                                     <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="mb-3 row">
-                                          <label for="cv-upload" class="col-lg-2 col-form-label">CV Upload</label>
-                                          <div class="col-lg-10">
-                                            <input id="cv-upload" name="cv-upload" type="file" class="form-control" accept=".pdf,.doc,.docx">
-                                            <small class="form-text text-muted">Upload your CV (PDF, Word)</small>
-                                          </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="cv-upload" class="col-lg-2 col-form-label">CV Upload</label>
+                                                <div class="col-lg-10">
+                                                    <input id="cv-upload" name="cv-upload" type="file"
+                                                        class="form-control" accept=".pdf,.doc,.docx">
+                                                    <small class="form-text text-muted">Upload your CV (PDF, Word)</small>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
-                                    
+
                                     <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="mb-3 row">
-                                          <label for="nysc-certificate-upload" class="col-lg-2 col-form-label">NYSC Certificate Upload</label>
-                                          <div class="col-lg-10">
-                                            <input id="nysc-certificate-upload" name="nysc-certificate-upload" type="file" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                                            <small class="form-text text-muted">Upload your NYSC certificate (PDF, JPG, PNG)</small>
-                                          </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="nysc-certificate-upload" class="col-lg-2 col-form-label">NYSC
+                                                    Certificate Upload</label>
+                                                <div class="col-lg-10">
+                                                    <input id="nysc-certificate-upload" name="nysc-certificate-upload"
+                                                        type="file" class="form-control"
+                                                        accept=".pdf,.jpg,.jpeg,.png">
+                                                    <small class="form-text text-muted">Upload your NYSC certificate (PDF,
+                                                        JPG, PNG)</small>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
-                                    
+
                                     <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="mb-3 row">
-                                          <label for="other-uploads" class="col-lg-2 col-form-label">Other Relevant Uploads</label>
-                                          <div class="col-lg-10">
-                                            <input id="other-uploads" name="other-uploads" type="file" class="form-control" multiple>
-                                            <small class="form-text text-muted">Upload other relevant documents (PDF, JPG, PNG, etc.)</small>
-                                          </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="other-uploads" class="col-lg-2 col-form-label">Other Relevant
+                                                    Uploads</label>
+                                                <div class="col-lg-10">
+                                                    <input id="other-uploads" name="other-uploads" type="file"
+                                                        class="form-control" multiple>
+                                                    <small class="form-text text-muted">Upload other relevant documents
+                                                        (PDF, JPG, PNG, etc.)</small>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
-                                    
 
 
-
-                                  
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
@@ -536,9 +584,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
 
                                 </fieldset>
                             </form>
@@ -563,145 +608,207 @@
 
         <!-- form wizard init -->
         <script src="/admin/js/pages/form-wizard.init.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 
         <script>
-            $(function() {
-                // On form submit
-                $("#form-horizontal").submit(function(event) {
-                    event.preventDefault(); // Prevent the default form submission
+            $(document).ready(function() {
+                // Form submission event
+                $('#form-horizontal').on('submit', function(e) {
+                    e.preventDefault();
 
-                    // Perform form validation here if needed
-                    // ...
+                    // Reset error message and remove any existing validation classes
+                    $('#error-message').hide().empty();
+                    $('.mandatory').removeClass('is-invalid');
 
-                    // Collect form data
-                    var formData = $(this).serializeArray();
+                    // Validate mandatory fields
+                    var isValid = true;
+                    var emptyFields = [];
 
-                    // Print form data to the console (you can replace this with your desired logic)
-                    console.log(123);
+                    $('.mandatory').each(function() {
+                        var value = $(this).val().trim();
+                        var placeholder = $(this).attr('placeholder');
+                        var labelText = $(this).siblings('label').text().trim();
+                        var fieldName = placeholder || labelText;
 
-                    // Optionally, you can send the form data to a server using AJAX
-                    // Uncomment the code below to send the form data using AJAX
-                    /*
-                    $.ajax({
-                      url: "your-server-url",
-                      method: "POST",
-                      data: formData,
-                      success: function(response) {
-                        console.log("Form data submitted successfully!");
-                        // Optionally, perform any success actions here
-                      },
-                      error: function(xhr, status, error) {
-                        console.error("Form data submission failed:", error);
-                        // Optionally, perform any error handling here
-                      }
+                        if (value === '' || (value === null && placeholder === '')) {
+                            isValid = false;
+                            emptyFields.push(fieldName);
+                            $(this).addClass('is-invalid');
+                        }
                     });
-                    */
 
-                    // Optionally, you can redirect the user to a different page after form submission
-                    // Uncomment the code below and replace "your-page-url" with the desired URL
-                    /*
-                    window.location.href = "your-page-url";
-                    */
+                    // Display error message and highlight empty fields
+                    if (!isValid) {
+                        var errorMessage = 'The following fields are mandatory:<br><ul>';
+
+                        emptyFields.forEach(function(field) {
+                            errorMessage += '<li>' + field + '</li>';
+                        });
+
+                        errorMessage += '</ul>';
+
+                        $('#error-message').html(errorMessage).show();
+                        return;
+                    }
+
+
+
+                    var formData = new FormData(this);
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "{{ route('application.submit') }}",
+                        type: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // Reset form and display success message
+                            $('#form-horizontal').trigger('reset');
+                            toastr.success('Application submitted successfully.');
+                        },
+                        error: function(xhr, status, error) {
+                            if (xhr.responseJSON && xhr.responseJSON.error ===
+                                'User already has an application') {
+                                toastr.error('User already has an application');
+                            } else if (xhr.responseJSON && xhr.responseJSON.errors) {
+                                var errors = xhr.responseJSON.errors;
+                                var errorMessage = '<ul>';
+                                for (var key in errors) {
+                                    if (errors.hasOwnProperty(key)) {
+                                        errorMessage += '<li>' + errors[key][0] + '</li>';
+                                    }
+                                }
+                                errorMessage += '</ul>';
+                                toastr.error(errorMessage);
+                            } else {
+                                toastr.error('An error occurred. Please try again later.');
+                            }
+                        }
+
+                    });
+
+
+
                 });
             });
+        </script>
 
+
+
+
+        <script>
             $(document).ready(function() {
                 const lgaWards = {
-                    Auyo: ["Auyo Ward", "Baganaye Ward", "Balangu Ward", "Buji Ward", "Gishiru Ward",
-                        "Gujungu Ward", "Kanya Ward", "Magajiya Ward", "Mainari Ward", "Ningi Ward",
-                        "Randawa Ward", "Zangon Baji Ward"
+                    Auyo: ["Auyo Ward", "Ayan Ward", "Auyaki Ward", "Ayama Ward", "Gatafa Ward",
+                        "Gamafoi Ward", "Gamsarka Ward", "Kafur Ward", "Tsidir Ward", "Unik Ward"
                     ],
-                    Babura: ["Babura Ward", "Babura East Ward", "Babura West Ward", "Bande Ward", "Gabarin Ward",
-                        "Kaugama Ward", "Kilasu Ward", "Marwara Ward", "Wazari Ward", "Yargaba Ward"
+                    Babura: ["Kuzunzumi Ward", "Batali Ward", "Jigawa Ward", "Babura Ward", "Garu Ward",
+                        "Insharuwa Ward", "Kanya Ward", "Kyambo Ward", "Dorawa Ward", "Gasakoli Ward",
+                        "Takwasawa Ward"
                     ],
-                    Biriniwa: ["Biriniwa Ward", "Birniwa East Ward", "Birniwa West Ward", "Dauwar Fada Ward",
-                        "Gwaran Ward", "Harbo Ward", "Hayi Ward", "Kumawa Ward", "Yallo Ward", "Yatsumbaki Ward"
+                    Biriniwa: ["Kachallare Ward", "Machinamari  Ward", "Kazura Ward", "Diginsa Ward",
+                        "Nguwa Ward", "Fagi Ward", "Batu Ward", "Birniwa Ward", "Dangwaleri Ward",
+                        "Karanka Ward", "Matamu Ward"
                     ],
-                    BirninKudu: ["Birnin Kudu Ward 1", "Birnin Kudu Ward 2", "Birnin Kudu Ward 3",
-                        "Birnin Kudu Ward 4", "Birnin Kudu Ward 5", "Birnin Kudu Ward 6", "Birnin Kudu Ward 7",
-                        "Birnin Kudu Ward 8", "Birnin Kudu Ward 9", "Birnin Kudu Ward 10"
+                    BirninKudu: ["Birnin Kudu Ward ", "Kiyako Ward", "Wurno ward",
+                        "Kangire ward", "Yalwan Damai ward", "Unguwar Ya Ward", "Lafia Ward",
+                        "Kwangwara ward", "Sundumina Ward", "Kantoga Ward", "Surko Ward"
                     ],
-                    Buji: ["Buji Ward", "Aguji Ward", "Burki Ward", "Dagel Ward", "Dangyatin Ward", "Dawaki Ward",
-                        "Doguwa Ward", "Fago Ward", "Garin Gambo Ward", "Tasheguwa Ward"
+                    Buji: ["Gantsa ward", "Kukuma Ward", "Yayari Ward", "Ahoto Ward", "Kayawa Ward",
+                        "Lelen Kudu Ward", "Falageri Ward", "Madabe Ward", "Chirbin Ward", "Buji Ward"
                     ],
-                    Dutse: ["Dutse Ward A", "Dutse Ward B", "Dutse Ward C", "Dutse Ward D", "Dutse Ward E",
-                        "Dutse Ward F", "Dutse Ward G", "Dutse Ward H", "Dutse Ward I", "Dutse Ward J"
+                    Dutse: ["Ayan Ward", "Chamo Ward", "Duru Ward", "Dundubus Ward", "Limawa Ward", "Kachi Ward",
+                        "J/Tsada Ward", "Sakwaya Ward", "Kudai Ward", "Madobi Ward", "Karnaya Ward"
                     ],
-                    Gagarawa: ["Gagarawa Ward", "Basirka Ward", "Dankoli Ward", "Fago Ward", "Gantsa Ward",
-                        "Garki Ward", "Gungun Sarki Ward", "Jandutse Ward", "Kafinsabuwa Ward",
-                        "Mijinjirawa Ward"
+                    Gagarawa: ["Madaka Ward", "Maikilili Ward", "Zarada Ward", "Yalawa Ward", "Tasha Ward",
+                        "Medu Ward", "Gari Ward", "Garin Chiroma Ward", "Maiaduwa Ward",
+                        "Korebalatu Ward"
                     ],
-                    Garki: ["Garki Ward", "Azurawa Ward", "Bargo Ward", "Baska Ward", "Burani Ward", "Dorawa Ward",
-                        "Goma Ward", "Joga Ward", "Kalgo Ward", "Zauru Ward"
+                    Garki: ["Gwarzo Ward", "Doko Ward", "Sayori Ward", "Buduru Ward", "Kargo Ward", "Jirima Ward",
+                        "Rafin Marke Ward", "Kanya Ward", "Kore Ward", "Muku Ward", "Garki Ward"
                     ],
-                    Gumel: ["Gumel Ward", "Aujara Ward", "Babaruwa Ward", "Bukkuyum Ward", "Garin Malam Ward",
-                        "Gundutse Ward", "Jakwanawa Ward", "Maiyama Ward", "Sabon Gari Ward", "Yakasai Ward"
+                    Gumel: ["Dantanoma Ward", "Gusau Ward", "Dan Ama Ward", "Garin Gambo Ward", "Hammado Ward",
+                        "Galagamma Ward", "Kofar Arewa Ward", "Kofar Yamma Ward", "Garin Barka Ward",
+                        "Zango Ward", "Baikarya Ward"
                     ],
-                    Guri: ["Guri Ward", "Babura Ward", "Bakin Kogi Ward", "Baturiya Ward", "Bubara Ward",
-                        "Chadi Ward", "Chalawa Ward", "Damagaran Ward", "Dangaladima Ward", "Dangamau Ward"
+                    Guri: ["Garbagal Ward", "Adiyani Ward", "Lafiya Ward", "Guri Ward", "Margadu Ward",
+                        "Matara Babba Ward", "Dawa Ward", "Abunabo Ward", "Musari Ward", "Kadira Ward"
                     ],
-                    Gwaram: ["Gwaram Ward", "Arawa Ward", "Badara Ward", "Dankoli Ward", "Dingaya Ward",
-                        "Dogo Ward", "Doma Ward", "Gabasawa Ward", "Garin Alkali Ward", "Hantsi Ward"
+                    Gwaram: ["Gwaram Ward", "Zandam Nagogo Ward", "Sara Ward", "Maruta Ward", "Tsangarwa Ward",
+                        "Fagam Ward", "Basirka Ward", "Farin Dutse Ward", "Dingaya Ward", "Kwandiko Ward",
+                        "Kila Ward"
                     ],
-                    Gwiwa: ["Gwiwa Ward", "Basirka Ward", "Baza Ward", "Doguwa Ward", "Gajuwaka Ward",
-                        "Garin Wakil Ward", "Kargo Ward", "Kumurya Ward", "Rantiya Ward", "Zangon Jari Ward"
+                    Gwiwa: ["Dabi Ward", "Rurau Ward", "Yola Ward", "Firjin Yamma Ward", "Buntusu Ward",
+                        "Darina Ward", "Korayal Ward", "Shafi Ward", "Zauma Ward", "Guntai Ward"
                     ],
-                    Hadejia: ["Hadejia North Ward", "Hadejia South Ward", "Balangu Ward", "Dan Maliki Ward",
-                        "Galamawa Ward", "Gara Ward", "Harbo Ward", "Kargo Ward", "Kargari Ward", "Kumurya Ward"
+                    Hadejia: ["Atafi Ward", "Dubantu Ward", "Gagulmari Ward", "Kasuwar Kuda Ward",
+                        "Majema Ward", "Matsaro Ward", "Rumfa Ward", "Sabon Garu Ward", "Yankoli Ward",
+                        "Yayari Ward", "Kasuwar Kofa Ward"
                     ],
-                    Jahun: ["Jahun Ward", "Albasu Ward", "Basirka Ward", "Dankoli Ward", "Fago Ward",
-                        "Gabasawa Ward", "Garin Alkali Ward", "Garki Ward", "Kargo Ward", "Kargo Maijari Ward"
+                    Jahun: ["Jahun Ward", "Aujara Ward", "Gauza Tazara Ward", "Kali Ward", "Kanwa Ward",
+                        "Gunka Ward", "Gangawa Ward", "Jabarna Ward", "Indaduna Ward", "Harbo Sabuwa Ward",
+                        "Harbo Tsohuwa Ward"
                     ],
-                    KafinHausa: ["Kafin Hausa Ward", "Baballe Ward", "Bakin Dutse Ward", "Damagaran Ward",
-                        "Garin Daji Ward", "Garin Boka Ward", "Garin Wakil Ward", "Jaruwa Ward", "Kalgo Ward",
-                        "Wuro Ladde Ward"
+                    KafinHausa: ["Kafin Hausa Ward", "Kwazalewa Ward", "Dumadumin Toka Ward", "Sarawa Ward",
+                        "Gafaya Ward", "Jabo Ward", "Zago Ward", "Majawa Ward", "Mezan Ward",
+                        "Bulangu Ward", "Ruba Ward"
                     ],
-                    Kaugama: ["Kaugama Ward", "Balarabe Ward", "Babura Ward", "Gidan Sarki Ward", "Guri Ward",
-                        "Jakwanawa Ward", "Kargari Ward", "Karkarna Ward", "Kumurya Ward", "Yantsai Ward"
+                    Kaugama: ["Kaugama Ward", "Dakayyaawa Ward", "Askandu Ward", "Marke Ward", "Ja‘E Ward",
+                        "Unguwar Jibrin Ward", "Dabuwaran Ward", "Arbus Ward", "Hadin Ward", "Yalo Ward",
+                        "Jarkasa Ward"
                     ],
-                    Kazaure: ["Kazaure North Ward", "Kazaure South Ward", "Balarabe Ward", "Bomo Ward",
-                        "Dankoli Ward", "Gabasawa Ward", "Gwiwa Ward", "Gwamagwami Ward", "Jigawar Sarki Ward",
-                        "Katanga Ward"
+                    Kazaure: ["Gabas Ward", "Mardawa Ward", "Sabaru Ward", "Arewa Ward",
+                        "Baauzune Ward", "Yamma Ward", "Kanti Ward", "Gada Ward", "Dandi Ward",
+                        "Dabaza Ward", "Daba Ward"
                     ],
-                    Kirikasamma: ["Kirikasamma Ward", "Basirka Ward", "Basirka Fulani Ward", "Garin Alkali Ward",
-                        "Guma Ward", "Gwadabawa Ward", "Harbo Ward", "Jama'are Ward", "Jarga Ward", "Miga Ward"
+                    Kirikasamma: ["Madaci Ward", "Doleri Ward", "Fandum Ward", "Kirikasamma Ward",
+                        "Turabu Ward", "Marma Ward", "Gayin Ward", "Tasheguwa Ward", "Bulunchai Ward",
+                        "Baturiya Ward"
                     ],
-                    Kiyawa: ["Kiyawa Ward", "Amagu Ward", "Bakanawa Ward", "Bungur Ward", "Gidan Fulani Ward",
-                        "Guradi Ward", "Gwiwa Ward", "Jatau Ward", "Kanya Ward", "Karkarna Ward"
+                    Kiyawa: ["Balago Ward", "Katuka Ward", "Kwanda Ward", "Kiyawa Ward", "Fake Ward",
+                        "Katanga Ward", "Andaza Ward", "Gurduba Ward", "Maje Ward", "Garko Ward", "Tsirma Ward"
                     ],
-                    Maigatari: ["Maigatari Ward", "Barkirya Ward", "Basirka Ward", "Garin Daji Ward",
-                        "Garin Tiku Ward", "Gumel Ward", "Jargo Ward", "Kanya Ward", "Kurnawa Ward",
-                        "Lingayawa Ward"
+                    Maigatari: ["Maigatari Arewa Ward", "Maigatari Kudu Ward", "Matoya Ward", "Fulata Ward",
+                        "Madana Ward", "Turbus Ward", "Dan kumbo Ward", "Jajire Ward", "Kukayisku Ward",
+                        "Galadi Ward", "Balarabe Ward"
                     ],
-                    MalamMadori: ["Malam Madori Ward", "Amagu Ward", "Babarawa Ward", "Dausayi Ward",
-                        "Garin Alkali Ward", "Garin Daji Ward", "Garin Gada Ward", "Garin Mallam Ward",
-                        "Garin Wakil Ward", "Gumel Ward"
+                    MalamMadori: ["Dunari Ward", "Arki Ward", "G/Gabas Ward", "Takwaro Ward",
+                        "Tonikutari Ward", "Futuka Ward", "Mairakumi Ward", "Mukaddari Ward",
+                        "Malam Madori Ward", "Tashena Ward", "Shayya Ward"
                     ],
-                    Miga: ["Miga Ward", "Bakwai Ward", "Basirka Ward", "Danwata Ward", "Garin Alkali Ward",
-                        "Garin Dauwa Ward", "Garin Gada Ward", "Garin Wakil Ward", "Hantsi Ward", "Horo Ward"
+                    Miga: ["Hantsu Ward", "Tsakuwawa Ward", "S/Takanebu Ward", "Garba Ward", "Zareku Ward",
+                        "Miga Ward", "Dangyatin Ward", "Sansani Ward", "Koya Ward", "Yanduna Ward"
                     ],
-                    Ringim: ["Ringim Ward", "Bachirawa Ward", "Bazai Ward", "Dabai Ward", "Garin Alkali Ward",
-                        "Garin Babba Ward", "Garin Baka Ward", "Garin Bawa Ward", "Garin Daji Ward",
-                        "Garin Gabas Ward"
+                    Ringim: ["Chai-Chai Ward", "Yandutse Ward", "Karshi Ward", "Tofa Ward", "Dabi Ward",
+                        "Saltimawa Ward", "Sankara Ward", "Ringim Ward", "Kyarama Ward",
+                        "Kafin Babushi Ward"
                     ],
-                    Roni: ["Roni Ward", "Balangu Ward", "Bursari Ward", "Dala Ward", "Garin Gada Ward",
-                        "Garin Alkali Ward", "Garin Dangora Ward", "Garin Kaya Ward", "Garin Sarki Ward",
-                        "Garin Tiku Ward"
+                    Roni: ["Amaryawa Ward", "Baragumi Ward", "Dansure Ward", "Fara Ward", "Gora Ward",
+                        "Kwaita Ward", "Sankau Ward", "Tunas Ward", "Yanzaki Ward",
+                        "Zugai Ward", "Roni Ward"
                     ],
-                    SuleTankarkar: ["Sule Tankarkar Ward", "Baka Ward", "Garin Alkali Ward", "Garin Chiroma Ward",
-                        "Garin Gabas Ward", "Garin Rijiya Ward", "Garin Sarki Ward", "Garin Shaku Ward",
-                        "Garin Tofa Ward", "Garin Wakil Ward"
+                    SuleTankarkar: ["Albasu Ward", "Danzomo Ward", "Takatsaba Ward", "Shabaru Ward",
+                        "Amanga Ward", "Jeke Ward", "Yandamo Ward", "Dangwanki Ward",
+                        "Suletankarkar Ward", "Danladi Ward"
                     ],
-                    Taura: ["Taura Ward", "Aujara Ward", "Babaldu Ward", "Babban Gari Ward", "Danyata Ward",
-                        "Dingimari Ward", "Galamawa Ward", "Gariyawa Ward", "Kalgaram Ward", "Miga Ward"
+                    Taura: ["Majia Ward", "Cukuta Ward", "Kwalam Ward", "Gujungu Ward", "Cakwaikwaiwa Ward",
+                        "Sabongari Yaya Ward", "Maje Ward", "Kirikasamma Ward", "Aujara Ward", "Taura Ward"
                     ],
-                    Yankwashi: ["Yankwashi Ward", "Bamu Ward", "Barkirya Ward", "Dankoli Ward", "Galamawa Ward",
-                        "Gwiwa Ward", "Gwaramin Kadawa Ward", "Hantsi Ward", "Jama'are Ward", "Kanya Ward"
+                    Yankwashi: ["Yankwashi Ward", "Acilafiya Ward", "Belas Ward", "Dawangayo Ward", "Gurjiya Ward",
+                        "Gwarta Ward", "Karkarna Ward", "Kuda Ward", "Ringim Ward", "Zungumba Ward"
                     ],
                     // Add the remaining LGAs and their respective wards
                     // ...
                 };
+
 
                 // Get references to the LGA and Ward select elements
                 const lgaSelect = $("#lga-origin");
@@ -725,6 +832,11 @@
         </script>
 
 
+
+
+
+
+
         <script>
             $(document).ready(function() {
                 $('#highest-education').change(function() {
@@ -743,9 +855,5 @@
                 });
             });
         </script>
-
-
-
-
 
     @endsection

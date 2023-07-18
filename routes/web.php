@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserApplicationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +52,13 @@ Route::group(['prefix' => 'blogs', 'middleware' => ['auth']], function () {
     Route::delete('/{blog}', [BlogsController::class, 'destroy'])->name('blogs.destroy');
 
 });
+
+Route::group(['prefix' => 'application', 'middleware' => ['auth']], function () {
+  
+    Route::post('/submit',  [UserApplicationController::class, 'submit'])->name('application.submit');
+
+});
+
 
 Route::get('/blogs/{id}',  [BlogsController::class, 'show'])->name('blogs.show');
 

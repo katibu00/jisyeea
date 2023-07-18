@@ -9,6 +9,7 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="/admin/images/favicon.ico">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- jquery.vectormap css -->
     <link href="/admin/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet"
