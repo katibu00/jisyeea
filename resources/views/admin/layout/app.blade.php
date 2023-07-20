@@ -156,7 +156,7 @@
                                             class="bx bx-lock-open font-size-16 align-middle me-1"></i>
                                         Change Password</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#"><i
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
                                             class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
                                         Logout</a>
                                 </div>
@@ -244,7 +244,7 @@
     {{-- <script src="/admin/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script> --}}
     {{-- <script src="/admin/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script> --}}
 
-    <script src="/admin/js/pages/dashboard.init.js"></script>
+    {{-- <script src="/admin/js/pages/dashboard.init.js"></script> --}}
     @yield('js')
     <script src="/admin/js/app.js"></script>
 </body>

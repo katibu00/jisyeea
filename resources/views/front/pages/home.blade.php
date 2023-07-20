@@ -567,26 +567,25 @@
 </section> --}}
 
 
-    {{-- <section class="cta-five-section">
+    <section class="cta-five-section">
         <div class="container">
             <div class="cta-five-card">
                 <div class="cta-five-card-icon">
                     <i class="flaticon-file"></i>
                 </div>
                 <div class="cta-five-content">
-                    <h4>Download Recent Documents</h4>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority<br> have suffered in
-                        some form, by injected humour words.</p>
+                    <h4>Receiving Registrations as Emplyoyed Youth</h4>
+                    <p>Stand a chance for Government Empowerment through our intervention prpgrams.  <br> Register yourself todayand submit your application.</p>
                 </div>
                 <div class="cta-five-button">
-                    <a href="#" class="btn btn-primary">Download Files</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary">Apply Now</a>
                 </div>
                 <div class="cta-five-img">
                     <i class="flaticon-file"></i>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
 
     <section class="blog-section">

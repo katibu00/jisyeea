@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('computer_skills');
             $table->string('category');
             $table->string('programs');
+            $table->string('status')->default('pending');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

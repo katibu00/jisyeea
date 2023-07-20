@@ -61,6 +61,8 @@ $user = auth()->user();
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
 
+                @if(auth()->user()->user_type == 'admin')
+
                 <li>
                   <a href="{{ route('admin.home') }}" class=" waves-effect">
                       <i class="mdi mdi-home"></i>
@@ -73,19 +75,26 @@ $user = auth()->user();
                       <span>Blog</span>
                   </a>
               </li>
+              @endif
 
-{{-- 
-                <li>
-                  <a href="javascript: void(0);" class="has-arrow waves-effect">
-                      <i class="mdi mdi-calendar-check"></i>
-                      <span>Blog</span>
-                  </a>
-                  <ul class="sub-menu" aria-expanded="false">
-                      <li><a href="tasks-list.html"></a></li>
-                      <li><a href="tasks-kanban.html">Kanban Board</a></li>
-                      <li><a href="tasks-create.html">Create Task</a></li>
-                  </ul>
-              </li> --}}
+              @if(auth()->user()->user_type == 'regular')
+
+              <li>
+                <a href="{{ route('regular.home') }}" class=" waves-effect">
+                    <i class="mdi mdi-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+
+              <li>
+                <a href="{{ route('application.lists') }}" class=" waves-effect">
+                  <i class="mdi mdi-clipboard-list"></i>
+                  <span>My Applications</span>
+                </a>
+            </li>
+              @endif
+
+
 
               
 

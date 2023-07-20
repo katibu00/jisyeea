@@ -65,22 +65,16 @@
                                             placeholder="Enter password">
                                     </div>
 
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="remember"
-                                            id="customControlInline">
-                                        <label class="form-check-label" for="customControlInline">Remember
-                                            me</label>
-                                    </div>
+                                    
 
                                     <div class="mt-3">
                                         <button class="btn btn-primary w-100 waves-effect waves-light"
-                                            type="submit">Log
-                                            In</button>
+                                            type="submit">Register</button>
                                     </div>
 
                                     <div class="mt-4 text-center">
-                                        <a href="#" class="text-muted"><i class="mdi mdi-lock me-1"></i> Forgot
-                                            your password?</a>
+                                        Already have an account ? <a href="{{ route('login') }}" class="fw-medium text-primary">
+                                            Sign In </a>
                                     </div>
                                 </form>
                             </div>
@@ -88,8 +82,8 @@
                         </div>
                     </div>
                     <div class="mt-3 text-center">
-                        <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
-                                Signup now </a> </p>
+                        {{-- <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
+                                Signup now </a> </p> --}}
                         <p>©
                             <script>
                                 document.write(new Date().getFullYear())
