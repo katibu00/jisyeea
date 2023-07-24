@@ -40,7 +40,7 @@
                 </div>
                 <div class="news-details-content-box">
                     <h4>{{ $blog->title }}</h4>
-                    <p>{{ $blog->body }}</p>
+                    <p>{!! $blog->body !!}</p>
                 </div>
                 <div class="news-details-share-box">
                     <div class="news-details-inner">
