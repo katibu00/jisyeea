@@ -75,6 +75,12 @@ $user = auth()->user();
                       <span>Blog</span>
                   </a>
               </li>
+                <li>
+                  <a href="{{ route('users.regular.index') }}" class=" waves-effect">
+                      <i class="mdi mdi-newspaper"></i>
+                      <span>Users</span>
+                  </a>
+              </li>
               @endif
 
               @if(auth()->user()->user_type == 'regular')
