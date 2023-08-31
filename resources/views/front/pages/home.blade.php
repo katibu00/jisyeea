@@ -124,7 +124,7 @@
             </div>
         </div>
     </section>
-    <section class="service-section">
+    {{-- <section class="service-section">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-lg-6">
@@ -162,7 +162,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="funfact-section">
         <div class="container">

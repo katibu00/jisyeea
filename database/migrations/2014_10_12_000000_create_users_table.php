@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->enum('user_type', ['regular', 'admin','staff'])->default('regular');
             $table->string('password');
+            $table->string('picture')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

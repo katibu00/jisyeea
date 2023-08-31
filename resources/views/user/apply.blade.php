@@ -35,7 +35,7 @@
                                 program in Jigawa State.</p>
 
                             <form id="form-horizontal" class="form-horizontal form-wizard-wrapper"
-                                action="{{ route('application.submit') }}" method="POST">
+                                action="{{ route('application.submit') }}" method="POST" enctype="multipart/form-data">
                                 <h3>Personal Information</h3>
                                 <fieldset>
                                     <div class="row mb-3">
@@ -92,51 +92,46 @@
                                         }
                                     </style>
 
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            var fileInput = document.getElementById('profile-picture');
-                                            var uploadButton = document.querySelector('.upload-button');
-
-                                            uploadButton.addEventListener('click', function() {
-                                                fileInput.click();
-                                            });
-
-                                            fileInput.addEventListener('change', function() {
-                                                var previewImage = document.getElementById('profile-picture-preview');
-                                                var file = this.files[0];
-                                                var reader = new FileReader();
-
-                                                reader.onload = function(e) {
-                                                    previewImage.src = e.target.result;
-                                                };
-
-                                                reader.readAsDataURL(file);
-                                            });
-                                        });
-                                    </script>
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="profile-picture" class="col-lg-2 col-form-label">Profile
-                                                    Picture<span class="text-danger"> *</span></label>
+                                                <label for="profile-picture" class="col-lg-2 col-form-label">Profile Picture<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <div class="input-group">
                                                         <div class="custom-file-wrapper">
-                                                            <img id="profile-picture-preview" src="/default.png"
-                                                                alt="No Image" class="img-thumbnail img-preview">
-                                                            <label for="profile-picture"
-                                                                class="upload-button">Change</label>
-                                                            <input id="profile-picture" name="profile-picture"
-                                                                type="file" class="form-control custom-file-input">
+                                                            <img id="profile-picture-preview" src="/default.png" alt="No Image" class="img-thumbnail img-preview">
+                                                            <label for="profile-picture" class="upload-button">Change</label>
+                                                            <input id="profile-picture" name="profile-picture" type="file" class="form-control custom-file-input">
                                                         </div>
                                                     </div>
-                                                    <small class="form-text text-muted">Upload an image in PNG or JPG
-                                                        format.</small>
+                                                    <small class="form-text text-muted">Upload an image in PNG or JPG format.</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <script>
+                                    document.getElementById('profile-picture').addEventListener('change', function(event) {
+                                        const previewImage = document.getElementById('profile-picture-preview');
+                                        const selectedFile = event.target.files[0];
+                                        
+                                        if (selectedFile) {
+                                            const reader = new FileReader();
+                                            
+                                            reader.onload = function(e) {
+                                                previewImage.src = e.target.result;
+                                            };
+                                            
+                                            reader.readAsDataURL(selectedFile);
+                                        } else {
+                                            previewImage.src = '/default.png'; // Reset to default image
+                                        }
+                                    });
+                                    </script>
+
+                                    
+
+
 
 
 
@@ -578,7 +573,7 @@
                                             <div class="mb-3 row">
                                                 <label class="col-lg-2 col-form-label"></label>
                                                 <div class="col-lg-10">
-                                                    <button type="submit" class="btn btn-primary">Submit Your
+                                                    <button type="submit" class="btn btn-success">Submit Your
                                                         Application</button>
                                                 </div>
                                             </div>
@@ -611,7 +606,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+       
 
+        
 
         <script>
             $(document).ready(function() {
@@ -673,6 +670,11 @@
                             // Reset form and display success message
                             $('#form-horizontal').trigger('reset');
                             toastr.success('Application submitted successfully.');
+
+                            setTimeout(() => {
+                                window.location.href = "{{ route('application.lists') }}";
+                            }, 2000);
+
                         },
                         error: function(xhr, status, error) {
                             if (xhr.responseJSON && xhr.responseJSON.error ===

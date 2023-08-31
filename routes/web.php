@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserApplicationController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'guest'])->name('home');
+Route::get('/about-us', [PagesController::class, 'about'])->name('about');
+Route::get('/contact-us', [PagesController::class, 'contact'])->name('contact');
 
 Route::get('/redirect', function(){
    

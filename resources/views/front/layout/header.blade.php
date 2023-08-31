@@ -42,20 +42,20 @@
 		<div class="main-menu-inner">
 			<div class="main-menu-left">
 				<div class="main-menu-logo">
-					<a href="index.html"><img src="/images/logo.jpeg" alt="img-1" width="60"></a>
+					<a href="{{ route('home') }}"><img src="/images/logo.jpeg" alt="img-1" width="60"></a>
 				</div><!-- main-menu-logo -->
 				<div class="navigation">
 					<ul class="main-menu-list list-unstyled">
 						
                      
-						<li><a href="#">Home</a>
+						<li><a href="{{ route('home') }}">Home</a>
 						</li>
 						<li><a href="#">Programs</a>
 						</li>
-						<li><a href="#">Events</a>
+						<li><a href="#">News</a>
 						</li>
-						<li><a href="#">About Us</a>
-						<li><a href="#">Contact Us</a>
+						<li><a href="{{ route('about') }}">About Us</a>
+						<li><a href="{{ route('contact') }}">Contact Us</a>
 						</li>
 
 					</ul>

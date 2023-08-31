@@ -19,13 +19,11 @@
 				<div class="col-lg-3">
 					<div class="footer-widget">
 						<div class="footer-widget-explore">
-							<h4 class="footer-widget-title">Explore</h4>
+							<h4 class="footer-widget-title">Qick Links</h4>
 							<ul class="list-unstyled">
-								<li><a href="department-details.html">Administration</a></li>
-								<li><a href="service-details.html">Fire Services</a></li>
-								<li><a href="event-details.html">Business & Taxation</a></li>
-								<li><a href="team-details.html">Circular’s And Go’s</a></li>
-								<li><a href="contact.html">Contact Us</a></li>
+								<li><a href="{{ route('about') }}">About Us</a></li>
+								<li><a href="{{ route('contact') }}">Contact Us</a></li>
+							
 							</ul>
 						</div>
 					</div><!--footer-widget-->
@@ -33,13 +31,10 @@
 				<div class="col-lg-2">
 					<div class="footer-widget">
 						<div class="footer-widget-department">
-							<h4 class="footer-widget-title">Departments</h4>
+							<h4 class="footer-widget-title">Quick Links</h4>
 							<ul class="list-unstyled">
-								<li><a href="department-details.html">Health & Safety</a></li>
-								<li><a href="department-details.html">Housing & Land</a></li>
-								<li><a href="department-details.html">Legal & Finance</a></li>
-								<li><a href="department-details.html">Transport & Traffic</a></li>
-								<li><a href="department-details.html">Arts & Culture</a></li>
+								<li><a href="{{ route('blogs.index') }}">Recent News</a></li>						
+								<li><a href="#">Programmes</a></li>						
 							</ul>
 						</div><!-- footer-widget-department -->
 					</div><!--footer-widget-->
@@ -53,13 +48,13 @@
 						<div class="footer-widget-contact-list">
 							<i class="fa-solid fa-envelope"></i>
 							<div class="footer-widget-contact-item">
-								<a href="mailto:needhelp@company.com">info@jisyeea.com</a>
+								<a href="mailto:needhelp@company.com">info@yeea.jg.gov.ng</a>
 							</div><!-- footer-widget-contact-item -->
 						</div><!-- footer-widget-contact-list -->
 						<div class="footer-widget-contact-list">
 							<i class="fa-solid fa-phone"></i>
 							<div class="footer-widget-contact-item">
-								{{-- <a href="tel:+92-003-68-090">+92 (003) 68-090</a> --}}
+								<a href="tel:+2348022454025">0802 245 4025</a>
 							</div><!-- footer-widget-contact-item -->
 						</div><!-- footer-widget-contact-list -->
 					</div><!--footer-widget-->
@@ -69,7 +64,7 @@
 	</div><!--footer-inner-->
 	<div class="bottom-footer">
 		<div class="conatiner">
-			<p>© Copyright 2023 by JISYEEA</p>
+			<p>© Copyright 2023 by Jigawa State Youth Empowerment/Employment Agency.</p>
 		</div>
 	</div><!--bottom-footer-->
 </section><!--footer-->

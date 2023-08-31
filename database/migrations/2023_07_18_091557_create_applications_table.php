@@ -33,6 +33,9 @@ return new class extends Migration
             $table->string('programs');
             $table->string('status')->default('pending');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('cv_upload')->nullable();
+            $table->string('nysc_certificate_upload')->nullable();
+            $table->string('other_uploads')->nullable();
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Blog Posts</h5>
+                            <h5 class="card-title">Regular Users</h5>
                             {{-- <a href="{{ route('blogs.create') }}" class="btn btn-primary">Create Blog Post</a> --}}
                         </div>
 

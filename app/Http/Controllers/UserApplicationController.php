@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -11,13 +12,13 @@ class UserApplicationController extends Controller
 {
     public function submit(Request $request)
     {
-
-        $user = Auth::user();
+       
+        $user = User::find(Auth::user()->id);
     
         if ($user->application) {
             return response()->json(['error' => 'User already has an application'], 400);
         }
-
+       
         // Validate the form data
         $validatedData = $request->validate([
             'full-name' => 'required',
@@ -60,6 +61,40 @@ class UserApplicationController extends Controller
         $application->computer_skills = $validatedData['computer-skills'];
         $application->category = $validatedData['category'];
         $application->programs = $validatedData['programs'];
+
+
+
+        if ($request->file('profile-picture') != null) {
+            $file = $request->file('profile-picture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/', $filename);
+            $user->picture = $filename;
+            $user->save();
+        }
+
+        if ($request->file('cv-upload') != null) {
+            $file = $request->file('cv-upload');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/', $filename);
+            $application->cv_upload = $filename;
+        }
+        if ($request->file('nysc-certificate-upload') != null) {
+            $file = $request->file('nysc-certificate-upload');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/', $filename);
+            $application->nysc_certificate_upload = $filename;
+        }
+        if ($request->file('other-uploads') != null) {
+            $file = $request->file('other-uploads');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/', $filename);
+            $application->other_uploads = $filename;
+        }
+
 
         // Save the application
         $application->save();
