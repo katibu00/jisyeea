@@ -94,7 +94,7 @@ class AuthController extends Controller
     {
         $userType = auth()->user()->user_type;
 
-        return $userType === 'admin' ? 'admin.home' : 'regular.home';
+        return $userType === 'admin' ? 'admin.home' : 'apply';
     }
 
     protected function getRedirectUrl()

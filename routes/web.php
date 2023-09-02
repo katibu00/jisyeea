@@ -81,7 +81,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function (
 
 Route::group(['prefix' => 'application', 'middleware' => ['auth','regular']], function () {
   
-    Route::get('/apply',  [UserApplicationController::class, 'index'])->name('apply');
+    Route::get('/new/application',  [UserApplicationController::class, 'index'])->name('apply');
     Route::post('/submit',  [UserApplicationController::class, 'submit'])->name('application.submit');
     Route::get('/my_applications',  [UserApplicationController::class, 'applicationList'])->name('application.lists');
 

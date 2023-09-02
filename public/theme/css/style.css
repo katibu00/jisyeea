@@ -3097,7 +3097,7 @@ a.search-toggler{
 .client-carousel .owl-item img{
   display: block;
   width: 100%;
-  opacity: 0.4;
+  opacity: 0.8;
   padding: 30px;
   transition: all 500ms ease;
 }

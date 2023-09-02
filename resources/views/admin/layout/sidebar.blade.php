@@ -93,6 +93,12 @@ $user = auth()->user();
             </li>
 
               <li>
+                <a href="{{ route('apply') }}" class=" waves-effect">
+                  <i class="mdi mdi-pen"></i>
+                  <span>New Application</span>
+                </a>
+            </li>
+              <li>
                 <a href="{{ route('application.lists') }}" class=" waves-effect">
                   <i class="mdi mdi-clipboard-list"></i>
                   <span>My Applications</span>

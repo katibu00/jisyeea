@@ -37,6 +37,8 @@ class UserApplicationController extends Controller
             'computer-skills' => 'required',
             'category' => 'required',
             'programs' => 'required',
+            'nin' => 'nullable|string|max:256',
+            'voter' => 'nullable|string|max:256',
         ]);
 
         // Create a new application
@@ -61,6 +63,8 @@ class UserApplicationController extends Controller
         $application->computer_skills = $validatedData['computer-skills'];
         $application->category = $validatedData['category'];
         $application->programs = $validatedData['programs'];
+        $application->nin = $validatedData['nin'];
+        $application->voter = $validatedData['voter'];
 
 
 

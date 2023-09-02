@@ -30,9 +30,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Jigawa State Empowerment Application</h4>
-                            <p class="card-title-desc">Please complete the following form to apply for the empowerment
-                                program in Jigawa State.</p>
+                            <h4 class="card-title">Jigawa State Empowernment and EMployment Agency (JISYEEA)</h4>
+                            <p class="card-title-desc">Please complete the following form to Register yourself.</p>
 
                             <form id="form-horizontal" class="form-horizontal form-wizard-wrapper"
                                 action="{{ route('application.submit') }}" method="POST" enctype="multipart/form-data">
@@ -296,6 +295,32 @@
                                                         <option value="divorced">Divorced</option>
                                                         <option value="widowed">Widowed</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="nin" class="col-lg-2 col-form-label">National Identity Number (NIN)</label>
+                                                <div class="col-lg-10">
+                                                    <input id="nin" name="nin" type="text"
+                                                        class="form-control mandatory"
+                                                        placeholder="Enter your NIN Number">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3 row">
+                                                <label for="voter" class="col-lg-2 col-form-label">Permanent Voters Card Number (PVC)</label>
+                                                <div class="col-lg-10">
+                                                    <input id="voter" name="voter" type="text"
+                                                        class="form-control mandatory"
+                                                        placeholder="Enter your PVC Number">
                                                 </div>
                                             </div>
                                         </div>

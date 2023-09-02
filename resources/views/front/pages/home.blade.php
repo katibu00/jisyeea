@@ -262,19 +262,19 @@
         <div class="container">
             <div class="client-carousel owl-carousel owl-theme">
                 <div class="item">
-                    <img src="/images/partner1.jpeg" class="img-fluid" alt="img-13">
+                    <img src="/images/partner1.jpeg" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner2.jpeg" class="img-fluid" alt="img-14">
+                    <img src="/images/partner2.jpeg" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner3.jpeg" class="img-fluid" alt="img-15">
+                    <img src="/images/partner3.jpeg" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner4.jpeg" class="img-fluid" alt="img-16">
+                    <img src="/images/partner4.jpeg" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner5.jpeg" class="img-fluid" alt="img-16">
+                    <img src="/images/partner5.jpeg" class="img-fluid" alt="partner logo">
                 </div>
             </div>
         </div>
