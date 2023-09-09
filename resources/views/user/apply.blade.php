@@ -1,5 +1,5 @@
 @extends('admin.layout.app')
-@section('pageTitle', 'Home')
+@section('pageTitle', 'Register Yourself')
 @section('content')
 
     <div class="main-content">
@@ -598,8 +598,9 @@
                                             <div class="mb-3 row">
                                                 <label class="col-lg-2 col-form-label"></label>
                                                 <div class="col-lg-10">
-                                                    <button type="submit" class="btn btn-success">Submit Your
-                                                        Application</button>
+                                                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                                                        Submit Your Form
+                                                    </button>                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -632,6 +633,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
         
 
@@ -641,7 +643,6 @@
                 $('#form-horizontal').on('submit', function(e) {
                     e.preventDefault();
 
-                    // Reset error message and remove any existing validation classes
                     $('#error-message').hide().empty();
                     $('.mandatory').removeClass('is-invalid');
 
@@ -676,9 +677,13 @@
                         return;
                     }
 
-
-
                     var formData = new FormData(this);
+
+                    var submitButton = $('#submit-btn');
+                    submitButton.prop('disabled', true);
+
+                    var spinner = '<div class="spinner-border" style="height: 15px; width: 15px;" role="status"></div> &nbsp; Submitting . . .';
+                    submitButton.html(spinner);
 
                     $.ajaxSetup({
                         headers: {

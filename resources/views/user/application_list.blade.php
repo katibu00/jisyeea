@@ -1,5 +1,5 @@
 @extends('admin.layout.app')
-@section('pageTitle', 'Application List')
+@section('pageTitle', 'My Registration')
 @section('content')
 
 <div class="main-content">
