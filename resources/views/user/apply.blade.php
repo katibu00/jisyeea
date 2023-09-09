@@ -598,7 +598,7 @@
                                             <div class="mb-3 row">
                                                 <label class="col-lg-2 col-form-label"></label>
                                                 <div class="col-lg-10">
-                                                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                                                    <button type="submit" class="btn btn-success" id="submit-btn">
                                                         Submit Your Form
                                                     </button>                                                    
                                                 </div>
@@ -674,6 +674,7 @@
                         errorMessage += '</ul>';
 
                         $('#error-message').html(errorMessage).show();
+                        toastr.warning('Some fields are required.');
                         return;
                     }
 
