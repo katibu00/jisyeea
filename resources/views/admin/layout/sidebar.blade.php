@@ -75,10 +75,20 @@ $user = auth()->user();
                       <span>Blog</span>
                   </a>
               </li>
+              <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="mdi mdi-code-tags"></i>
+                    <span>Programs</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="{{ route('programs.index') }}">Programs</a></li>
+                    <li><a href="{{ route('programs.categories.index') }}">Categories</a></li>
+                </ul>
+            </li>
                 <li>
                   <a href="{{ route('users.regular.index') }}" class=" waves-effect">
-                      <i class="mdi mdi-newspaper"></i>
-                      <span>Users</span>
+                    <i class="mdi mdi-account"></i>
+                    <span>Users</span>
                   </a>
               </li>
               @endif

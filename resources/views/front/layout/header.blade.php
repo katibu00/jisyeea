@@ -31,9 +31,9 @@
 			</div><!-- topbar-left -->
 			<div class="topbar-right">
 				<ul>
-					<li><a href="#">Empowerment</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Complaints</a></li>
+					<li><a href="{{ route('programs.all') }}">Programs</a></li>
+					<li><a href="{{ route('about') }}">About Us</a></li>
+					<li><a href="{{ route('contact') }}">Complaints</a></li>
 				</ul><!-- ul -->
 			</div><!--topbar-right-->
 		</div><!-- topbar-inner -->
@@ -50,7 +50,7 @@
                      
 						<li><a href="{{ route('home') }}">Home</a>
 						</li>
-						<li><a href="#">Programs</a>
+						<li><a href="{{ route('programs.all') }}">Programs</a>
 						</li>
 						<li><a href="#">News</a>
 						</li>

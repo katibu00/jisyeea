@@ -22,9 +22,4 @@
           </div>
       </div>
       <!-- end page title -->
-
-
-    
-  </div>
-  <!-- End Page-content -->
 @endsection

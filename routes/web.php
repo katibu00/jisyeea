@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProgramCategoryController;
+use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\UserApplicationController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -74,8 +76,25 @@ Route::group(['prefix' => 'blogs', 'middleware' => ['auth','admin']], function (
 
 });
 Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function () {
+    Route::get('/regular', [UsersController::class, 'index'])->name('users.regular.index'); 
+});
+
+Route::group(['prefix' => 'programs', 'middleware' => ['auth','admin']], function () {
    
-    Route::get('/regular', [UsersController::class, 'index'])->name('users.regular.index');
+    Route::get('/categories', [ProgramCategoryController::class, 'index'])->name('programs.categories.index');
+    Route::get('/categories/create', [ProgramCategoryController::class, 'create'])->name('programs.categories.create');
+    Route::post('/categories/store', [ProgramCategoryController::class, 'store'])->name('programs.categories.store');
+    Route::get('/categories/edit/{id}', [ProgramCategoryController::class, 'edit'])->name('programs.categories.edit');
+    Route::put('/categories/update/{id}', [ProgramCategoryController::class, 'update'])->name('programs.categories.update');
+    Route::delete('/categories/destroy/{id}', [ProgramCategoryController::class, 'destroy'])->name('programs.categories.destroy');
+
+
+    Route::get('/index', [ProgramsController::class, 'index'])->name('programs.index');
+    Route::get('/create', [ProgramsController::class, 'create'])->name('programs.create');
+    Route::post('/store', [ProgramsController::class, 'store'])->name('programs.store');
+    Route::get('/{program}/edit', [ProgramsController::class, 'edit'])->name('programs.edit');
+    Route::put('/{program}', [ProgramsController::class, 'update'])->name('programs.update');
+    Route::delete('/{program}', [ProgramsController::class, 'destroy'])->name('programs.destroy');
     
 });
 
@@ -93,5 +112,9 @@ Route::group(['prefix' => 'application', 'middleware' => ['auth','regular']], fu
 
 
 Route::get('/blogs/{id}',  [BlogsController::class, 'show'])->name('blogs.show');
+
+Route::get('/programs/details/{id}',  [ProgramsController::class, 'show'])->name('programs.show');
+
+Route::get('/programs/all',  [ProgramsController::class, 'allPrograms'])->name('programs.all');
 
 

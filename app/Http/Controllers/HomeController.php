@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Blog;
+use App\Models\Program;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class HomeController extends Controller
     public function guest()
     {
         $data['blogs'] = Blog::all();
+        $data['programs'] = Program::all();
         return view('front.pages.home', $data);
     }
 

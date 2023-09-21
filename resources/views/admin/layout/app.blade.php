@@ -197,8 +197,6 @@
             @include('admin.layout.sidebar')
             <!-- Left Sidebar End -->
 
-
-            <!-- Start right Content here -->
             @yield('content')
             <!-- end main content-->
             <footer class="footer">
@@ -210,7 +208,7 @@
                             </script> © JISYEEA. </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by --
+                                Design & Develop by <a href="https://techfushionlabs.com"> TechFushion Labs</a>
                             </div>
                         </div>
                     </div>

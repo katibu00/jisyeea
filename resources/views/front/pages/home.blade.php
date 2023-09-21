@@ -164,6 +164,38 @@
         </div>
     </section> --}}
 
+
+    <section class="portfolio-two-section">
+        <div class="container">
+            <div class="portfolio-two-box">
+                <div class="section-title-box text-center">
+                    <div class="section-tagline">Our Programs</div>
+                    <h2 class="section-title">Register for Program</h2>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-two-content">
+            <div class="container">
+                <div class="portfolio-two-carousel owl-carousel owl-theme">
+                   
+                    @foreach ($programs as $program)
+                    <div class="portfolio-two-card">
+                        <div class="item">
+                            <img src="{{ $program->featured_image }}" class="img-fluid" alt="img-44">
+                        </div>
+                        <div class="portfolio-two-card-content">
+                            <a href="#">{{ $program->title }}</a>
+                            <div class="portfolio-two-card-icon">
+                                <a href="{{ route('programs.show', $program->id) }}"><i class="fa-solid fa-arrow-right-long"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="funfact-section">
         <div class="container">
             <div class="row">
@@ -262,19 +294,19 @@
         <div class="container">
             <div class="client-carousel owl-carousel owl-theme">
                 <div class="item">
-                    <img src="/images/partner1.jpeg" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner1.jpeg" width="130%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner2.jpeg" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner2.jpeg"  width="130%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner3.jpeg" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner3.jpeg"  width="130%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner4.jpeg" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner4.jpeg"  width="130%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner5.jpeg" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner5.jpeg"  width="130%" class="img-fluid" alt="partner logo">
                 </div>
             </div>
         </div>
