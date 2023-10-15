@@ -58,6 +58,8 @@
                                         <label class="form-check-label" for="customControlInline">Remember
                                             me</label>
                                     </div>
+                                    <input type="hidden" name="redirectTo" value="{{ request('redirectTo') }}">
+                                    <input type="hidden" name="program" value="{{ request('program') }}">
 
                                     <div class="mt-3">
                                         <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log
@@ -74,8 +76,10 @@
                         </div>
                     </div>
                     <div class="mt-3 text-center">
-                        <p>Don't have an account ? <a href="{{ route('register') }}"
-                                class="fw-medium text-primary"> Signup now </a> </p>
+                        <p>Don't have an account ? <a href="{{ route('register') }}@if(request()->has('redirectTo'))?redirectTo={{ request('redirectTo') }}&program={{ request('program') }}@endif">
+                          Register
+                      </a>
+                       </p>
                         <p>©
                             <script>document.write(new Date().getFullYear())</script> JISYEEA.
                         </p>

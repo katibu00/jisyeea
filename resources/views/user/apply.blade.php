@@ -234,7 +234,7 @@
                                                         <option value="Auyo">Auyo</option>
                                                         <option value="Babura">Babura</option>
                                                         <option value="Biriniwa">Biriniwa</option>
-                                                        <option value="Birnin Kudu">Birnin Kudu</option>
+                                                        <option value="BirninKudu">Birnin Kudu</option>
                                                         <option value="Buji">Buji</option>
                                                         <option value="Dutse">Dutse</option>
                                                         <option value="Gagarawa">Gagarawa</option>
@@ -245,17 +245,17 @@
                                                         <option value="Gwiwa">Gwiwa</option>
                                                         <option value="Hadejia">Hadejia</option>
                                                         <option value="Jahun">Jahun</option>
-                                                        <option value="Kafin Hausa">Kafin Hausa</option>
+                                                        <option value="KafinHausa">Kafin Hausa</option>
                                                         <option value="Kaugama">Kaugama</option>
                                                         <option value="Kazaure">Kazaure</option>
                                                         <option value="Kirikasamma">Kirikasamma</option>
                                                         <option value="Kiyawa">Kiyawa</option>
                                                         <option value="Maigatari">Maigatari</option>
-                                                        <option value="Malam Madori">Malam Madori</option>
+                                                        <option value="MalamMadori">Malam Madori</option>
                                                         <option value="Miga">Miga</option>
                                                         <option value="Ringim">Ringim</option>
                                                         <option value="Roni">Roni</option>
-                                                        <option value="Sule Tankarkar">Sule Tankarkar</option>
+                                                        <option value="SuleTankarkar">Sule Tankarkar</option>
                                                         <option value="Taura">Taura</option>
                                                         <option value="Yankwashi">Yankwashi</option>
                                                     </select>
@@ -347,7 +347,7 @@
                                                     Education<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <select id="highest-education" name="highest-education"
-                                                        class="form-control mandatory"
+                                                        class="form-select mandatory"
                                                         placeholder="Choose your Highest Qualification ">
                                                         <option value="">Select your highest education</option>
                                                         <option value="none">None</option>
@@ -398,7 +398,7 @@
                                                     Skills<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <select id="artisan-skills" name="artisan-skills"
-                                                        class="form-control mandatory"
+                                                        class="form-select mandatory"
                                                         placeholder="Choose your Artisan Skill">
                                                         <option value=""></option>
                                                         <option value="No Skill">No Skill</option>
@@ -435,7 +435,7 @@
                                                     Skills<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <select id="computer-skills" name="computer-skills"
-                                                        class="form-control mandatory"
+                                                        class="form-select mandatory"
                                                         placeholder="Choose your Computer Skill">
                                                         <option value=""></option>
                                                         <option value="No Skill">No Skill</option>
@@ -468,72 +468,43 @@
                                         </div>
                                     </div>
 
-                                    <script>
-                                        // Populate the programs based on the selected category
-                                        function populatePrograms() {
-                                            var categorySelect = document.getElementById('category');
-                                            var programsSelect = document.getElementById('programs');
-                                            var selectedCategory = categorySelect.value;
-
-                                            // Clear the existing options
-                                            programsSelect.innerHTML = '';
-
-                                            // Define the programs for each category
-                                            var programs = {
-                                                student: ['', 'Student Loan', 'Scholarship', 'NECO/WAEC/JAMB'],
-                                                unemployed: ['', 'Vocational training'],
-                                                entrepreneur: ['', 'MSMEs Grand'],
-                                                graduate: ['', 'Digital Literacy'],
-                                                farmer: ['', 'FarmRise Program']
-                                            };
-
-                                            // Populate the programs select field with options
-                                            programs[selectedCategory].forEach(function(program) {
-                                                var option = document.createElement('option');
-                                                option.value = program;
-                                                option.text = program;
-                                                programsSelect.appendChild(option);
-                                            });
-                                        }
-
-                                        // Event listener for category change
-                                        document.getElementById('category').addEventListener('change', populatePrograms);
-                                    </script>
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="category" class="col-lg-2 col-form-label">Category<span
-                                                        class="text-danger"> *</span></label>
+                                                <label for="category" class="col-lg-2 col-form-label">Category<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
-                                                    <select id="category" name="category" class="form-control mandatory"
-                                                        placeholder="Choose your Program category">
+                                                    <select id="category" name="category" class="form-select mandatory">
+                                                        @if ($program)
+                                                            <option value="{{ $program->category->id }}" selected>{{ $program->category->name }}</option>
+                                                        @else
                                                         <option value=""></option>
-                                                        <option value="student">Student</option>
-                                                        <option value="unemployed">Un-Employed</option>
-                                                        <option value="entrepreneur">Entrepreneur</option>
-                                                        <option value="graduate">Graduate</option>
-                                                        <option value="farmer">Farmer</option>
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                        @endforeach
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="programs" class="col-lg-2 col-form-label">Programs<span
-                                                        class="text-danger"> *</span></label>
+                                                <label for="programs" class="col-lg-2 col-form-label">Programs<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
-                                                    <select id="programs" name="programs" class="form-control mandatory"
-                                                        placeholder="Choose your Preferred Program">
-                                                        <option value=""></option>
+                                                    <select id="programs" name="programs" class="form-select mandatory">
+                                                        @if ($program)
+                                                            <option value="{{ $program->id }}" selected>{{ $program->title }}</option>
+                                                        @else
+                                                            <option value=""></option>
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
 
                                 </fieldset>
                                 <h3>Uploads</h3>
@@ -634,6 +605,36 @@
 
        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        <script>
+            $(document).ready(function() {
+                // Function to show a loading indicator
+                function showLoadingIndicator() {
+                    var programsDropdown = $('#programs');
+                    programsDropdown.empty(); // Clear existing options
+                    programsDropdown.append('<option value="" selected>Loading...</option>');
+                }
+        
+                function updateProgramsDropdown(categoryId) {
+                    var programsDropdown = $('#programs');
+                    showLoadingIndicator(); // Show loading indicator
+        
+                    $.get('/programs-by-category/' + categoryId, function(data) {
+                        programsDropdown.empty(); // Clear loading message
+                        programsDropdown.append('<option value="" selected>Choose your Preferred Program</option>');
+                        data.forEach(function(program) {
+                            programsDropdown.append('<option value="' + program.id + '">' + program.title + '</option>');
+                        });
+                    });
+                }
+        
+                $('#category').change(function() {
+                    var categoryId = $(this).val();
+                    updateProgramsDropdown(categoryId);
+                });
+            });
+        </script>
+        
 
         
 

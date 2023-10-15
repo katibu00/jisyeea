@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Program;
+use App\Models\ProgramCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -113,11 +115,39 @@ class UserApplicationController extends Controller
         return $applicationNumber;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('user.apply');
+        $program = null;
+        $programs = Program::with('category')->get();
+        $categories = ProgramCategory::all();
+    
+        if ($request->has('program')) {
+            $slug = $request->input('program');
+            $program = Program::where('slug', $slug)->with('category')->first();
+        }
+        if ($program) {
+            $currentDate = now();
+            
+            if ($currentDate < $program->start_date) {
+                return redirect()->route('regular.home')->with('error', 'The program has not started yet.');
+            } elseif ($currentDate > $program->end_date) {
+                return redirect()->route('regular.home')->with('error', 'The program has ended.');
+            }
+        }
+        return view('user.apply', compact('program', 'programs', 'categories'));
     }
 
+    public function getProgramsByCategory($categoryId)
+{
+    // Fetch programs based on the category ID
+    $programs = Program::where('category_id', $categoryId)->get();
+
+    // Return the programs as JSON
+    return response()->json($programs);
+}
+
+    
+    
     public function applicationList()
     {
         $applications = Application::where('user_id', auth()->user()->id)->get();

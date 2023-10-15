@@ -75,7 +75,24 @@
                                     <label for="title">Title</label>
                                     <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $program->title) }}">
                                 </div>
-
+                               
+                                <div class="form-group mb-3">
+                                    <label for="start_date">Start Date</label>
+                                    <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date', $program->start_date) }}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="end_date">End Date</label>
+                                    <input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date', $program->end_date) }}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="category_id">Category</label>
+                                    <select class="form-select" name="category_id" id="category_id">
+                                        <option value=""></option>
+                                        @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" {{ $category->id == $program->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group mb-3">
                                     <label for="description">Description</label>
                                     <textarea name="description" id="description" class="form-control" rows="5">{{ old('description', $program->description) }}</textarea>

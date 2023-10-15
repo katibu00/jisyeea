@@ -15,6 +15,7 @@
         </div>
         <!-- End page title -->
 
+        @if (count($applications) > 0)
         <div class="row">
             @foreach($applications as $application)
             <div class="col-md-4">
@@ -25,12 +26,11 @@
                         <p class="card-text">Date Submitted: {{ $application->created_at->format('Y-m-d') }}</p>
                         <p class="card-text">Status: {{ $application->status }}</p>
 
-                        <!-- Add links for downloading acknowledgment and deleting application -->
                         <div class="mt-auto d-flex justify-content-end">
                             <a href="#" class="btn btn-primary me-2 btn-download" data-id="{{ $application->id }}">
                                 <i class="fas fa-spinner fa-spin d-none"></i> Download Acknowledgment
-                              </a>                           
-                             <a href="{{ route('application.delete', $application->id) }}" class="btn btn-danger">Delete Application</a>
+                            </a>
+                            <a href="{{ route('application.delete', $application->id) }}" class="btn btn-danger">Delete Application</a>
                         </div>
                     </div>
                 </div>
@@ -38,6 +38,11 @@
             @endforeach
         </div>
         <!-- End row -->
+        @else
+        <div class="alert alert-info" role="alert">
+            You have no applications.
+        </div>
+        @endif
 
     </div>
     <!-- End Page-content -->
@@ -46,7 +51,6 @@
 
 @section('js')
 
-<!-- Place this script block at the bottom of your Blade template, after jQuery is loaded -->
 <script>
     $(document).ready(function() {
       $('.btn-download').on('click', function(e) {
@@ -72,7 +76,6 @@
             // Create a temporary URL for the Blob response
             var url = window.URL.createObjectURL(response);
     
-            // Trigger the download of the PDF
             var link = document.createElement('a');
             link.href = url;
             link.download = 'acknowledgment.pdf';
@@ -91,6 +94,6 @@
         });
       });
     });
-    </script>
-    
+</script>
+
 @endsection

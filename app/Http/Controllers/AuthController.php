@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    
+
     public function index()
     {
         return view('admin.auth.login');
@@ -21,33 +21,36 @@ class AuthController extends Controller
         return view('admin.auth.register');
     }
 
-
     public function registerStore(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'name' => 'required',
-        'email' => 'nullable|email|unique:users',
-        'phone' => 'required|unique:users',
-        'password' => 'required|min:6',
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'nullable|email|unique:users',
+            'phone' => 'required|unique:users',
+            'password' => 'required|min:6',
+        ]);
 
-    if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 422);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json([
+            'status' => 201,
+            'message' => 'Registration successful',
+            'redirect' => route('login', [
+                'redirectTo' => $request->input('redirectTo'),
+                'program' => $request->input('program'),
+            ]),
+        ]);
+
     }
-
-    $user = new User();
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->phone = $request->phone;
-    $user->password = Hash::make($request->password);
-    $user->save();
-
-    return response()->json([
-        'status' => 200,
-        'message' => 'Registration successful',
-    ]);
-}
-
 
     public function login(Request $request)
     {
@@ -55,16 +58,31 @@ class AuthController extends Controller
             'email_or_phone' => 'required',
             'password' => 'required',
         ]);
-
+    
         $credentials = $this->getCredentials($request);
         $rememberMe = $request->filled('rememberMe');
-
+    
         try {
             if (Auth::attempt($credentials, $rememberMe)) {
-                if ($request->ajax()) {
-                    return response()->json(['success' => true, 'redirect_url' => $this->getRedirectUrl()]);
+                // Check if the 'redirectTo' and 'program' parameters are provided in the query string
+                $redirectTo = $request->input('redirectTo');
+                $program = $request->input('program');
+    
+                // Define the default redirect route
+                $defaultRoute = $this->getRedirectRoute();
+    
+                // If both 'redirectTo' and 'program' are provided, construct the URL with parameters
+                if ($redirectTo && $program) {
+                    $redirectUrl = route($redirectTo, ['program' => $program]);
                 } else {
-                    return redirect()->route($this->getRedirectRoute());
+                    // If not provided, use the default route
+                    $redirectUrl = route($defaultRoute);
+                }
+    
+                if ($request->ajax()) {
+                    return response()->json(['success' => true, 'redirect_url' => $redirectUrl]);
+                } else {
+                    return redirect()->to($redirectUrl);
                 }
             } else {
                 throw ValidationException::withMessages([
@@ -79,6 +97,7 @@ class AuthController extends Controller
             }
         }
     }
+    
 
     protected function getCredentials(Request $request)
     {

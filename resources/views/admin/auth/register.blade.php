@@ -64,16 +64,16 @@
                                         <input type="password" class="form-control" id="userpassword" name="password"
                                             placeholder="Enter password">
                                     </div>
-
+                                    <input type="hidden" name="redirectTo" value="{{ request('redirectTo') }}">
+                                    <input type="hidden" name="program" value="{{ request('program') }}">
                                     
-
                                     <div class="mt-3">
                                         <button class="btn btn-primary w-100 waves-effect waves-light"
                                             type="submit">Register</button>
                                     </div>
 
                                     <div class="mt-4 text-center">
-                                        Already have an account ? <a href="{{ route('login') }}" class="fw-medium text-primary">
+                                        Already have an account ? <a href="{{ route('login') }}@if(request()->has('redirectTo'))?redirectTo={{ request('redirectTo') }}&program={{ request('program') }}@endif">
                                             Sign In </a>
                                     </div>
                                 </form>
@@ -82,8 +82,6 @@
                         </div>
                     </div>
                     <div class="mt-3 text-center">
-                        {{-- <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
-                                Signup now </a> </p> --}}
                         <p>©
                             <script>
                                 document.write(new Date().getFullYear())
@@ -134,13 +132,20 @@
                     success: function(response) {
                         submitButton.prop('disabled', false).text('Login');
 
-                        if (response.status == 200) {
-                            toastr.success('Login successful. Redirecting to dashboard...');
-                            setTimeout(function() {
+                        if (response.status == 201) {
+                            toastr.success('Registration successful. Redirecting to login...');
+
+                            // Check if the 'redirect' parameter exists in the response
+                            if (response.redirect) {
+                                window.location.href = response
+                                .redirect; // Use the redirect URL from the response
+                            } else {
+                                // If 'redirect' is not in the response, fall back to the default login URL
                                 window.location.href = '{{ route('login') }}';
-                            }, 10);
+                            }
                         }
                     },
+
                     error: function(xhr, status, error) {
                         submitButton.prop('disabled', false).text('Login');
 

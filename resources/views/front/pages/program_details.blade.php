@@ -28,6 +28,8 @@
 						<h3 class="service-details-title">{{ $program->title }}</h3>
                         {!! $program->description !!}
                     </div>
+					<a href="{{ route('programs.register', $program->slug) }}" class="btn btn-primary">Register</a>
+
 
 					
 				</div>

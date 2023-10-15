@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BlogsController extends Controller
 {
@@ -32,6 +32,7 @@ class BlogsController extends Controller
 
         $blog = new Blog();
         $blog->title = $request->input('title');
+        $blog->slug = Str::slug( $request->input('title')); 
         $blog->body = $request->input('content');
 
         if ($request->file('featured_image') != null) {
@@ -68,6 +69,7 @@ class BlogsController extends Controller
 
         $blog = Blog::findOrFail($id);
         $blog->title = $request->input('title');
+        $blog->slug = Str::slug($blog->title); 
         $blog->body = $request->input('content');
 
         if ($request->hasFile('featured_image')) {
@@ -98,9 +100,9 @@ class BlogsController extends Controller
     }
 
 
-    public function show($id)
+    public function show($slug)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::where('slug',$slug)->first();
         return view('front.pages.blog_details', compact('blog'));
     }
 

@@ -22,11 +22,23 @@
       </div>
     </div>
     <!-- end page title -->
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <div class="row">
       <div class="col-md-6 col-xl-3">
         <div class="card">
           <div class="card-body">
+           
+
             <div class="row">
               <div class="col">
                 <h5 class="card-title mb-4">Total Submitted Applications</h5>
@@ -110,38 +122,39 @@
             <div class="table-responsive">
               <table class="table table-hover mb-0">
                 <thead>
-                  <tr>
-                    <th>Program Name</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
+                    <tr>
+                        <th>Program Name</th>
+                        <th>Date Range</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  @foreach ($upcomingPrograms as $program)
-                  <tr>
-                    <td>{{ $program['name'] }}</td>
-                    <td>{{ $program['date'] }}</td>
-                    <td>
-                      @if ($program['status'] === 'upcoming')
-                      <span class="badge bg-success">Ongoing</span>
-                      @elseif ($program['status'] === 'closing_today')
-                      <span class="badge bg-warning">Closing Soon</span>
-                      @else
-                      <span class="badge bg-secondary">Closed</span>
-                      @endif
-                    </td>
-                    <td>
-                      @if ($program['status'] === 'upcoming' || $program['status'] === 'closing_today')
-                      <a href="{{ route('apply') }}" class="btn btn-primary btn-sm">{{ $program['action'] }}</a>
-                      @else
-                      <button class="btn btn-primary btn-sm" disabled>{{ $program['action'] }}</button>
-                      @endif
-                    </td>
-                  </tr>
-                  @endforeach
+                    @foreach ($programs as $program)
+                    <tr>
+                        <td>{{ $program->title }}</td>
+                        <td>{{ $program->start_date_formatted }} - {{ $program->end_date_formatted }}</td>
+                        <td>
+                            @if ($program->status === 'Upcoming')
+                                <span class="badge bg-success">Upcoming</span>
+                            @elseif ($program->status === 'Ongoing')
+                                <span class="badge bg-warning">Ongoing</span>
+                            @else
+                                <span class="badge bg-secondary">Closed</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($program->status === 'Upcoming' || $program->status === 'Ongoing')
+                                <a href="{{ route('apply', ['program' => $program->slug]) }}" class="btn btn-primary btn-sm">Register</a>
+                            @else
+                                <button class="btn btn-primary btn-sm" disabled>Closed</button>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
-              </table>
+            </table>
+            
             </div>
           </div>
         </div>
@@ -161,7 +174,7 @@
                     <p class="text-muted mb-0">{{ $update['date'] }}</p>
                   </div>
                   <div class="ms-auto">
-                    <a href="{{ route('blogs.show', $update['id']) }}" class="btn btn-primary btn-sm">Read More</a>
+                    <a href="{{ route('blogs.show', $update['slug']) }}" class="btn btn-primary btn-sm">Read More</a>
                   </div>
                 </div>
               </div>

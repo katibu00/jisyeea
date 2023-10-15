@@ -6,6 +6,7 @@ use App\Models\Program;
 use App\Models\ProgramCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProgramsController extends Controller
 {
@@ -18,7 +19,6 @@ class ProgramsController extends Controller
     public function index()
     {
        $programs = Program::all();
-
         return view('admin.programs.program.index', compact('programs'));
     }
 
@@ -29,12 +29,17 @@ class ProgramsController extends Controller
             'description' => 'required',
             'category_id' => 'required',
             'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date', // Ensure end date is after start date
         ]);
 
        $program = new Program();
        $program->title = $request->input('title');
+       $program->slug = Str::slug($request->input('title')); 
        $program->description = $request->input('description');
        $program->category_id = $request->input('category_id');
+       $program->start_date = $request->input('start_date');
+       $program->end_date = $request->input('end_date');
 
         if ($request->file('featured_image') != null) {
             $destination = 'uploads/';
@@ -54,7 +59,8 @@ class ProgramsController extends Controller
     public function edit($id)
     {
        $program = Program::findOrFail($id);
-        return view('admin.programs.program.edit', compact('program'));
+       $categories = ProgramCategory::all();
+        return view('admin.programs.program.edit', compact('program','categories'));
     }
 
     public function update(Request $request, $id)
@@ -62,25 +68,34 @@ class ProgramsController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'category_id' => 'required|exists:program_categories,id',
             'featured_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-       $program = Program::findOrFail($id);
-       $program->title = $request->input('title');
-       $program->description = $request->input('description');
-
+    
+        $program = Program::findOrFail($id);
+        $program->slug = Str::slug($program->title); 
+        $program->title = $request->input('title');
+        $program->description = $request->input('description');
+        $program->start_date = $request->input('start_date');
+        $program->end_date = $request->input('end_date');
+        $program->category_id = $request->input('category_id');
+    
         if ($request->hasFile('featured_image')) {
             $image = $request->file('featured_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $imagePath = 'uploads/' . $imageName;
             $image->move(public_path('uploads'), $imageName);
-           $program->featured_image = $imagePath;
+            $program->featured_image = $imagePath;
         }
+        
         $program->is_open = $request->has('active');
-       $program->save();
-
+        $program->save();
+    
         return redirect()->route('programs.index')->with('success', 'Program updated successfully.');
     }
+    
 
     public function destroy($id)
     {
@@ -97,9 +112,9 @@ class ProgramsController extends Controller
     }
 
 
-    public function show($id)
+    public function show($slug)
     {
-       $program = Program::findOrFail($id);
+       $program = Program::where('slug',$slug)->first();
        $allprograms = Program::where('id', '!=', $program->id)->get();
         return view('front.pages.program_details', compact('program','allprograms'));
     }
@@ -111,4 +126,15 @@ class ProgramsController extends Controller
         return view('front.pages.programs', compact('categories'));
 
     }
+
+    public function register($slug)
+{
+    if (auth()->check()) {
+        // User is logged in, redirect to the application form with the program's slug
+        return redirect()->route('apply', ['program' => $slug]);
+    }
+
+    // User is not logged in, redirect to the login page with a parameter indicating the target URL
+    return redirect()->route('login', ['redirectTo' => 'apply', 'program' => $slug]);
+}
 }

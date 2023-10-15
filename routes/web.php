@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\HomeController;
@@ -77,7 +78,14 @@ Route::group(['prefix' => 'blogs', 'middleware' => ['auth','admin']], function (
 });
 Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function () {
     Route::get('/regular', [UsersController::class, 'index'])->name('users.regular.index'); 
+
+    Route::get('/applications', [ApplicationsController::class, 'index'])->name('applications.index');
+
 });
+
+Route::post('/applications/bulk-action', [ApplicationsController::class, 'bulkAction'])->name('applications.bulkAction');
+Route::get('/applications/{application}', [ApplicationsController::class, 'show'])->name('applications.show');
+
 
 Route::group(['prefix' => 'programs', 'middleware' => ['auth','admin']], function () {
    
@@ -111,10 +119,14 @@ Route::group(['prefix' => 'application', 'middleware' => ['auth','regular']], fu
 });
 
 
-Route::get('/blogs/{id}',  [BlogsController::class, 'show'])->name('blogs.show');
+Route::get('/blogs/{slug}',  [BlogsController::class, 'show'])->name('blogs.show');
 
-Route::get('/programs/details/{id}',  [ProgramsController::class, 'show'])->name('programs.show');
+Route::get('/programs/details/{slug}',  [ProgramsController::class, 'show'])->name('programs.show');
 
 Route::get('/programs/all',  [ProgramsController::class, 'allPrograms'])->name('programs.all');
+Route::get('/programs/register/{slug}', [ProgramsController::class, 'register'])->name('programs.register');
+
+Route::get('/programs-by-category/{categoryId}',[UserApplicationController::class, 'getProgramsByCategory']);
 
 
+ 

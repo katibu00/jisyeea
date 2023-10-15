@@ -124,48 +124,8 @@
             </div>
         </div>
     </section>
-    {{-- <section class="service-section">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-6">
-                    <div class="section-title-box">
-                        <div class="section-tagline">Government Service</div>
-                        <h2 class="section-title text-white">Explore our Online<br> Governmet Services <br> & Resources
-                        </h2>
-                        <div class="section-text">
-                            <p>Efficient Access to Essential Support.</p>
-                        </div>
-                        <div class="service-arrow-image">
-                            <img src="/theme/image/shapes/arrow.png" alt="img-6">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="service-card">
-                        <div class="service-card-video">
-                            <a href="https://www.youtube.com/watch?v=rzfmZC3kg3M" class="video-popup">
-                                <i class="fa fa-play"></i>
-                            </a>
-                        </div>
-                        <ul class="list-unstyled">
-                            <li><a href="{{ route('register') }}">Scholarship <span style="display: inline-block; background-color: #007bff; color: #fff; padding: 5px 10px; border-radius: 5px;">Register</span>                            </a></li>
-                            <li><a href="{{ route('register') }}">FarmRIse Programs <span style="display: inline-block; background-color: #007bff; color: #fff; padding: 5px 10px; border-radius: 5px;">Register</span></a></li>
-                            <li><a href="{{ route('register') }}">Vocational Training <span style="display: inline-block; background-color: #007bff; color: #fff; padding: 5px 10px; border-radius: 5px;">Register</span></a></li>
-                            <li><a href="{{ route('register') }}">MSMEs Grant <span style="display: inline-block; background-color: #007bff; color: #fff; padding: 5px 10px; border-radius: 5px;">Register</span></a></li>
-                            <li><a href="{{ route('register') }}">NECO/WAEC/JAMB <span style="display: inline-block; background-color: #007bff; color: #fff; padding: 5px 10px; border-radius: 5px;">Register</span></a></li>
-                            <li><a href="{{ route('register') }}">Student Loan <span style="display: inline-block; background-color: #007bff; color: #fff; padding: 5px 10px; border-radius: 5px;">Register</span></a></li>
-                            <li><a href="{{ route('register') }}">Digital Literacy <span style="display: inline-block; background-color: #007bff; color: #fff; padding: 5px 10px; border-radius: 5px;">Register</span></a></li>
 
-                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-
-    <section class="portfolio-two-section">
+    <section class="event-three-section">
         <div class="container">
             <div class="portfolio-two-box">
                 <div class="section-title-box text-center">
@@ -174,27 +134,44 @@
                 </div>
             </div>
         </div>
-        <div class="portfolio-two-content">
-            <div class="container">
-                <div class="portfolio-two-carousel owl-carousel owl-theme">
+		<div class="event-section-outer" style="margin-top: -50px">
+			<div class="container">
+				<div class="row row-gutter-y-30">
                    
                     @foreach ($programs as $program)
-                    <div class="portfolio-two-card">
-                        <div class="item">
-                            <img src="{{ $program->featured_image }}" class="img-fluid" alt="img-44">
-                        </div>
-                        <div class="portfolio-two-card-content">
-                            <a href="#">{{ $program->title }}</a>
-                            <div class="portfolio-two-card-icon">
-                                <a href="{{ route('programs.show', $program->id) }}"><i class="fa-solid fa-arrow-right-long"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="col-12 col-lg-6 col-xl-6">
+						<div class="event-card">
+							<div class="event-card-image">
+								<div class="event-card-image-inner">
+									<a href="{{ route('programs.show', $program->slug) }}"><img src="{{ $program->featured_image }}" width="200" class="img-fluid" alt="img-164"></a>		
+								</div>
+							</div>
+							<div class="event-card-content">
+								<div class="event-card-info">
+									<ul class="list-unstyled">
+										<li>
+											<i class="fa-solid fa-clock"></i>
+											<span>{{  date('M d, Y', strtotime($program->start_date)) . ' - ' . date('M d, Y', strtotime($program->end_date)) }}
+                                            </span>
+										</li>
+										<li>
+                                            <i class="fa-sharp fa-solid fa-users"></i>
+											<span>{{ $program->category->name }}</span>
+										</li>
+									</ul>
+								</div>
+								<div class="event-card-title">
+									<h4><a href="{{ route('programs.show', $program->slug) }}">{{ $program->title }}</a></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					@endforeach
+				</div>
+			</div>
+		</div>
+	</section>
+
 
     <section class="funfact-section">
         <div class="container">
@@ -206,8 +183,8 @@
                                 <i class="flaticon-running-man"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">30</h3>
-                                <span class="funfact-counter-number-postfix">k</span>
+                                <h3 class="counter-number">8590</h3>
+                                <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
                         <p class="funfact-text">Number of Youth Empowered</p>
@@ -220,8 +197,8 @@
                                 <i class="flaticon-coverage"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">20</h3>
-                                <span class="funfact-counter-number-postfix">k</span>
+                                <h3 class="counter-number">3350</h3>
+                                <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
                         <p class="funfact-text">Employment Success Rate</p>
@@ -234,7 +211,7 @@
                                 <i class="flaticon-landscape"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">250</h3>
+                                <h3 class="counter-number">4388</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -248,7 +225,7 @@
                                 <i class="flaticon-barn-3"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">100</h3>
+                                <h3 class="counter-number">888</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -333,21 +310,21 @@
                                     <img src="/theme/image/blog/blog-placeholder.jpg" class="img-fluid"
                                         alt="Placeholder Image">
                                 @endif
-                                <a href="{{ route('blogs.show', $blog->id) }}"></a>
+                                <a href="{{ route('blogs.show', $blog->slug) }}"></a>
                             </div>
                             <div class="blog-card-date">
-                                <a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->created_at->format('d M y') }}</a>
+                                <a href="{{ route('blogs.show', $blog->slug) }}">{{ $blog->created_at->format('d M y') }}</a>
                             </div>
                             <div class="blog-card-content">
                                 <div class="blog-card-meta">
                                     <span class="author">
-                                        by <a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->creator->name }}</a>
+                                        by <a href="{{ route('blogs.show', $blog->slug) }}">{{ $blog->creator->name }}</a>
                                     </span>
                                     <span class="comment">
-                                        <a href="{{ route('blogs.show', $blog->id) }}"></a>
+                                        <a href="{{ route('blogs.show', $blog->slug) }}"></a>
                                     </span>
                                 </div>
-                                <h4><a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->title }}</a></h4>
+                                <h4><a href="{{ route('blogs.show', $blog->slug) }}">{{ $blog->title }}</a></h4>
                                 <p>{{ Str::limit(strip_tags($blog->body), 50) }}</p>
                             </div>
                         </div>
