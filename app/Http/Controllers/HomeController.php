@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Blog;
+use App\Models\PopUpNotification;
+use App\Models\PreRegistration;
 use App\Models\Program;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +21,7 @@ class HomeController extends Controller
     {
         $data['blogs'] = Blog::all();
         $data['programs'] = Program::all();
+        $data['popUp'] = PopUpNotification::where('switch', 'on')->first();
         return view('front.pages.home', $data);
     }
 
@@ -26,23 +29,11 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        // Fetch the user's application (if exists)
-        $application = $user->application;
-
-        // Get some application statistics (you can replace this with your actual logic)
-        $totalApplications = Application::count();
-        $approvedApplications = Application::where('status', 'approved')->count();
-        $pendingApplications = Application::where('status', 'pending')->count();
-        $rejectedApplications = Application::where('status', 'rejected')->count();
-
-        // Fetch recent blog updates
         $recentUpdates = Blog::latest()->limit(3)->get();
 
         // Get upcoming programs
-        $programs = Program::all(); // Fetch all programs from the database
+        $programs = Program::all();
 
-        // Check if the program is open for application
-        // Check if the program is open for application
         foreach ($programs as &$program) {
             $startDate = Carbon::parse($program->start_date);
             $endDate = Carbon::parse($program->end_date);
@@ -63,7 +54,13 @@ class HomeController extends Controller
             }
         }
 
-        return view('user.home', compact('user', 'application', 'totalApplications', 'approvedApplications', 'pendingApplications', 'rejectedApplications', 'programs', 'recentUpdates'));
+        $preregistration = PreRegistration::select('id')->where('user_id',$user->id)->first();
+        if(!$preregistration)
+        {
+            session()->flash('warning_message', 'You need to complete your pre-registration to apply for programs in the future. Click to pre-register <a href="' . route('pre-registration') . '">here</a>.');
+        }
+
+        return view('user.home', compact('user', 'programs', 'recentUpdates'));
     }
 
 }

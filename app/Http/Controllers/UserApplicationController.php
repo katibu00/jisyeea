@@ -6,21 +6,21 @@ use App\Models\Application;
 use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserApplicationController extends Controller
 {
     public function submit(Request $request)
     {
-       
+
         $user = User::find(Auth::user()->id);
-    
+
         if ($user->application) {
             return response()->json(['error' => 'User already has an application'], 400);
         }
-       
+
         // Validate the form data
         $validatedData = $request->validate([
             'full-name' => 'required',
@@ -68,8 +68,6 @@ class UserApplicationController extends Controller
         $application->nin = $validatedData['nin'];
         $application->voter = $validatedData['voter'];
 
-
-
         if ($request->file('profile-picture') != null) {
             $file = $request->file('profile-picture');
             $extension = $file->getClientOriginalExtension();
@@ -101,7 +99,6 @@ class UserApplicationController extends Controller
             $application->other_uploads = $filename;
         }
 
-
         // Save the application
         $application->save();
 
@@ -120,14 +117,14 @@ class UserApplicationController extends Controller
         $program = null;
         $programs = Program::with('category')->get();
         $categories = ProgramCategory::all();
-    
+
         if ($request->has('program')) {
             $slug = $request->input('program');
             $program = Program::where('slug', $slug)->with('category')->first();
         }
         if ($program) {
             $currentDate = now();
-            
+
             if ($currentDate < $program->start_date) {
                 return redirect()->route('regular.home')->with('error', 'The program has not started yet.');
             } elseif ($currentDate > $program->end_date) {
@@ -138,23 +135,20 @@ class UserApplicationController extends Controller
     }
 
     public function getProgramsByCategory($categoryId)
-{
-    // Fetch programs based on the category ID
-    $programs = Program::where('category_id', $categoryId)->get();
+    {
+        // Fetch programs based on the category ID
+        $programs = Program::where('category_id', $categoryId)->get();
 
-    // Return the programs as JSON
-    return response()->json($programs);
-}
+        // Return the programs as JSON
+        return response()->json($programs);
+    }
 
-    
-    
     public function applicationList()
     {
         $applications = Application::where('user_id', auth()->user()->id)->get();
 
         return view('user.application_list', compact('applications'));
     }
-
 
     public function downloadAcknowledgment($id)
     {

@@ -5,8 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PreRegistrationController;
 use App\Http\Controllers\ProgramCategoryController;
 use App\Http\Controllers\ProgramsController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserApplicationController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -86,6 +88,9 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function (
 Route::post('/applications/bulk-action', [ApplicationsController::class, 'bulkAction'])->name('applications.bulkAction');
 Route::get('/applications/{application}', [ApplicationsController::class, 'show'])->name('applications.show');
 
+Route::get('/pop_up_notification', [SettingsController::class, 'popup'])->name('pop_up_notification');
+Route::post('/pop_up_notification', [SettingsController::class, 'savePopup']);
+
 
 Route::group(['prefix' => 'programs', 'middleware' => ['auth','admin']], function () {
    
@@ -114,6 +119,15 @@ Route::group(['prefix' => 'application', 'middleware' => ['auth','regular']], fu
 
     Route::get('/{id}/download', [UserApplicationController::class, 'downloadAcknowledgment'])->name('application.download');
     Route::delete('/applications/{id}', [UserApplicationController::class, 'destroy'])->name('application.delete');
+
+
+});
+
+Route::group(['prefix' => 'pre-registration', 'middleware' => ['auth','regular']], function () {
+  
+    Route::get('/',  [PreRegistrationController::class, 'index'])->name('pre-registration');
+    Route::post('/',  [PreRegistrationController::class, 'submit']);
+
 
 
 });
