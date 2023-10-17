@@ -26,6 +26,7 @@
             </div>
             <!-- end page title -->
 
+            @if(!$preRegistration)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
@@ -746,7 +747,21 @@
                 </div>
             </div>
             <!-- end row -->
+            @else
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Application ID: {{ $preRegistration->yeea_number }}</h5>
+                        <p class="card-text">Date Submitted: {{ $preRegistration->created_at->format('Y-m-d') }}</p>
+              
 
+                            <a href="#" class="btn btn-primary me-2 btn-download" data-id="{{ $preRegistration->id }}">
+                                <i class="fas fa-spinner fa-spin d-none"></i> Download Acknowledgment
+                            </a>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
         <!-- End Page-content -->
 
@@ -755,6 +770,8 @@
 
     @section('js')
 
+
+    @if(!$preRegistration)
 
         <!-- form wizard -->
         <script src="/admin/libs/jquery-steps/build/jquery.steps.min.js"></script>
@@ -795,9 +812,6 @@
                 });
             });
         </script>
-        
-
-        
 
         <script>
             $(document).ready(function() {
@@ -901,9 +915,6 @@
                 });
             });
         </script>
-
-
-
 
         <script>
             $(document).ready(function() {
@@ -1051,4 +1062,50 @@
             });
         </script>
 
+        @else
+        <script>
+            $(document).ready(function() {
+              $('.btn-download').on('click', function(e) {
+                e.preventDefault();
+                var applicationId = $(this).data('id');
+                var $button = $(this);
+                var $spinner = $button.find('.fa-spinner');
+            
+                // Show the loading spinner
+                $spinner.removeClass('d-none');
+            
+                // Make an AJAX request to the server as a Blob
+                $.ajax({
+                  type: 'GET',
+                  url: '/application/' + applicationId + '/download',
+                  xhrFields: {
+                    responseType: 'blob' // Handle the response as a Blob
+                  },
+                  success: function(response) {
+                    // Hide the loading spinner
+                    $spinner.addClass('d-none');
+            
+                    // Create a temporary URL for the Blob response
+                    var url = window.URL.createObjectURL(response);
+            
+                    var link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'acknowledgment.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+            
+                    // Clean up the temporary URL
+                    window.URL.revokeObjectURL(url);
+                  },
+                  error: function(xhr, status, error) {
+                    // Handle errors, if needed
+                    $spinner.addClass('d-none');
+                    alert('Error: ' + xhr.statusText);
+                  }
+                });
+              });
+            });
+        </script>
+    @endif
     @endsection

@@ -117,7 +117,7 @@ Route::group(['prefix' => 'application', 'middleware' => ['auth','regular']], fu
     Route::post('/submit',  [UserApplicationController::class, 'submit'])->name('application.submit');
     Route::get('/my_applications',  [UserApplicationController::class, 'applicationList'])->name('application.lists');
 
-    Route::get('/{id}/download', [UserApplicationController::class, 'downloadAcknowledgment'])->name('application.download');
+    Route::get('/{id}/download', [PreRegistrationController::class, 'downloadAcknowledgment'])->name('application.download');
     Route::delete('/applications/{id}', [UserApplicationController::class, 'destroy'])->name('application.delete');
 
 

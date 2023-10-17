@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PreRegistration extends Model
 {
     use HasFactory;
+
+
+    // public function preferred_category()
+    // {
+    //     return $this->belongsTo(ProgramCategory::class, 'preferred_category','id');
+    // }
 }

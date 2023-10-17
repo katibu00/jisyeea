@@ -49,20 +49,20 @@
     </div>
 
     <div class="applicant-info">
-        <h3>Application Acknowledgment</h3>
-        <p><strong>Application Number:</strong> {{ $application->application_number }}</p>
-        <p><strong>Name:</strong> {{ $application->full_name }}</p>
-        <p><strong>Date of Birth:</strong> {{ $application->date_of_birth }}</p>
-        <p><strong>Gender:</strong> {{ $application->gender }}</p>
-        <p><strong>Contact Number:</strong> {{ $application->contact_number }}</p>
-        <p><strong>Address:</strong> {{ $application->address }}</p>
-        <p><strong>Email:</strong> {{ $application->email }}</p>
-        <p><strong>LGA Origin:</strong> {{ $application->lga_origin }}</p>
-        <p><strong>Ward:</strong> {{ $application->ward }}</p>
-        <p><strong>Highest Education:</strong> {{ $application->highest_education }}</p>
-        <p><strong>Category:</strong> {{ $application->category }}</p>
-        <p><strong>Programs:</strong> {{ $application->programs }}</p>
-        <p><strong>Status:</strong> {{ $application->status }}</p>
+        <h3>Pre-Registration Acknowledgment</h3>
+        <p><strong>Application Number:</strong> {{ $preRegistration->application_number }}</p>
+        <p><strong>Name:</strong> {{ $preRegistration->full_name }}</p>
+        <p><strong>Date of Birth:</strong> {{ $preRegistration->date_of_birth }}</p>
+        <p><strong>Gender:</strong> {{ $preRegistration->gender }}</p>
+        <p><strong>Contact Number:</strong> {{ $preRegistration->contact_number }}</p>
+        <p><strong>Address:</strong> {{ $preRegistration->address }}</p>
+        <p><strong>Email:</strong> {{ $preRegistration->email }}</p>
+        <p><strong>LGA Origin:</strong> {{ $preRegistration->lga_origin }}</p>
+        <p><strong>Ward:</strong> {{ $preRegistration->ward }}</p>
+        <p><strong>Highest Education:</strong> {{ $preRegistration->highest_education }}</p>
+        <p><strong>Category:</strong> {{ $preRegistration->category }}</p>
+        <p><strong>Programs:</strong> {{ $preRegistration->programs }}</p>
+        <p><strong>Status:</strong> {{ $preRegistration->status }}</p>
     </div>    </div>
 
     <div class="applicant-photo">
@@ -70,7 +70,7 @@
     </div>
 
     <div class="footer">
-        <p>Thank you for your application!</p>
+        <p>Thank you for your Pre-Registration!</p>
     </div>
 </body>
 </html>

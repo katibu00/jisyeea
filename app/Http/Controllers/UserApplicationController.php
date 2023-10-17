@@ -6,7 +6,6 @@ use App\Models\Application;
 use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -150,22 +149,4 @@ class UserApplicationController extends Controller
         return view('user.application_list', compact('applications'));
     }
 
-    public function downloadAcknowledgment($id)
-    {
-        // Find the application by ID
-        $application = Application::find($id);
-
-        if (!$application) {
-            abort(404); // Or handle not found application appropriately
-        }
-
-        // Generate the PDF content using laravel-dompdf
-        $pdf = Pdf::loadView('pdf.acknowledgment', compact('application'));
-
-        // Set the filename for the downloaded file
-        $filename = 'acknowledgment_' . $application->id . '.pdf';
-
-        // Return the PDF file as a download response with appropriate headers
-        return $pdf->download($filename);
-    }
 }
