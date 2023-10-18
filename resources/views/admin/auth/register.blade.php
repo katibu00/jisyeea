@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>JISYEEA - Register</title>
+    <title>YEEA - Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -32,7 +32,7 @@
                         <div class="bg-login text-center">
                             <div class="bg-login-overlay"></div>
                             <div class="position-relative">
-                                <h5 class="text-white font-size-20">Welcome!</h5>
+                                <h5 class="text-white font-size-20">Register an Account!</h5>
                                 <p class="text-white-50 mb-0">Sign Up to continue to JISYEEA.</p>
                                 <a href="#" class="logo logo-admin mt-4">
                                     <img src="/images/logo.jpeg" alt="" height="40">
@@ -49,16 +49,16 @@
                                             placeholder="Enter your Full name">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="email">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email"
-                                            placeholder="Enter Email">
-                                    </div>
-                                    <div class="mb-3">
                                         <label class="form-label" for="phone">Phone Number</label>
                                         <input type="text" class="form-control" name="phone" id="phone"
                                             placeholder="Enter Phone Number">
                                     </div>
-
+                                    <div class="mb-3">
+                                        <label class="form-label" for="email">Email (optional)</label>
+                                        <input type="text" class="form-control" name="email" id="email"
+                                            placeholder="Enter Email">
+                                    </div>
+                                   
                                     <div class="mb-3">
                                         <label class="form-label" for="userpassword">Password</label>
                                         <input type="password" class="form-control" id="userpassword" name="password"

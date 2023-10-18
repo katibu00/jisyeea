@@ -14,4 +14,8 @@ class PagesController extends Controller
     {
         return view('front.pages.contact');
     }
+    public function financialReport()
+    {
+        return view('front.pages.financialReport');
+    }
 }

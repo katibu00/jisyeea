@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>JISYEEA || @yield('pageTitle')</title>
+	<title>YEEA || @yield('pageTitle')</title>
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,7 +60,7 @@
 			</li> --}}
 			<li>
 				<i class="fa-solid fa-envelope"></i>
-				<a href="mailto:needhelp@company.com">info@jisyeea.com</a>
+				<a href="mailto:info@yeea.jg.gov.ng">info@yeea.jg.gov.ng</a>
 			</li>
 			<li>
 				<i class="fa-solid fa-map-marker-alt"></i>

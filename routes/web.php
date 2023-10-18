@@ -11,7 +11,6 @@ use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserApplicationController;
 use App\Http\Controllers\UsersController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'guest'])->name('home');
 Route::get('/about-us', [PagesController::class, 'about'])->name('about');
 Route::get('/contact-us', [PagesController::class, 'contact'])->name('contact');
+Route::get('/financial-report', [PagesController::class, 'financialReport'])->name('financial-report');
 
 Route::get('/redirect', function(){
    

@@ -4,14 +4,37 @@
 
     @include('front.layout.slider')
 
+<style>
+.mobile-button {
+    display: none; /* Initially hide the button */
+    background-color: #ff5733; /* Your desired color for mobile */
+    color: #fff; /* Text color for mobile */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
 
+@media screen and (max-width: 768px) {
+    .mobile-button {
+        display: block; /* Show the button on smaller screens */
+    }
+}
+
+</style>
 
     <section class="department-section">
         <div class="container">
             <div class="department-section-inner">
+              
+
                 <div class="row row-gutter-y-40">
+                    
+
                     <div class="col-xl-2 col-lg-4 col-md-6">
+                        
                         <div class="department-card">
+                            <a href="{{ route('login') }}" class="btn btn-primary mb-5 mobile-button">Login/Register</a>
                             <div class="department-card-icon">
                                 <a href="#"><i class="flaticon-parthenon"></i></a>
                             </div>
@@ -168,6 +191,7 @@
 					</div>
 					@endforeach
 				</div>
+                <a href="{{ route('login') }}" class="btn btn-primary mb-5 mobile-button">Login/Register</a>
 			</div>
 		</div>
 	</section>
@@ -271,19 +295,19 @@
         <div class="container">
             <div class="client-carousel owl-carousel owl-theme">
                 <div class="item">
-                    <img src="/images/partner1.jpeg" width="130%" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner1.jpeg" width="190%" height="190%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner2.jpeg"  width="130%" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner2.jpeg"  width="190%" height="190%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner3.jpeg"  width="130%" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner3.jpeg"  width="190%" height="190%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner4.jpeg"  width="130%" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner4.jpeg"  width="190%" height="190%" class="img-fluid" alt="partner logo">
                 </div>
                 <div class="item">
-                    <img src="/images/partner5.jpeg"  width="130%" class="img-fluid" alt="partner logo">
+                    <img src="/images/partner5.jpeg"  width="190%" height="190%" class="img-fluid" alt="partner logo">
                 </div>
             </div>
         </div>

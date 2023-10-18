@@ -15,7 +15,7 @@
 								<i class="fa-solid fa-envelope"></i>
 							</div><!-- topbar-icon -->
 							<div class="topbar-text">
-								<a href="mailto:needhelp@company.com">info@jisyeea.com</a>
+								<a href="mailto:info@yeea.jg.gov.ng">info@yeea.jg.gov.ng</a>
 							</div><!-- topbar-text -->
 						</li>
 						<li>
@@ -50,10 +50,9 @@
                      
 						<li><a href="{{ route('home') }}">Home</a>
 						</li>
-						<li><a href="{{ route('programs.all') }}">Programs</a>
-						</li>
-						<li><a href="#">News</a>
-						</li>
+						<li><a href="{{ route('programs.all') }}">Programs</a></li>
+						<li><a href="{{ route('financial-report') }}">Financial Report</a></li>
+						<li><a href="#">News</a></li>
 						<li><a href="{{ route('about') }}">About Us</a>
 						<li><a href="{{ route('contact') }}">Contact Us</a>
 						</li>

@@ -48,13 +48,13 @@
 						<div class="footer-widget-contact-list">
 							<i class="fa-solid fa-envelope"></i>
 							<div class="footer-widget-contact-item">
-								<a href="mailto:needhelp@company.com">info@yeea.jg.gov.ng</a>
+								<a href="mailto:info@yeea.jg.gov.ng">info@yeea.jg.gov.ng</a>
 							</div><!-- footer-widget-contact-item -->
 						</div><!-- footer-widget-contact-list -->
 						<div class="footer-widget-contact-list">
 							<i class="fa-solid fa-phone"></i>
 							<div class="footer-widget-contact-item">
-								<a href="tel:+2348022454025">0802 245 4025</a>
+								<a href="tel:+2348022454025">+234 802 245 4025</a>
 							</div><!-- footer-widget-contact-item -->
 						</div><!-- footer-widget-contact-list -->
 					</div><!--footer-widget-->
@@ -64,7 +64,7 @@
 	</div><!--footer-inner-->
 	<div class="bottom-footer">
 		<div class="conatiner">
-			<p>© Copyright 2023 by Jigawa State Youth Empowerment/Employment Agency.</p>
+			<p>© Copyright 2023 by Jigawa State Youth Empowerment/Employment Agency.</p> Design & Develop by <a href="https://techfusionlabs.com"> TechFushion Labs</a>
 		</div>
 	</div><!--bottom-footer-->
 </section><!--footer-->

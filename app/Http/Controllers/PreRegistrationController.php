@@ -137,20 +137,15 @@ class PreRegistrationController extends Controller
 
     public function downloadAcknowledgment($id)
     {
-        // Find the application by ID
         $preRegistration = PreRegistration::find($id);
 
         if (!$preRegistration) {
-            abort(404); // Or handle not found application appropriately
+            abort(404);
         }
 
-        // Generate the PDF content using laravel-dompdf
         $pdf = Pdf::loadView('pdf.acknowledgment', compact('preRegistration'));
 
-        // Set the filename for the downloaded file
         $filename = 'acknowledgment_' . $preRegistration->id . '.pdf';
-
-        // Return the PDF file as a download response with appropriate headers
         return $pdf->download($filename);
     }
 }
