@@ -25,6 +25,7 @@ class PreRegistrationController extends Controller
         // Validate the form data
         $validatedData = $request->validate([
             'full-name' => 'required',
+            'profile-picture' => 'required|image|max:500',
             'date-of-birth' => 'required|date',
             'gender' => 'required',
             'contact-number' => 'required',
@@ -121,7 +122,7 @@ class PreRegistrationController extends Controller
 
     private function generateYeeaNumber()
     {
-        $timestamp = now()->format('YmdHis');
+        $timestamp = now()->format('mdHis');
         $applicationNumber = 'YEEA-' . $timestamp;
         return $applicationNumber;
     }
