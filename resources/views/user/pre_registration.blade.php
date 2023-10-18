@@ -1108,4 +1108,19 @@
             });
         </script>
     @endif
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Notification',
+                    html: 'Fill the pre-registration form and submit to get your unique YEEA number. Download and print your Acknowledgement card after successful Pre-Registrarion.',
+                    confirmButtonText: 'Close',
+                    allowOutsideClick: false,
+                });
+            });
+        </script>
     @endsection
