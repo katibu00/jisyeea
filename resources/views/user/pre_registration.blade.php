@@ -299,10 +299,10 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="nin" class="col-lg-2 col-form-label">National Identity Number (NIN)</label>
+                                                <label for="nin" class="col-lg-2 col-form-label">National Identity Number (NIN)<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <input id="nin" name="nin" type="text"
-                                                        class="form-control"
+                                                        class="form-control mandatory"
                                                         placeholder="Enter your NIN Number">
                                                 </div>
                                             </div>
@@ -311,10 +311,10 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 row">
-                                                <label for="voter" class="col-lg-2 col-form-label">Permanent Voters Card Number (PVC)</label>
+                                                <label for="voter" class="col-lg-2 col-form-label">Permanent Voters Card Number (PVC)<span class="text-danger"> *</span></label>
                                                 <div class="col-lg-10">
                                                     <input id="voter" name="voter" type="text"
-                                                        class="form-control"
+                                                        class="form-control mandatory"
                                                         placeholder="Enter your PVC Number">
                                                 </div>
                                             </div>
