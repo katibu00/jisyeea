@@ -49,8 +49,31 @@ class HomeController extends Controller
         ->get();
 
         // Prepare data for the chart
-        $lgas = $lgaUserCounts->pluck('lga_origin')->toArray();
-        $userCounts = $lgaUserCounts->pluck('count')->toArray();
+        // $lgas = $lgaUserCounts->pluck('lga_origin')->toArray();
+        // $userCounts = $lgaUserCounts->pluck('count')->toArray();
+
+        $lgas = DB::table('pre_registrations')
+        ->select('lga_origin', DB::raw('count(*) as count'))
+        ->groupBy('lga_origin')
+        ->get();
+        $lgasArray = $lgas->toArray();
+
+        $genderData = DB::table('pre_registrations')
+        ->select('gender', DB::raw('count(*) as count'))
+        ->groupBy('gender')
+        ->get();
+
+        $educationData = DB::table('pre_registrations')
+        ->select('highest_education', DB::raw('count(*) as count'))
+        ->groupBy('highest_education')
+        ->get();
+
+        $categoryData = DB::table('pre_registrations')
+        ->join('program_categories', 'pre_registrations.preferred_category', '=', 'program_categories.id')
+        ->select('program_categories.name as category_name', DB::raw('count(*) as count'))
+        ->groupBy('category_name')
+        ->get();
+    
     
         return view('admin.home', [
             'totalRegularUserCount' => $totalRegularUserCount,
@@ -61,8 +84,10 @@ class HomeController extends Controller
             'totalUsersWithoutPreRegistration' => $totalUsersWithoutPreRegistration,
             'datesJson' => $datesJson,
             'userCountsJson' => $userCountsJson,
-            'lgas' => json_encode($lgas),
-            'userCounts' => json_encode($userCounts),
+            'lgasArray' => $lgasArray,
+            'genderData' => $genderData,
+            'educationData' => $educationData,
+            'categoryData' => $categoryData,
         ]); 
     }
     

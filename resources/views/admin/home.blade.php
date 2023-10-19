@@ -110,115 +110,261 @@
                     </div>
                 </div>
             </div>
-        <!-- End of Two Column Row -->
-
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">User Counts by LGA</h5>
-                <div style="height: 300px;">
-                    <canvas id="userCountsChart"></canvas>
+            <!-- End of Two Column Row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">User Counts by LGA</h5>
+                            <div style="height: 300px;">
+                                <canvas id="userCountsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gender Distribution</h5>
+                            <div style="height: 300px;">
+                                <canvas id="genderPieChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Highest Education Distribution</h5>
+                            <div style="height: 300px;">
+                                <canvas id="educationPieChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Preferred Category Distribution</h5>
+                            <div style="height: 300px;">
+                                <canvas id="categoryPieChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+    @endsection
 
-@endsection
+    @section('js')
+        <!-- Include Chart.js library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-@section('js')
-    <!-- Include Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Create a canvas element for the graph -->
 
-    <!-- Create a canvas element for the graph -->
+        <script>
+            // Parse JSON data from PHP
+            var dates = JSON.parse(@json($datesJson)); // Use JSON.parse to decode the JSON data
+            var userCounts = JSON.parse(@json($userCountsJson));
 
-    <script>
-        // Parse JSON data from PHP
-        var dates = JSON.parse(@json($datesJson)); // Use JSON.parse to decode the JSON data
-        var userCounts = JSON.parse(@json($userCountsJson));
-
-        // Format the labels as "D j" (e.g., "Tue 2")
-        var formattedDates = dates.map(function(date) {
-            var formattedDate = new Date(date);
-            return formattedDate.toLocaleString('en-US', {
-                weekday: 'short',
-                day: 'numeric'
+            // Format the labels as "D j" (e.g., "Tue 2")
+            var formattedDates = dates.map(function(date) {
+                var formattedDate = new Date(date);
+                return formattedDate.toLocaleString('en-US', {
+                    weekday: 'short',
+                    day: 'numeric'
+                });
             });
-        });
 
-        // Create a line chart
-        var ctx = document.getElementById('userSignupsChart').getContext('2d');
-        var userSignupsChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: formattedDates, // Use the formatted dates
-                datasets: [{
-                    label: 'User Sign-ups',
-                    data: userCounts,
-                    borderColor: 'blue',
-                    borderWidth: 2,
-                    fill: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
+            // Create a line chart
+            var ctx = document.getElementById('userSignupsChart').getContext('2d');
+            var userSignupsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: formattedDates, // Use the formatted dates
+                    datasets: [{
+                        label: 'User Sign-ups',
+                        data: userCounts,
+                        borderColor: 'blue',
+                        borderWidth: 2,
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
                             display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        display: true,
-                        title: {
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
                             display: true,
-                            text: 'User Count'
+                            title: {
+                                display: true,
+                                text: 'User Count'
+                            }
                         }
                     }
                 }
-            }
-        });
-    </script>
+            });
+        </script>
 
+        <script>
+            var lgasArray = @json($lgasArray);
+
+            // Create arrays for labels and counts
+            var labels = [];
+            var counts = [];
+
+            lgasArray.forEach(function(lga) {
+                labels.push(lga.lga_origin + ' (' + lga.count + ')');
+                counts.push(lga.count);
+            });
+
+            var ctx = document.getElementById('userCountsChart').getContext('2d');
+            var userCountsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'User Count',
+                        data: counts,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'LGA'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'User Count'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
 
 <script>
-    var lgas = @json($lgas); // Use the array directly
-    var userCounts = @json($userCounts);
+    var categoryData = @json($categoryData);
 
-    var ctx = document.getElementById('userCountsChart').getContext('2d');
-    var userCountsChart = new Chart(ctx, {
-        type: 'bar',
+    var labels = [];
+    var data = [];
+
+    categoryData.forEach(function(item) {
+        labels.push(item.category_name);
+        data.push(item.count);
+    });
+
+    var ctx = document.getElementById('categoryPieChart').getContext('2d');
+    var categoryPieChart = new Chart(ctx, {
+        type: 'pie',
         data: {
-            labels: lgas, // Use the array as labels
+            labels: labels,
             datasets: [{
-                label: 'User Count',
-                data: userCounts,
-                backgroundColor: 'rgba(75, 192, 192, 0.6)', // You can choose your preferred color
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                ],
+            }],
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'LGA'
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'User Count'
-                    }
-                }
-            }
+        }
+    });
+</script>
+
+
+
+<script>
+    var educationData = @json($educationData);
+
+    var labels = [];
+    var data = [];
+
+    educationData.forEach(function(item) {
+        labels.push(item.highest_education);
+        data.push(item.count);
+    });
+
+    var ctx = document.getElementById('educationPieChart').getContext('2d');
+    var educationPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                ],
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+</script>
+
+
+<script>
+    var genderData = @json($genderData);
+
+    // Create arrays for labels and data
+    var labels = [];
+    var data = [];
+
+    genderData.forEach(function(item) {
+        labels.push(item.gender);
+        data.push(item.count);
+    });
+
+    var ctx = document.getElementById('genderPieChart').getContext('2d');
+    var genderPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                ],
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
         }
     });
 </script>
@@ -227,4 +373,8 @@
 
 
 
-@endsection
+
+
+
+
+    @endsection
