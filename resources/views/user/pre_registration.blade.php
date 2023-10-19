@@ -467,44 +467,6 @@
                                 </fieldset>
                                 <h3>Employment Information</h3>
 
-
-                                {{-- <fieldset>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <h3>Choice of Program</h3>
-                                            <div class="mandatory-info">
-                                                Fields marked with <span class="text-danger">*</span> are mandatory.
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3 row">
-                                                <label for="category" class="col-lg-2 col-form-label">Category<span class="text-danger"> *</span></label>
-                                                <div class="col-lg-10">
-                                                    <select id="category" name="category" class="form-select mandatory">
-                                                        @if ($program)
-                                                            <option value="{{ $program->category->id }}" selected>{{ $program->category->name }}</option>
-                                                        @else
-                                                        <option value=""></option>
-                                                        @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                        @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-
-                                    
-
-                                </fieldset> --}}
-
-
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-md-12">

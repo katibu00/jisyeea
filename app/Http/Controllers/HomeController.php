@@ -7,15 +7,65 @@ use App\Models\Blog;
 use App\Models\PopUpNotification;
 use App\Models\PreRegistration;
 use App\Models\Program;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function admin()
     {
-        return view('admin.home');
+        $totalRegularUserCount = User::where('user_type', 'regular')->count();
+        $totalAdminUserCount = User::where('user_type', 'admin')->count();
+        $totalProgramsCount = Program::where('is_open', true)->count();
+        $totalBlogCount = Blog::count();
+    
+        $totalPreRegistrationCount = PreRegistration::count();
+        $totalUsersWithoutPreRegistration = $totalRegularUserCount - $totalPreRegistrationCount;
+    
+        // Calculate user sign-ups over the last 15 days
+        $endDate = now(); // Today's date
+        $startDate = now()->subDays(14); // 15 days ago
+    
+        $dates = [];
+        $userCounts = [];
+    
+        for ($date = $startDate; $date <= $endDate; $date->addDay()) {
+            $day = $date->format('Y-m-d');
+            $count = User::whereDate('created_at', $day)->count();
+    
+            $dates[] = $day;
+            $userCounts[] = $count;
+        }
+    
+        // Convert dates to JSON for use in JavaScript
+        $datesJson = json_encode($dates);
+        $userCountsJson = json_encode($userCounts);
+
+
+        $lgaUserCounts = PreRegistration::select('lga_origin', DB::raw('count(*) as count'))
+        ->groupBy('lga_origin')
+        ->get();
+
+        // Prepare data for the chart
+        $lgas = $lgaUserCounts->pluck('lga_origin')->toArray();
+        $userCounts = $lgaUserCounts->pluck('count')->toArray();
+    
+        return view('admin.home', [
+            'totalRegularUserCount' => $totalRegularUserCount,
+            'totalAdminUserCount' => $totalAdminUserCount,
+            'totalProgramsCount' => $totalProgramsCount,
+            'totalBlogCount' => $totalBlogCount,
+            'totalPreRegistrationCount' => $totalPreRegistrationCount,
+            'totalUsersWithoutPreRegistration' => $totalUsersWithoutPreRegistration,
+            'datesJson' => $datesJson,
+            'userCountsJson' => $userCountsJson,
+            'lgas' => json_encode($lgas),
+            'userCounts' => json_encode($userCounts),
+        ]); 
     }
+    
 
     public function guest()
     {
