@@ -59,7 +59,7 @@
                                     <tbody>
                                         @foreach ($users as $key => $user)
                                             <tr>
-                                                <td style="padding: 10px; border: 1px solid #ddd;">{{ $key+1 }}</td>
+                                                <td style="padding: 10px; border: 1px solid #ddd;">{{ $users->firstItem()+$key }}</td>
                                                 <td style="padding: 10px; border: 1px solid #ddd;">{{ $user->name }}</td>
                                                 <td style="padding: 10px; border: 1px solid #ddd;">{{ $user->phone }}</td>
                                                 <td style="padding: 10px; border: 1px solid #ddd;">{{ $user->email }}</td>
