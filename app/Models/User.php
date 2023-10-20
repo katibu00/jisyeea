@@ -47,8 +47,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blog::class);
     }
-    public function application()
+    public function preRegistration()
     {
-        return $this->hasOne(Application::class);
+        return $this->hasOne(PreRegistration::class, 'user_id');
+    }
+
+    public function hasPreRegistrationRecord()
+    {
+        return $this->preRegistration !== null;
     }
 }

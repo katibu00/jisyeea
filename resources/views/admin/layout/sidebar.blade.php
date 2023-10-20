@@ -91,11 +91,16 @@
                             <span>Applications</span>
                         </a>
                     </li>
+                   
                     <li>
-                        <a href="{{ route('users.regular.index') }}" class=" waves-effect">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="mdi mdi-account"></i>
                             <span>Users</span>
                         </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="{{ route('users.regular.index') }}">Applicants</a></li>
+                            <li><a href="{{ route('users.admin.index') }}">Admins</a></li>
+                        </ul>
                     </li>
                     <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">

@@ -80,6 +80,8 @@ Route::group(['prefix' => 'blogs', 'middleware' => ['auth','admin']], function (
 });
 Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function () {
     Route::get('/regular', [UsersController::class, 'index'])->name('users.regular.index'); 
+    Route::get('/admins', [UsersController::class, 'adminIndex'])->name('users.admin.index'); 
+    Route::post('/admins', [UsersController::class, 'store']); 
 
     Route::get('/applications', [ApplicationsController::class, 'index'])->name('applications.index');
 

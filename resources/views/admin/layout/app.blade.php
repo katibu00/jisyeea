@@ -208,7 +208,7 @@
                             </script> © JISYEEA. </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by <a href="https://techfusionlabs.com"> TechFushion Labs</a>
+                                Design & Develop by <a href="https://fb.me/katibu1"> TechFushion Labs</a>
                             </div>
                         </div>
                     </div>
