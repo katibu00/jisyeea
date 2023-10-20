@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::where('user_type','regular')->get();
+        $users = User::where('user_type','regular')->paginate(2);
 
         return view('admin.users.index', compact('users'));
     }
