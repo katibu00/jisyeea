@@ -88,7 +88,7 @@
                     <li>
                         <a href="{{ route('applications.index') }}" class=" waves-effect">
                             <i class="mdi mdi-clipboard-list"></i>
-                            <span>Applications</span>
+                            <span>Pre-Registrations</span>
                         </a>
                     </li>
                    
