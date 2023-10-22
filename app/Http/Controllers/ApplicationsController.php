@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\PreRegistration;
 use App\Models\Program;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class ApplicationsController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Application::query();
+        $query = PreRegistration::query();
 
         // Apply filters based on request input
         if ($request->has('lga-origin') && $request->input('lga-origin') !== null) {
@@ -67,7 +68,7 @@ class ApplicationsController extends Controller
 
     public function show($id)
     {
-        $application = Application::with('user')->find($id);
+        $application = PreRegistration::with('user')->find($id);
 
         if (!$application) {
             return redirect()->route('applications.index')->with('error', 'Application not found.');
@@ -101,7 +102,7 @@ class ApplicationsController extends Controller
                 return redirect()->back()->with('error', 'Invalid bulk action selected.');
         }
 
-        Application::whereIn('id', $selectedApplications)->update(['status' => $newStatus]);
+        PreRegistration::whereIn('id', $selectedApplications)->update(['status' => $newStatus]);
 
         return redirect()->back()->with('success', 'Bulk action successfully applied.');
     }
