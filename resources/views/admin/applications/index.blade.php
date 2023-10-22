@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('pageTitle', 'Applications')
+@section('pageTitle', 'Pre-Registrations')
 
 @section('content')
     <div class="main-content">
@@ -8,10 +8,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <h4 class="page-title mb-0 font-size-18">Applications</h4>
+                        <h4 class="page-title mb-0 font-size-18">Pre-Registrations</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Submitted Applications</li>
+                                <li class="breadcrumb-item active">Submitted Pre-Registrations</li>
                             </ol>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Regular Users</h5>
+                            <h5 class="card-title">Pre-Registrations</h5>
                         </div>
                         <div class="card-body">
                             @if(session('success'))
@@ -175,6 +175,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>
                                                 <input type="checkbox" id="selectAll" onclick="selectAllRows()">
                                             </th>
@@ -189,12 +190,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($applications as $application)
+                                        @foreach ($applications as $key => $application)
                                             <tr>
+                                                <td>{{ $key+1 }}</td>
                                                 <td>
                                                     <input type="checkbox" name="selectedApplications[]" value="{{ $application->id }}">
                                                 </td>
-                                                <td>{{ $application->application_number }}</td>
+                                                <td>{{ $application->yeea_number }}</td>
                                                 <td>{{ $application->full_name }}</td>
                                                 <td>{{ $application->date_of_birth }}</td>
                                                 <td>{{ $application->gender }}</td>

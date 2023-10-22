@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Application;
 use App\Models\PreRegistration;
 use App\Models\Program;
 use Carbon\Carbon;
@@ -14,41 +13,45 @@ class ApplicationsController extends Controller
     {
         $query = PreRegistration::query();
 
-        // Apply filters based on request input
-        if ($request->has('lga-origin') && $request->input('lga-origin') !== null) {
-            $lgaOrigin = $request->input('lga-origin');
-            $query->where('lga_origin', $lgaOrigin);
+        if ($request->input()) {
+            // Apply filters based on request input
+            if ($request->has('lga-origin') && $request->input('lga-origin') !== null) {
+                $lgaOrigin = $request->input('lga-origin');
+                $query->where('lga_origin', $lgaOrigin);
+            }
+
+            if ($request->has('ward') && $request->input('ward') !== null) {
+                $ward = $request->input('ward');
+                $query->where('ward', $ward);
+            }
+
+            if ($request->has('highest_education') && $request->input('highest_education') !== null) {
+                $highestEducation = $request->input('highest_education');
+                $query->where('highest_education', $highestEducation);
+            }
+
+            if ($request->has('gender') && $request->input('gender') !== null) {
+                $gender = $request->input('gender');
+                $query->where('gender', $gender);
+            }
+
+            if ($request->has('program') && $request->input('program') !== null) {
+                $program = $request->input('program');
+                $query->where('programs', $program);
+            }
+
+            if ($request->has('max-age') && $request->input('max-age') !== null) {
+                $maxAge = $request->input('max-age');
+                $birthDate = Carbon::now()->subYears($maxAge)->format('Y-m-d');
+                $query->whereDate('date_of_birth', '<=', $birthDate);
+            }
+
+            // Add more filters as needed
+
+            $applications = $query->get();
+        } else {
+            $applications = collect();
         }
-
-        if ($request->has('ward') && $request->input('ward') !== null) {
-            $ward = $request->input('ward');
-            $query->where('ward', $ward);
-        }
-
-        if ($request->has('highest_education') && $request->input('highest_education') !== null) {
-            $highestEducation = $request->input('highest_education');
-            $query->where('highest_education', $highestEducation);
-        }
-
-        if ($request->has('gender') && $request->input('gender') !== null) {
-            $gender = $request->input('gender');
-            $query->where('gender', $gender);
-        }
-
-        if ($request->has('program') && $request->input('program') !== null) {
-            $program = $request->input('program');
-            $query->where('programs', $program);
-        }
-
-        if ($request->has('max-age') && $request->input('max-age') !== null) {
-            $maxAge = $request->input('max-age');
-            $birthDate = Carbon::now()->subYears($maxAge)->format('Y-m-d');
-            $query->whereDate('date_of_birth', '<=', $birthDate);
-        }
-
-        // Add more filters as needed
-
-        $applications = $query->get();
 
         $programs = Program::where('is_open', true)->get();
 
