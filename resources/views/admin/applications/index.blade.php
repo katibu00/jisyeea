@@ -131,7 +131,7 @@
                                                 @foreach ($programs as $program)
                                                     <option value="{{ $program->id }}"
                                                         @if ($selectedProgram == $program->id) selected @endif>
-                                                        {{ $program->title }}</option>
+                                                        {{ $program->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
