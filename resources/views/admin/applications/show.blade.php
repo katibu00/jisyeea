@@ -21,7 +21,7 @@
                                 <h5 class="card-title">Application Information</h5>
 
                                 <ul>
-                                    <li><strong>Application Number:</strong> {{ $application->application_number }}</li>
+                                    <li><strong>Application Number:</strong> {{ $application->yeea_number }}</li>
                                     <li><strong>User Name:</strong> {{ $application->user->name }}</li>
                                     <li><strong>User Email:</strong> {{ $application->user->email }}</li>
                                     <li><strong>User Phone:</strong> {{ $application->user->phone }}</li>
