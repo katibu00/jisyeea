@@ -38,7 +38,7 @@ class ApplicationsController extends Controller
 
             if ($request->has('program') && $request->input('program') !== null) {
                 $program = $request->input('program');
-                $query->where('programs', $program);
+                $query->where('preferred_category', $program);
             }
 
             if ($request->has('max-age') && $request->input('max-age') !== null) {
