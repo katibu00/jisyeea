@@ -14,4 +14,9 @@ class PreRegistration extends Model
     // {
     //     return $this->belongsTo(ProgramCategory::class, 'preferred_category','id');
     // }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
