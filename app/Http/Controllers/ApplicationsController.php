@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PreRegistration;
 use App\Models\Program;
+use App\Models\ProgramCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -53,7 +54,7 @@ class ApplicationsController extends Controller
             $applications = collect();
         }
 
-        $programs = Program::where('is_open', true)->get();
+        $programs = ProgramCategory::all();
 
         // Return the view with selected values in the form
         return view('admin.applications.index', [

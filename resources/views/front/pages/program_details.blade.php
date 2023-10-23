@@ -28,10 +28,8 @@
 						<h3 class="service-details-title">{{ $program->title }}</h3>
                         {!! $program->description !!}
                     </div>
-					<a href="{{ route('programs.register', $program->slug) }}" class="btn btn-primary">Register</a>
+					<a href="{{ route('login') }}" class="btn btn-primary">Login to Apply</a>
 
-
-					
 				</div>
 				<div class="col-12 col-lg-4 col-xl-4">
 					<div class="sidebar">
@@ -42,7 +40,7 @@
                                 @endforeach
                             </ul>
 						</div>
-						<div class="sidebar-widget sidebar-widget-card">
+						{{-- <div class="sidebar-widget sidebar-widget-card">
 							<div class="sidebar-widget-card-icon">
 								<i class="flaticon-question"></i>
 							</div>
@@ -59,7 +57,7 @@
 								<h3>Company briefing update of the <br> 2022 year</h3>
 						<a class="btn btn-primary">Download</a>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
