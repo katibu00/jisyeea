@@ -396,17 +396,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
 
     @if ($popUp)
-        <script>
-            $(document).ready(function() {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Notification',
-                    html: '{{ $popUp->body }}',
-                    confirmButtonText: 'Close',
-                    allowOutsideClick: false,
-                });
+    <script>
+        $(document).ready(function() {
+            Swal.fire({
+                icon: 'info',
+                title: 'Notification',
+                html: {!! json_encode(htmlspecialchars_decode($popUp->body)) !!},
+                confirmButtonText: 'Close',
+                allowOutsideClick: false,
             });
-        </script>
-    @endif
+        });
+    </script>
+@endif
 @endsection
 
