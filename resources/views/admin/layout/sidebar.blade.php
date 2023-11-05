@@ -86,6 +86,12 @@
                     </li>
                    
                     <li>
+                        <a href="{{ route('collections.index') }}" class=" waves-effect">
+                            <i class="mdi mdi-account-group"></i>
+                            <span>Collections</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('applications.index') }}" class=" waves-effect">
                             <i class="mdi mdi-clipboard-list"></i>
                             <span>Pre-Registrations</span>
