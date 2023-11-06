@@ -71,14 +71,28 @@
                                                     <span class="badge bg-danger">Inactive</span>
                                                 @endif
                                             </td>
+
                                             <td>
-                                                <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-secondary">Edit</a>
-                                                <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this program?')">Delete</button>
-                                                </form>
+                                                <div class="dropdown float-center">
+                                                    <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="{{ route('programs.edit', $program->id) }}">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="if (confirm('Are you sure you want to delete this Program?')) {
+                                                            event.preventDefault(); 
+                                                            document.getElementById('delete-form-{{ $program->id }}').submit();
+                                                        }">Delete</a>
+                                                        <a class="dropdown-item" href="{{ route('form-questions.create', ['program_id' => $program->id]) }}">Add Form Questions</a>
+                                                        <form id="delete-form-{{ $program->id }}" action="{{ route('programs.destroy', $program->id) }}" method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </td>
+                                            
+                                            
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -88,6 +102,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 @endsection

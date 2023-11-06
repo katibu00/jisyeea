@@ -22,6 +22,12 @@ return new class extends Migration
             $table->boolean('is_open')->default(true);
             $table->date('start_date');
             $table->date('end_date');
+            $table->string('lga_origin');
+            $table->string('category_interest');
+            $table->string('gender');
+            $table->string('education_level');
+            $table->string('max_applicants')->nullable();
+            $table->string('max_age')->nullable();
             $table->timestamps();
         });
     }

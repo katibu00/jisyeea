@@ -46,8 +46,11 @@ class ApplicationsController extends Controller
                 $birthDate = Carbon::now()->subYears($maxAge)->format('Y-m-d');
                 $query->whereDate('date_of_birth', '<=', $birthDate);
             }
+            if ($request->has('area_of_study') && $request->input('area_of_study') !== null) {
+                $areaOfStudy = $request->input('area_of_study');
+                $query->where('area_of_study', 'LIKE', "%$areaOfStudy%");
+            }
 
-            // Add more filters as needed
 
             $applications = $query->get();
         } else {
@@ -56,7 +59,6 @@ class ApplicationsController extends Controller
 
         $programs = ProgramCategory::all();
 
-        // Return the view with selected values in the form
         return view('admin.applications.index', [
             'applications' => $applications,
             'programs' => $programs,
@@ -66,6 +68,7 @@ class ApplicationsController extends Controller
             'selectedGender' => $request->input('gender'),
             'selectedProgram' => $request->input('program'),
             'max_age' => $request->input('max-age'),
+            'area_of_study' => $request->input('area_of_study'),
         ]);
 
     }

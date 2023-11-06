@@ -109,6 +109,12 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="max-age">Area of Study:</label>
+                                            <input type="text" class="form-control" name="area_of_study" id="area_of_study" placeholder="" @if ($area_of_study != null) value="{{ $area_of_study }}" @endif>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -142,6 +148,7 @@
                                             <input type="number" class="form-control" name="max-age" id="max-age" placeholder="" @if ($max_age != null) value="{{ $max_age }}" @endif>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-primary">Apply Filters</button>
                                     </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PreRegistrationController;
 use App\Http\Controllers\ProgramCategoryController;
+use App\Http\Controllers\ProgramQuestionController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserApplicationController;
@@ -119,6 +120,10 @@ Route::group(['prefix' => 'programs', 'middleware' => ['auth', 'admin']], functi
     Route::get('/{program}/edit', [ProgramsController::class, 'edit'])->name('programs.edit');
     Route::put('/{program}', [ProgramsController::class, 'update'])->name('programs.update');
     Route::delete('/{program}', [ProgramsController::class, 'destroy'])->name('programs.destroy');
+
+    Route::get('/form-questions/create', [ProgramQuestionController::class, 'create'])->name('form-questions.create');
+    Route::post('/form-questions/store', [ProgramQuestionController::class, 'store'])->name('form-questions.store');
+
 
 });
 

@@ -25,4 +25,10 @@ class Program extends Model
         return Carbon::parse($this->attributes['end_date'])->format('M d, Y');
     }
 
+    public function questions()
+    {
+        return $this->hasMany(ProgramQuestion::class);
+    }
+
+
 }

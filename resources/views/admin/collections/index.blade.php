@@ -121,8 +121,6 @@
                                                         @method('DELETE')
                                                     </form>
                                                 </div>
-                                                
-                                                
                                             </div>
                                         </td>
                                     </tr>
