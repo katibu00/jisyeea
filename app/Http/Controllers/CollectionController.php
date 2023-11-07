@@ -10,16 +10,15 @@ class CollectionController extends Controller
     public function index(Request $request)
     {
         $statusFilter = $request->input('status', 'active');
-    
+
         if ($statusFilter === 'all') {
             $collections = Collection::latest()->get();
         } else {
             $collections = Collection::where('status', $statusFilter)->latest()->get();
         }
-    
+
         return view('admin.collections.index', ['collections' => $collections]);
     }
-    
 
     public function create()
     {
@@ -90,6 +89,13 @@ class CollectionController extends Controller
         $collection->delete();
 
         return redirect()->route('collections.index')->with('success', 'Collection deleted successfully');
+    }
+
+    public function viewMembers(Collection $collection)
+    {
+        $users = $collection->users;
+
+        return view('admin.collections.viewMembers', compact('collection', 'users'));
     }
 
 }

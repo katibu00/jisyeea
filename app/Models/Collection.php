@@ -13,7 +13,12 @@ class Collection extends Model
         'title',
         'description',
         'max_users',
-        'status'
+        'status',
     ];
-   
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

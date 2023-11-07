@@ -18,6 +18,18 @@
 
                 <div class="row">
                     <div class="col-12">
+                        @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Application Information</h5>
@@ -136,10 +148,34 @@
                                         </div>
                                     @endif
                                 </div>
+                                <form action="{{ route('add.user.to.collection') }}" method="post">
+                                    @csrf
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="collection_id">Choose Collection:</label>
+                                                <select class="form-select" name="collection_id" id="collection_id">
+                                                    <option value=""></option>
+                                                   @foreach ($collections as $collection)
+                                                   <option value="{{ $collection->id }}">{{ $collection->title }}</option>
+                                                   @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" value="{{ $application->user_id }}" name="user_id">
+                                        <div class="col-md-4 d-flex align-items-center">
+                                            <button type="submit" class="btn btn-primary">Add User to Collection</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+                        
                     </div>
+                    
                 </div>
+
+               
 
                 <div class="row">
                     <div class="col-12">

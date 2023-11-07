@@ -97,10 +97,14 @@ Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], fun
 
     Route::post('/collections/filter', [CollectionController::class, 'index'])->name('collections.filter');
 
+    Route::get('/collections/{collection}/members', [CollectionController::class, 'viewMembers'])->name('collections.viewMembers');
+
+
 });
 
 Route::post('/applications/bulk-action', [ApplicationsController::class, 'bulkAction'])->name('applications.bulkAction');
 Route::get('/applications/{application}', [ApplicationsController::class, 'show'])->name('applications.show');
+Route::post('/add-user-to-collection', [ApplicationsController::class, 'addUserToCollection'])->name('add.user.to.collection');
 
 Route::get('/pop_up_notification', [SettingsController::class, 'popup'])->name('pop_up_notification');
 Route::post('/pop_up_notification', [SettingsController::class, 'savePopup']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Collection;
 use App\Models\PreRegistration;
 use App\Models\Program;
 use App\Models\ProgramCategory;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 
 class ApplicationsController extends Controller
 {
+   
     public function index(Request $request)
     {
         $query = PreRegistration::query();
@@ -80,8 +82,9 @@ class ApplicationsController extends Controller
         if (!$application) {
             return redirect()->route('applications.index')->with('error', 'Application not found.');
         }
+        $collections = Collection::where('status','active')->get();
 
-        return view('admin.applications.show', ['application' => $application]);
+        return view('admin.applications.show', ['application' => $application, 'collections' => $collections]);
     }
 
     public function bulkAction(Request $request)
@@ -114,4 +117,35 @@ class ApplicationsController extends Controller
         return redirect()->back()->with('success', 'Bulk action successfully applied.');
     }
 
+
+    public function addUserToCollection(Request $request)
+    {
+        $collectionId = $request->input('collection_id');
+        $userId = $request->input('user_id');
+    
+        $collection = Collection::find($collectionId);
+    
+        if (!$collection) {
+            return redirect()->back()->with('error', 'Collection not found');
+        }
+    
+        $maxUsers = $collection->max_users;
+        if ($maxUsers !== null && $maxUsers !== 0) {
+            $currentUsersCount = $collection->users()->count();
+            if ($currentUsersCount >= $maxUsers) {
+                return redirect()->back()->with('error', 'Maximum number of users in the collection has been reached');
+            }
+        }
+    
+        if ($collection->users()->where('users.id', $userId)->exists()) {
+            return redirect()->back()->with('error', 'User is already in the collection');
+        }
+    
+        $collection->users()->attach($userId);
+    
+        return redirect()->back()->with('success', 'User added to the collection successfully');
+    }
+    
+
+    
 }

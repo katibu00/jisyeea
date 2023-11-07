@@ -76,7 +76,7 @@
                                         <th>Status</th>
                                         <th>Number of Users</th>
                                         <th>Last Empowerment</th>
-                                        <th>Options</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,15 +101,20 @@
                                             @endif
                                         </td>
                                         
-                                        <td>0</td>
+                                        <td>{{ $collection->users->count() }}</td>
                                         <td>{{ $collection->last_empowerment }}</td>
                                         <td>
                                             <div class="dropdown float-center">
+
                                                 <a href="#" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown"
                                                     aria-expanded="false">
                                                     <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-end">
+
+                                                    <a class="dropdown-item" href="{{ route('collections.viewMembers', $collection) }}">View Members</a>
+
+                                                
                                                     <a class="dropdown-item" href="{{ route('collections.edit', $collection) }}">Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         onclick="if (confirm('Are you sure you want to delete this collection?')) {

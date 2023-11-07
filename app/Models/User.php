@@ -56,4 +56,10 @@ class User extends Authenticatable
     {
         return $this->preRegistration !== null;
     }
+
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class);
+    }
+
 }
