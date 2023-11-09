@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
 use App\Models\ProgramQuestion;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class ProgramQuestionController extends Controller
             'question' => 'required',
             'field_type' => 'required|in:text,number,textarea,select',
             'options' => 'nullable|required_if:field_type,select|string',
-            'program_id' => 'required|exists:programs,id', // Validate that program_id exists
+            'program_id' => 'required|exists:programs,id',
         ]);
 
         // Create a new ProgramQuestion instance
@@ -31,8 +32,8 @@ class ProgramQuestionController extends Controller
 
         // If it's a select field, save the options
         if ($request->input('field_type') === 'select') {
-            $options = explode(',', $request->input('options'));
-            $programQuestion->options = $options;
+            $options = explode(',', $request->input('options')); 
+            $programQuestion->options = $options; 
         }
 
         // Set the program_id based on the input
@@ -41,8 +42,23 @@ class ProgramQuestionController extends Controller
         // Save the question
         $programQuestion->save();
 
-        return redirect()->route('form-questions.index')->with('success', 'Form question added successfully.');
+        return redirect()->route('form-questions.index', ['program_id' => $request->program_id])->with('success', 'Form question added successfully.');
     }
    
+
+    public function index(Request $request)
+    {
+        // Get the program_id from the URL parameter
+        $programId = $request->query('program_id');
+        
+        // Retrieve the questions associated with the program
+        $questions = ProgramQuestion::where('program_id', $programId)->get();
+
+        // Assuming you have a $program variable, you can use it for the program's title
+        // You can retrieve the program by its ID
+        $program = Program::find($programId);
+
+        return view('admin.programs.program.questions_index', compact('questions', 'program'));
+    }
 
 }

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('program_questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('program_id');
-            $table->text('question');
+            $table->string('question');
             $table->string('field_type');
-            $table->unsignedBigInteger('options_id')->nullable();
+            $table->json('options')->nullable();
+            $table->unsignedBigInteger('program_id');
+            $table->foreign('program_id')->references('id')->on('programs');
             $table->timestamps();
         });
         

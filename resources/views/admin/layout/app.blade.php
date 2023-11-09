@@ -8,7 +8,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/admin/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/logo.jpeg">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- jquery.vectormap css -->
@@ -163,7 +163,6 @@
                             </div>
                         </div>
                         <div>
-                            <!-- LOGO -->
                             <div class="navbar-brand-box">
 
                                 <a href="index.html" class="logo logo-light">
@@ -182,7 +181,6 @@
                                 <i class="fa fa-fw fa-bars"></i>
                             </button>
 
-                            <!-- App Search-->
                             <form class="app-search d-none d-lg-inline-block">
                                 <div class="position-relative">
                                     <input type="text" class="form-control" placeholder="Search...">
@@ -193,7 +191,7 @@
 
                     </div>
                 </div>
-            </header> <!-- ========== Left Sidebar Start ========== -->
+            </header>
             @include('admin.layout.sidebar')
             <!-- Left Sidebar End -->
 
@@ -208,7 +206,7 @@
                             </script> © JISYEEA. </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by <a href="https://fb.me/katibu1"> TechFushion Labs</a>
+                                Design & Develop by <a href="https://wa.me/2348033174228"> TechFushion Labs</a>
                             </div>
                         </div>
                     </div>
@@ -219,14 +217,9 @@
     <!-- END layout-wrapper -->
 
     </div>
-    <!-- end container-fluid -->
 
-
-
-    <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
-    <!-- JAVASCRIPT -->
     <!-- JAVASCRIPT -->
     <script src="/admin/libs/jquery/jquery.min.js"></script>
     <script src="/admin/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -235,14 +228,6 @@
     <script src="/admin/libs/node-waves/waves.min.js"></script>
     <script src="/admin/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
 
-    <!-- apexcharts -->
-    {{-- <script src="/admin/libs/apexcharts/apexcharts.min.js"></script> --}}
-
-    <!-- jquery.vectormap map -->
-    {{-- <script src="/admin/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script> --}}
-    {{-- <script src="/admin/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script> --}}
-
-    {{-- <script src="/admin/js/pages/dashboard.init.js"></script> --}}
     @yield('js')
     <script src="/admin/js/app.js"></script>
 </body>

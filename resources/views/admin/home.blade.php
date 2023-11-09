@@ -27,7 +27,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <i class="fas fa-users fa-2x text-primary"></i>
                                 <div class="text-right">
-                                    <h5 class="card-title">Total Applicants</h5>
+                                    <h5 class="card-title">Total Sign Ups</h5>
                                     <p class="card-text">{{ number_format($totalRegularUserCount, 0) }}</p>
                                 </div>
                             </div>

@@ -19,18 +19,18 @@
 	<link rel="stylesheet" href="/theme/vendor/youtube-popup/youtube-popup.css">
 	<link rel="stylesheet" type="text/css" href="/theme/css/style.css">
 	<!-- favicons Icons -->
-	<link rel="apple-touch-icon" sizes="180x180" href="/theme/image/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/theme/image/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/theme/image/favicon/favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/logo.jpeg">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/logo.jpeg">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/logo.jpeg">
 	<link rel="manifest" href="/theme/image/favicons/site.webmanifest">
 </head>
 <body>
-{{-- <div id="pre-loader">
+<div id="pre-loader">
     <div id="loader-logo"></div>
     <div id="loader-circle"></div>
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
-</div> --}}
+</div>
 
 @include('front.layout.header')
 

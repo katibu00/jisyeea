@@ -64,7 +64,7 @@
 	</div><!--footer-inner-->
 	<div class="bottom-footer">
 		<div class="conatiner">
-			<p>© Copyright 2023 by Jigawa State Youth Empowerment/Employment Agency.</p> Design & Develop by <a href="https://fb.me/katibu1"> TechFushion Labs</a>
+			<p>© Copyright 2023 by Jigawa State Youth Empowerment/Employment Agency.</p> Design & Develop by <a href="https://wa.me/2348033174228"> TechFushion Labs</a>
 		</div>
 	</div><!--bottom-footer-->
 </section><!--footer-->

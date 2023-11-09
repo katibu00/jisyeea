@@ -15,17 +15,6 @@ use App\Http\Controllers\UserApplicationController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
- */
-
 Route::get('/', [HomeController::class, 'guest'])->name('home');
 Route::get('/about-us', [PagesController::class, 'about'])->name('about');
 Route::get('/contact-us', [PagesController::class, 'contact'])->name('contact');
@@ -88,18 +77,11 @@ Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], fun
     Route::get('/', [CollectionController::class, 'index'])->name('collections.index');
     Route::get('/create', [CollectionController::class, 'create'])->name('collections.create');
     Route::post('/store', [CollectionController::class, 'store'])->name('collections.store');
-
     Route::get('/collections/{collection}/edit', [CollectionController::class, 'edit'])->name('collections.edit');
-
     Route::patch('/collections/{collection}', [CollectionController::class, 'update'])->name('collections.update');
-
     Route::delete('/collections/{collection}', [CollectionController::class, 'destroy'])->name('collections.destroy');
-
     Route::post('/collections/filter', [CollectionController::class, 'index'])->name('collections.filter');
-
     Route::get('/collections/{collection}/members', [CollectionController::class, 'viewMembers'])->name('collections.viewMembers');
-
-
 });
 
 Route::post('/applications/bulk-action', [ApplicationsController::class, 'bulkAction'])->name('applications.bulkAction');
@@ -127,6 +109,7 @@ Route::group(['prefix' => 'programs', 'middleware' => ['auth', 'admin']], functi
 
     Route::get('/form-questions/create', [ProgramQuestionController::class, 'create'])->name('form-questions.create');
     Route::post('/form-questions/store', [ProgramQuestionController::class, 'store'])->name('form-questions.store');
+    Route::get('/form-questions/index', [ProgramQuestionController::class, 'index'])->name('form-questions.index');
 
 
 });
@@ -134,11 +117,14 @@ Route::group(['prefix' => 'programs', 'middleware' => ['auth', 'admin']], functi
 Route::group(['prefix' => 'application', 'middleware' => ['auth', 'regular']], function () {
 
     Route::get('/new/application', [UserApplicationController::class, 'index'])->name('apply');
-    Route::post('/submit', [UserApplicationController::class, 'submit'])->name('application.submit');
+    Route::post('/submit', [UserApplicationController::class, 'storeUserResponse'])->name('application.submit');
     Route::get('/my_applications', [UserApplicationController::class, 'applicationList'])->name('application.lists');
 
     Route::get('/{id}/download', [PreRegistrationController::class, 'downloadAcknowledgment'])->name('application.download');
     Route::delete('/applications/{id}', [UserApplicationController::class, 'destroy'])->name('application.delete');
+
+    Route::get('/details/{slug}', [UserApplicationController::class, 'showDetails'])->name('application.show');
+
 
 });
 

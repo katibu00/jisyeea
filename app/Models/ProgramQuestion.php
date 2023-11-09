@@ -9,10 +9,6 @@ class ProgramQuestion extends Model
 {
     use HasFactory;
 
-    public function options()
-    {
-        return $this->hasMany(QuestionOption::class);
-    }
 
     public function program()
     {
@@ -21,5 +17,8 @@ class ProgramQuestion extends Model
 
     protected $fillable = ['question', 'field_type', 'options', 'program_id'];
 
+    protected $casts = [
+        'options' => 'array',
+    ];
 
 }

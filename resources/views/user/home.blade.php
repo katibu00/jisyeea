@@ -52,7 +52,7 @@
                                     <thead>
                                         <tr>
                                             <th>Program Name</th>
-                                            <th>Date Range</th>
+                                            <th>Closing Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -61,23 +61,22 @@
                                         @foreach ($programs as $program)
                                             <tr>
                                                 <td>{{ $program->title }}</td>
-                                                <td>{{ $program->start_date_formatted }} -
-                                                    {{ $program->end_date_formatted }}</td>
+                                                <td>{{ $program->end_date_formatted }}</td>
                                                 <td>
                                                     @if ($program->status === 'Upcoming')
-                                                        <span class="badge bg-success">Upcoming</span>
+                                                        <span class="badge bg-warning">Upcoming</span>
                                                     @elseif ($program->status === 'Ongoing')
-                                                        <span class="badge bg-warning">Ongoing</span>
+                                                        <span class="badge bg-success">Ongoing</span>
                                                     @else
                                                         <span class="badge bg-secondary">Closed</span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     @if ($program->status === 'Upcoming' || $program->status === 'Ongoing')
-                                                        <a href="{{ route('apply', ['program' => $program->slug]) }}"
-                                                            class="btn btn-primary btn-sm">Register</a>
+                                                        <a href="{{ route('application.show', ['slug' => $program->slug]) }}"
+                                                            class="btn btn-secondary btn-sm">Apply</a>
                                                     @else
-                                                        <button class="btn btn-primary btn-sm" disabled>Closed</button>
+                                                        <button class="btn btn-secondary btn-sm" disabled>Closed</button>
                                                     @endif
                                                 </td>
                                             </tr>

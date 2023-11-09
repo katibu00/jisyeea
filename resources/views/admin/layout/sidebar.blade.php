@@ -5,39 +5,6 @@
 @endphp
 
 
-
-
-{{-- <div class="content-side content-side-full">
-    <ul class="nav-main">
-
-      <li class="nav-main-item">
-        <a class="nav-main-link  {{ $route == 'admin.home' ? 'active' : '' }}" href="{{ route('admin.home') }}">
-          <i class="nav-main-link-icon fa fa-house-user"></i>
-          <span class="nav-main-link-name">Home</span>
-        </a>
-      </li>
-
-      <li class="nav-main-item  {{ $prefix == '/blogs' ? 'open' : '' }}">
-        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-          <i class="nav-main-link-icon fa fa-cog"></i>
-          <span class="nav-main-link-name">News & Articles</span>
-        </a>
-        <ul class="nav-main-submenu">
-         
-          <li class="nav-main-item">
-            <a class="nav-main-link  {{ $route == 'blogs.index' ? 'active' : '' }}" href="{{ route('blogs.index') }}">
-              <span class="nav-main-link-name">Blog</span>
-            </a>
-          </li>
-          
-        
-        </ul>
-      </li>
-    
-    </ul>
-  </div> --}}
-
-
 <div class="vertical-menu">
 
     <div class="h-100">

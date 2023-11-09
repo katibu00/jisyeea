@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\PreRegistration;
 use App\Models\Program;
-use App\Models\ProgramCategory;
 use App\Models\User;
+use App\Models\UserResponse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -113,24 +115,80 @@ class UserApplicationController extends Controller
 
     public function index(Request $request)
     {
-        $program = null;
-        $programs = Program::with('category')->get();
-        $categories = ProgramCategory::all();
-
         if ($request->has('program')) {
             $slug = $request->input('program');
             $program = Program::where('slug', $slug)->with('category')->first();
-        }
-        if ($program) {
-            $currentDate = now();
+            $user = Auth::user();
 
+            if ($program) {
+
+                $preRegistration = $user->preRegistration;
+
+                if (!$preRegistration) {
+                    return redirect()->back()->with('error', 'You must fill the pre-registration form first.');
+                }
+
+                if (
+                    $program->lga_origin !== 'all' &&
+                    $preRegistration->lga_origin !== $program->lga_origin
+                ) {
+                    return redirect()->back()->with('error', 'Eligibility requirements are not met.');
+                }
+
+                if (
+                    $program->category_interest !== 'all' &&
+                    $preRegistration->preferred_category !== $program->category_interest
+                ) {
+                    return redirect()->back()->with('error', 'Eligibility requirements are not met.');
+                }
+
+                if (
+                    $program->gender !== 'all' &&
+                    $preRegistration->gender !== $program->gender
+                ) {
+                    return redirect()->back()->with('error', 'Eligibility requirements are not met.');
+                }
+
+                if (
+                    $program->education_level !== 'all' &&
+                    $preRegistration->education_level !== $program->education_level
+                ) {
+                    return redirect()->back()->with('error', 'Eligibility requirements are not met.');
+                }
+            }
+        }
+
+        if ($program->max_applicants !== null && $program->max_applicants !== 0) {
+            $responseCount = UserResponse::where('program_id', $program->id)
+                ->groupBy('user_id')
+                ->distinct()
+                ->count();
+
+            if ($responseCount >= $program->max_applicants) {
+                return redirect()->back()->with('message', 'Maximum number of required applicants met.');
+            }
+        }
+        if ($program->max_age !== null && $program->max_age > 0) {
+            $userDateOfBirth = Carbon::parse($preRegistration->date_of_birth);
+            $userAge = $userDateOfBirth->age;
+
+            if ($userAge > $program->max_age) {
+                return redirect()->route('regular.home')->with('error', 'Eligibility requirements are not met.');
+            }
+        }
+
+        $currentDate = now();
+        $programs = Program::with('category')->get();
+
+        if ($program) {
             if ($currentDate < $program->start_date) {
                 return redirect()->route('regular.home')->with('error', 'The program has not started yet.');
             } elseif ($currentDate > $program->end_date) {
                 return redirect()->route('regular.home')->with('error', 'The program has ended.');
             }
         }
-        return view('user.apply', compact('program', 'programs', 'categories'));
+
+        return view('user.apply', compact('program', 'programs'));
     }
 
     public function getProgramsByCategory($categoryId)
@@ -147,6 +205,33 @@ class UserApplicationController extends Controller
         $applications = Application::where('user_id', auth()->user()->id)->get();
 
         return view('user.application_list', compact('applications'));
+    }
+
+    public function storeUserResponse(Request $request)
+    {
+        $user = auth()->user();
+
+        foreach ($request->all() as $field => $response) {
+
+            if (strpos($field, 'question_') === 0) {
+                $questionId = substr($field, 9);
+
+                UserResponse::create([
+                    'user_id' => $user->id,
+                    'program_id' => $request->program_id,
+                    'question_id' => $questionId,
+                    'response' => $response,
+                ]);
+            }
+        }
+
+        return redirect()->route('thank-you');
+    }
+
+    public function showDetails($slug)
+    {
+        $program = Program::where('slug', $slug)->with('category')->first();
+        return view('user.program_details', compact('program'));
     }
 
 }

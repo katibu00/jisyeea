@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title">Programs</h5>
-                        <a href="{{ route('programs.create') }}" class="btn btn-primary">Create New Program</a>
+                        <a href="{{ route('programs.create') }}" class="btn btn-primary">+ Create New Program</a>
                     </div>
 
                     <div class="card-body">
@@ -83,7 +83,7 @@
                                                             event.preventDefault(); 
                                                             document.getElementById('delete-form-{{ $program->id }}').submit();
                                                         }">Delete</a>
-                                                        <a class="dropdown-item" href="{{ route('form-questions.create', ['program_id' => $program->id]) }}">Add Form Questions</a>
+                                                        <a class="dropdown-item" href="{{ route('form-questions.index', ['program_id' => $program->id]) }}">Application Questions</a>
                                                         <form id="delete-form-{{ $program->id }}" action="{{ route('programs.destroy', $program->id) }}" method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
