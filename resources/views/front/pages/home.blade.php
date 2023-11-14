@@ -179,7 +179,7 @@
 										</li>
 										<li>
                                             <i class="fa-sharp fa-solid fa-users"></i>
-											<span>{{ $program->category->name }}</span>
+											<span>{{ @$program->category->name }}</span>
 										</li>
 									</ul>
 								</div>

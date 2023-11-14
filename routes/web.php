@@ -82,6 +82,11 @@ Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], fun
     Route::delete('/collections/{collection}', [CollectionController::class, 'destroy'])->name('collections.destroy');
     Route::post('/collections/filter', [CollectionController::class, 'index'])->name('collections.filter');
     Route::get('/collections/{collection}/members', [CollectionController::class, 'viewMembers'])->name('collections.viewMembers');
+
+    Route::delete('/collections/{collection}/members/{user}', [CollectionController::class, 'removeUser'])->name('collections.removeUser');
+    Route::get('/collections/{collection}/members/{user}/details', [CollectionController::class, 'memberDetails'])->name('collections.memberDetails');
+
+
 });
 
 Route::post('/applications/bulk-action', [ApplicationsController::class, 'bulkAction'])->name('applications.bulkAction');
