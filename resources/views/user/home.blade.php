@@ -41,6 +41,22 @@
             </div>
         @endif
 
+        <div class="container mt-3">
+            @if(session('warning_message'))
+                <div class="alert alert-warning">
+                    {!! session('warning_message') !!}
+                </div>
+            @endif
+        
+            @if(session('info_message'))
+                <div class="alert alert-info">
+                    {!! session('info_message') !!}
+                </div>
+            @endif
+        
+        </div>
+        
+
 
             <div class="row">
                 <div class="col-lg-6">

@@ -74,8 +74,8 @@
                                         <th>Description</th>
                                         <th>Max Users</th>
                                         <th>Status</th>
-                                        <th>Number of Users</th>
-                                        <th>Last Empowerment</th>
+                                        <th># Users</th>
+                                        <th>Collect Account Details</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -95,14 +95,20 @@
                                             @if ($collection->status === 'active')
                                                 <span class="badge bg-success">Active</span>
                                             @elseif ($collection->status === 'archived')
-                                                <span class="badge bd-danger">Archived</span>
+                                                <span class="badge bg-danger">Archived</span>
                                             @else
                                                 <span class="badge bg-secondary">{{ $collection->status }}</span>
                                             @endif
                                         </td>
                                         
                                         <td>{{ $collection->users->count() }}</td>
-                                        <td>{{ $collection->last_empowerment }}</td>
+                                        <td>
+                                            @if ($collection->allow_account_details)
+                                            <span class="badge bg-success">Allowed</span>
+                                            @else
+                                                <span class="badge bg-danger">Not Allowed</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="dropdown float-center">
 
@@ -114,7 +120,17 @@
 
                                                     <a class="dropdown-item" href="{{ route('collections.viewMembers', $collection) }}">View Members</a>
 
-                                                
+
+
+                                                    <form action="{{ route('collections.toggleAccountDetails', ['collection' => $collection]) }}" method="POST" onsubmit="return confirm('Are you sure you want to toggle account details collection for this collection?')">
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item">
+                                                            {{ $collection->allow_account_details ? 'Turn Off Account Collection' : 'Turn On Account Collection' }}
+                                                        </button>
+                                                    </form>
+
+                                                    <a href="{{ route('collections.downloadMembersPdf', ['collection' => $collection]) }}" class="dropdown-item">Download PDF</a>
+
                                                     <a class="dropdown-item" href="{{ route('collections.edit', $collection) }}">Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         onclick="if (confirm('Are you sure you want to delete this collection?')) {

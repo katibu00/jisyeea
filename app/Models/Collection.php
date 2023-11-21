@@ -14,6 +14,7 @@ class Collection extends Model
         'description',
         'max_users',
         'status',
+        'collect_account_details',
     ];
 
     public function users()

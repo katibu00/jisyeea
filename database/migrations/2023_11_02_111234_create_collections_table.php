@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('max_users')->nullable();
             $table->string('status')->default('active');
+            $table->boolean('collect_account_details')->default(false);
+
             $table->timestamps(); 
         });
     }

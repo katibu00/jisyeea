@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Application;
 use App\Models\Blog;
 use App\Models\PopUpNotification;
 use App\Models\PreRegistration;
@@ -11,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\CollectionUser;
 
 class HomeController extends Controller
 {
@@ -100,20 +100,22 @@ class HomeController extends Controller
         return view('front.pages.home', $data);
     }
 
+    
+
     public function regular()
     {
         $user = Auth::user();
-
+    
         $recentUpdates = Blog::latest()->limit(3)->get();
-
+    
         // Get upcoming programs
         $programs = Program::all();
-
+    
         foreach ($programs as &$program) {
             $startDate = Carbon::parse($program->start_date);
             $endDate = Carbon::parse($program->end_date);
             $now = Carbon::now();
-
+    
             if ($now->lt($startDate)) {
                 // Program is upcoming
                 $program->status = 'Upcoming';
@@ -128,14 +130,25 @@ class HomeController extends Controller
                 $program->action = 'Closed';
             }
         }
-
-        $preregistration = PreRegistration::select('id')->where('user_id',$user->id)->first();
-        if(!$preregistration)
-        {
+    
+        $preregistration = PreRegistration::select('id')->where('user_id', $user->id)->first();
+        if (!$preregistration) {
             session()->flash('warning_message', 'You need to complete your pre-registration to apply for programs in the future. Click to pre-register <a href="' . route('pre-registration') . '">here</a>.');
         }
-
+    
+        // Check if the user is a member of any active collection with allow_account_details set to true
+        $activeCollections = CollectionUser::where('user_id', $user->id)
+        ->whereHas('collection', function ($query) {
+            $query->where('status', 'active')->where('allow_account_details', true);
+        })
+        ->exists();
+    
+    if ($activeCollections) {
+        session()->flash('info_message', 'Please fill in your account details. Click to update <a href="' . route('account-details') . '">here</a>.');
+    }
+    
         return view('user.home', compact('user', 'programs', 'recentUpdates'));
     }
+    
 
 }

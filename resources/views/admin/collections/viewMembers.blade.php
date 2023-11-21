@@ -46,12 +46,12 @@
                                 <td>{{ $user->preRegistration->highest_education ?? 'N/A' }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td class="d-flex">
+                                    <a href="{{ route('collections.memberDetails', ['collection' => $collection, 'user' => $user]) }}" target="_blank" class="btn btn-info btn-sm mx-1">Details</a>
                                     <form id="removeUserForm_{{ $user->id }}" action="{{ route('collections.removeUser', ['collection' => $collection, 'user' => $user]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmRemove('{{ $user->name }}', '{{ $user->id }}')">X</button>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmRemove('{{ $user->name }}', '{{ $user->id }}')">Remove</button>
                                     </form>
-                                    <a href="{{ route('collections.memberDetails', ['collection' => $collection, 'user' => $user]) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
 
                                 </td>
                             </tr>

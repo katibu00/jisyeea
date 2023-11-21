@@ -87,7 +87,18 @@ Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], fun
     Route::get('/collections/{collection}/members/{user}/details', [CollectionController::class, 'memberDetails'])->name('collections.memberDetails');
 
 
+    Route::get('/collections/{collection}/members/download-pdf', [CollectionController::class, 'downloadMembersPdf'])->name('collections.downloadMembersPdf');
+
+    Route::post('/collections/{collection}/toggle-account-details', [CollectionController::class, 'toggleAccountDetails'])->name('collections.toggleAccountDetails');
+
+
 });
+
+
+// web.php
+
+Route::get('/account-details', 'AccountDetailsController@index')->name('account-details');
+
 
 Route::post('/applications/bulk-action', [ApplicationsController::class, 'bulkAction'])->name('applications.bulkAction');
 Route::get('/applications/{application}', [ApplicationsController::class, 'show'])->name('applications.show');

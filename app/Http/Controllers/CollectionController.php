@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use App\Models\PreRegistration;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class CollectionController extends Controller
@@ -96,27 +97,44 @@ class CollectionController extends Controller
     public function viewMembers(Collection $collection)
     {
         $users = $collection->users()->with('preRegistration')->get();
-    
+
         return view('admin.collections.viewMembers', compact('collection', 'users'));
     }
 
     public function removeUser(Collection $collection, User $user)
-{
-    $collection->users()->detach($user->id);
+    {
+        $collection->users()->detach($user->id);
 
-    return redirect()->back()->with('success', 'User removed from the collection successfully');
-}
+        return redirect()->back()->with('success', 'User removed from the collection successfully');
+    }
 
-public function memberDetails(Collection $collection, User $user)
-{
-    $preRegistration = PreRegistration::where('user_id', $user->id)->first();
+    public function memberDetails(Collection $collection, User $user)
+    {
+        $preRegistration = PreRegistration::where('user_id', $user->id)->first();
 
-    $memberDetails = [
-        'user' => $user,
-        'preRegistration' => $preRegistration,
-    ];
+        $memberDetails = [
+            'user' => $user,
+            'preRegistration' => $preRegistration,
+        ];
 
-    return view('admin.collections.memberDetails', compact('collection', 'memberDetails'));
-}
+        return view('admin.collections.memberDetails', compact('collection', 'memberDetails'));
+    }
 
+    public function downloadMembersPdf(Collection $collection)
+    {
+        $users = $collection->users()->with('preRegistration')->get();
+
+        $pdf = Pdf::loadView('pdf.members', compact('collection', 'users'));
+
+        return $pdf->download('members.pdf');
+    }
+
+    public function toggleAccountDetails(Collection $collection)
+    {
+        $collection->allow_account_details = !$collection->allow_account_details;
+        $collection->save();
+    
+
+        return redirect()->back()->with('success', 'Account details collection status updated successfully');
+    }
 }

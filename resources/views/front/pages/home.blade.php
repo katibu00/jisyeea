@@ -196,7 +196,6 @@
 		</div>
 	</section>
 
-
     <section class="funfact-section">
         <div class="container">
             <div class="row">
@@ -273,8 +272,6 @@
                                 skills, dreams, and potential are our priority as we work towards your success and a
                                 brighter future for Jigawa State.</p>
                         </div>
-                       
-                       
                     </div>
                 </div>
                 <div class="col-lg-6">
