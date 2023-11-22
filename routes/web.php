@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountDetailsController;
 use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogsController;
@@ -97,7 +98,8 @@ Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], fun
 
 // web.php
 
-Route::get('/account-details', 'AccountDetailsController@index')->name('account-details');
+Route::get('/account-details', [AccountDetailsController::class, 'index'])->name('account-details');
+Route::post('/account-details', [AccountDetailsController::class, 'store']);
 
 
 Route::post('/applications/bulk-action', [ApplicationsController::class, 'bulkAction'])->name('applications.bulkAction');

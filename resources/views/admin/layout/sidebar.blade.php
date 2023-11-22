@@ -87,21 +87,36 @@
                 @endif
 
                 @if (auth()->user()->user_type == 'regular')
+                <li>
+                    <a href="{{ route('regular.home') }}" class=" waves-effect">
+                        <i class="mdi mdi-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="{{ route('pre-registration') }}" class=" waves-effect">
+                        <i class="mdi mdi-account-multiple-plus"></i>
+                        <span>Pre-Registration</span>
+                    </a>
+                </li>
+            
+                @php
+                    $user = auth()->user();
+                    $isMemberOfCollection = $user->collections()->where('status', 'active')->exists();
+                    $allowAccountDetails = $user->collections()->where('status', 'active')->where('allow_account_details', true)->exists();
+                @endphp
+            
+                @if ($isMemberOfCollection && $allowAccountDetails)
                     <li>
-                        <a href="{{ route('regular.home') }}" class=" waves-effect">
-                            <i class="mdi mdi-home"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-
-                    
-                    <li>
-                        <a href="{{ route('pre-registration') }}" class=" waves-effect">
-                            <i class="mdi mdi-account-multiple-plus"></i>
-                            <span>Pre-Registration</span>
+                        <a href="{{ route('account-details') }}" class="waves-effect">
+                            <i class="mdi mdi-bank"></i>
+                            <span>Account Details</span>
                         </a>
                     </li>
                 @endif
+            @endif
+            
 
             </ul>
         </div>

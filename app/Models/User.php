@@ -62,4 +62,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Collection::class);
     }
 
+    public function accountDetails()
+    {
+        return $this->hasMany(AccountDetails::class);
+    }
+
 }
