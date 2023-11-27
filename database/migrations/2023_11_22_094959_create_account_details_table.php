@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('account_number');
             $table->string('account_name');
             $table->string('bank');
-            $table->timestamps();
+            $table->string('bvn');
+            $table->string('nin')->nullable();
+            $table->timestamps();        
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

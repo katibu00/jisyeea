@@ -143,9 +143,13 @@ class HomeController extends Controller
         })
         ->exists();
     
-    if ($activeCollections) {
-        session()->flash('info_message', 'Please fill in your account details. Click to update <a href="' . route('account-details') . '">here</a>.');
-    }
+        $hasUpdatedAccountDetails = $user->accountDetails()->exists();
+       
+
+        // Show the flash message only if there are active collections and the user has not updated account details
+        if ($activeCollections && !$hasUpdatedAccountDetails) {
+            session()->flash('info_message', 'Please fill in your account details. Click to update <a href="' . route('account-details') . '">here</a>.');
+        }
     
         return view('user.home', compact('user', 'programs', 'recentUpdates'));
     }
