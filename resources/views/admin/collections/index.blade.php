@@ -129,7 +129,8 @@
                                                         </button>
                                                     </form>
 
-                                                    <a href="{{ route('collections.downloadMembersPdf', ['collection' => $collection]) }}" class="dropdown-item">Download PDF</a>
+                                                    <a href="{{ route('collections.downloadMembersPdf', ['collection' => $collection]) }}" class="dropdown-item">Download Members</a>
+                                                    <a href="{{ route('collections.downloadAccountDetailsPdf', ['collection' => $collection]) }}" class="dropdown-item">Download Account Details</a>
 
                                                     <a class="dropdown-item" href="{{ route('collections.edit', $collection) }}">Edit</a>
                                                     <a class="dropdown-item" href="#"

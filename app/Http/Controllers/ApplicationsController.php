@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\CollectionUser;
 use App\Models\PreRegistration;
 use App\Models\Program;
 use App\Models\ProgramCategory;
@@ -61,9 +62,12 @@ class ApplicationsController extends Controller
 
         $programs = ProgramCategory::all();
 
+        $collections = Collection::where('status','active')->get();
+
         return view('admin.applications.index', [
             'applications' => $applications,
             'programs' => $programs,
+            'collections' => $collections,
             'selectedLga' => $request->input('lga-origin'),
             'selectedWard' => $request->input('ward'),
             'selectedHighestEducation' => $request->input('highest_education'),
@@ -86,37 +90,6 @@ class ApplicationsController extends Controller
 
         return view('admin.applications.show', ['application' => $application, 'collections' => $collections]);
     }
-
-    public function bulkAction(Request $request)
-    {
-        $bulkAction = $request->input('bulk-action');
-        // dd($request->all());
-        $selectedApplications = $request->input('selectedApplications');
-
-        if (!$selectedApplications) {
-            return redirect()->back()->with('error', 'No applications selected for bulk action.');
-        }
-
-        $newStatus = '';
-        switch ($bulkAction) {
-            case 'approve':
-                $newStatus = 'approved';
-                break;
-            case 'list':
-                $newStatus = 'listed';
-                break;
-            case 'reject':
-                $newStatus = 'rejected';
-                break;
-            default:
-                return redirect()->back()->with('error', 'Invalid bulk action selected.');
-        }
-
-        PreRegistration::whereIn('id', $selectedApplications)->update(['status' => $newStatus]);
-
-        return redirect()->back()->with('success', 'Bulk action successfully applied.');
-    }
-
 
     public function addUserToCollection(Request $request)
     {
@@ -146,6 +119,84 @@ class ApplicationsController extends Controller
         return redirect()->back()->with('success', 'User added to the collection successfully');
     }
     
+
+    public function bulkAction(Request $request)
+    {
+        $bulkAction = $request->input('bulk-action');
+        $selectedApplications = $request->input('selectedApplications');
+    
+        if (!$selectedApplications) {
+            return redirect()->back()->with('error', 'No applications selected for bulk action.');
+        }
+    
+        // Check if the bulk action is to add to a collection
+        if (strpos($bulkAction, 'add_to_collection_') !== false) {
+            $collectionId = str_replace('add_to_collection_', '', $bulkAction);
+    
+            // Initialize counters
+            $usersAdded = 0;
+            $usersSkipped = 0;
+    
+            // Add selected applications to the specified collection
+            foreach ($selectedApplications as $applicationId) {
+                $result = $this->addUserToCollectionTwo($collectionId, $applicationId);
+                if ($result === 'added') {
+                    $usersAdded++;
+                } elseif ($result === 'skipped') {
+                    $usersSkipped++;
+                }
+            }
+    
+            // Construct success message
+            $successMessage = 'Bulk action successfully applied.';
+    
+            if ($usersAdded > 0) {
+                $successMessage .= " $usersAdded user(s) added to the collection.";
+            }
+    
+            if ($usersSkipped > 0) {
+                $successMessage .= " $usersSkipped user(s) skipped (already in the collection).";
+            }
+    
+            return redirect()->back()->with('success', $successMessage);
+        }
+    
+        // Remaining bulk action logic...
+    
+        return redirect()->back()->with('success', 'Bulk action successfully applied.');
+    }
+    
+   
+    public function addUserToCollectionTwo($collectionId, $userId)
+    {
+        $collection = Collection::find($collectionId);
+    
+        if (!$collection) {
+            return 'skipped';
+        }
+    
+        if ($collection->users()->where('users.id', $userId)->exists()) {
+            return 'skipped';
+        }
+    
+        $maxUsers = $collection->max_users;
+        if ($maxUsers !== null && $maxUsers !== 0) {
+            $currentUsersCount = $collection->users()->count();
+            if ($currentUsersCount >= $maxUsers) {
+                return 'skipped';
+            }
+        }
+    
+        $collection->users()->attach($userId);
+    
+        return 'added';
+    }
+    
+    
+
+
+    
+
 
     
 }

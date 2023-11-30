@@ -133,8 +133,20 @@ class CollectionController extends Controller
     {
         $collection->allow_account_details = !$collection->allow_account_details;
         $collection->save();
-    
 
         return redirect()->back()->with('success', 'Account details collection status updated successfully');
+    }
+
+    public function downloadAccountDetailsPdf($collection)
+    {
+        $collection = Collection::findOrFail($collection);
+
+        $userIds = $collection->users()->pluck('user_id');
+
+        $members = User::whereIn('id', $userIds)->with('accountDetails')->get();
+
+        $pdf = PDF::loadView('pdf.account_details', ['collection' => $collection, 'members' => $members]);
+
+        return $pdf->download('account_details.pdf');
     }
 }

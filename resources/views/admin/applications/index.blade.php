@@ -166,10 +166,14 @@
                                             <label class="form-label" for="bulk-action">Bulk Action:</label>
                                             <select class="form-select" name="bulk-action" id="bulk-action">
                                                 <option value=""></option>
-                                                <option value="approve">Approve Applications</option>
-                                                <option value="list">Add to Preferred List</option>
+                                                @foreach ($collections as $collection)
+                                                    <option value="add_to_collection_{{ $collection->id }}">
+                                                        Add to Collection: {{ $collection->title }}
+                                                    </option>
+                                                @endforeach
                                                 <option value="reject">Reject Applications</option>
-                                            </select>
+                                                <option value="delete">Delete Applications</option>
+                                            </select>                                            
                                         </div>
                                     </div>
                                     <div class="col-md-4 d-flex align-items-center">
@@ -201,7 +205,7 @@
                                             <tr>
                                                 <td>{{ $key+1 }}</td>
                                                 <td>
-                                                    <input type="checkbox" name="selectedApplications[]" value="{{ $application->id }}">
+                                                    <input type="checkbox" name="selectedApplications[]" value="{{ $application->user_id }}">
                                                 </td>
                                                 <td>{{ $application->yeea_number }}</td>
                                                 <td>{{ $application->full_name }}</td>

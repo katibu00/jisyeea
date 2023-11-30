@@ -10,7 +10,11 @@
 </head>
 <body>
 
-    <h1>Members in Collection: {{ $collection->title }}</h1>
+    <h1 style="text-align: center; font-size: 20px; font-weight: bold;">
+        Jigawa State Youth and Empowerment Agency
+    </h1>
+
+    <h4>Members in Collection: {{ $collection->title }}</h4>
 
     <table border="1" cellspacing="0" cellpadding="10">
         <thead>
@@ -41,5 +45,8 @@
         </tbody>
     </table>
 
+    <div style="text-align: center; position: fixed; bottom: 20px; width: 100%;">
+        Printed by <a href="https://yeaa.gov.ng" style="text-decoration: none;">https://yeaa.gov.ng</a> @ {{ now() }}
+    </div>
 </body>
 </html>

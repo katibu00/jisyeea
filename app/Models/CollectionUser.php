@@ -12,7 +12,7 @@ class CollectionUser extends Model
     protected $table = 'collection_user';
 
     public function collection()
-{
-    return $this->belongsTo(Collection::class, 'collection_id'); // Assuming 'collection_id' is the foreign key in your collection_user table
-}
+    {
+        return $this->belongsTo(Collection::class, 'collection_id');
+    }
 }

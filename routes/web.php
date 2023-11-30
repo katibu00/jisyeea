@@ -92,6 +92,7 @@ Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], fun
 
     Route::post('/collections/{collection}/toggle-account-details', [CollectionController::class, 'toggleAccountDetails'])->name('collections.toggleAccountDetails');
 
+    Route::get('/collections/{collection}/download-account-details-pdf', [CollectionController::class, 'downloadAccountDetailsPdf'])->name('collections.downloadAccountDetailsPdf');
 
 });
 
