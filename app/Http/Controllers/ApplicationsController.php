@@ -191,12 +191,6 @@ class ApplicationsController extends Controller
     
         return 'added';
     }
-    
-    
-
-
-    
-
 
     
 }

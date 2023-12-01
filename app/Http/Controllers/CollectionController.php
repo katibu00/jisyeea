@@ -124,7 +124,7 @@ class CollectionController extends Controller
     {
         $users = $collection->users()->with('preRegistration')->get();
 
-        $pdf = Pdf::loadView('pdf.members', compact('collection', 'users'));
+        $pdf = Pdf::loadView('pdf.members', compact('collection', 'users'))->setPaper('a4', 'landscape');
 
         return $pdf->download('members.pdf');
     }
@@ -145,7 +145,7 @@ class CollectionController extends Controller
 
         $members = User::whereIn('id', $userIds)->with('accountDetails')->get();
 
-        $pdf = PDF::loadView('pdf.account_details', ['collection' => $collection, 'members' => $members]);
+        $pdf = PDF::loadView('pdf.account_details', ['collection' => $collection, 'members' => $members])->setPaper('a4', 'landscape');
 
         return $pdf->download('account_details.pdf');
     }
