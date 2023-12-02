@@ -7,6 +7,7 @@ use App\Models\PreRegistration;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection as IlluminateCollection;
 
 class CollectionController extends Controller
 {
@@ -137,16 +138,44 @@ class CollectionController extends Controller
         return redirect()->back()->with('success', 'Account details collection status updated successfully');
     }
 
+    // public function downloadAccountDetailsPdf($collection)
+    // {
+    //     $collection = Collection::findOrFail($collection);
+
+    //     $userIds = $collection->users()->pluck('user_id');
+
+    //     $members = User::whereIn('id', $userIds)->with('accountDetails','preRegistration')->get();
+
+    //     $pdf = PDF::loadView('pdf.account_details', ['collection' => $collection, 'members' => $members])->setPaper('a4', 'landscape');
+
+    //     return $pdf->download('account_details.pdf');
+    // }
+
     public function downloadAccountDetailsPdf($collection)
     {
         $collection = Collection::findOrFail($collection);
 
         $userIds = $collection->users()->pluck('user_id');
 
-        $members = User::whereIn('id', $userIds)->with('accountDetails')->get();
+        $members = User::whereIn('id', $userIds)
+            ->with('accountDetails', 'preRegistration')
+            ->get();
 
-        $pdf = PDF::loadView('pdf.account_details', ['collection' => $collection, 'members' => $members])->setPaper('a4', 'landscape');
+        $members = $members->sortBy(function ($member) {
+            return optional($member->preRegistration)->lga_origin ?? 'N/A';
+        });
+
+        $members = $members->all();
+
+        $membersByLGA = IlluminateCollection::make($members)->groupBy(function ($member) {
+            return optional($member->preRegistration)->lga_origin ?? 'N/A';
+        })->toArray();
+
+        // dd($membersByLGA);
+
+        $pdf = PDF::loadView('pdf.account_details', ['collection' => $collection, 'membersByLGA' => $membersByLGA])->setPaper('a4', 'landscape');
 
         return $pdf->download('account_details.pdf');
     }
+
 }

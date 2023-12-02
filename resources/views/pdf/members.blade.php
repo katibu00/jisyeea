@@ -16,7 +16,7 @@
 
     <h4>Members in Collection: {{ $collection->title }}</h4>
 
-    <table border="1" cellspacing="0" cellpadding="10">
+    <table border="1" cellspacing="0" cellpadding="10" style="width: 100%; bottom: 10px;">
         <thead>
             <tr>
                 <th>#</th>
@@ -33,7 +33,7 @@
             @foreach ($users as $key => $user)
                 <tr>
                     <td>{{ $key+1 }}</td>
-                    <td><img @if(auth()->user()->picture == null) src="default.png" @else src="uploads/{{ auth()->user()->picture }}" @endif height="50" width="50" alt="User Image"></td>
+                    <td><img @if($user->picture == null) src="default.png" @else src="uploads/{{ $user->picture }}" @endif height="50" width="50" alt="User Image"></td>
                     <td>{{ $user->preRegistration->full_name ?? 'N/A' }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->preRegistration->lga_origin ?? 'N/A' }}</td>
