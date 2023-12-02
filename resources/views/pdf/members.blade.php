@@ -20,7 +20,6 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Picture</th>
                 <th>Full Name</th>
                 <th>Phone Number</th>
                 <th>LGA of Origin</th>
@@ -33,7 +32,6 @@
             @foreach ($users as $key => $user)
                 <tr>
                     <td>{{ $key+1 }}</td>
-                    <td><img @if($user->picture == null) src="default.png" @else src="uploads/{{ $user->picture }}" @endif height="50" width="50" alt="User Image"></td>
                     <td>{{ $user->preRegistration->full_name ?? 'N/A' }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->preRegistration->lga_origin ?? 'N/A' }}</td>
