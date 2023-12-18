@@ -225,7 +225,7 @@ class UserApplicationController extends Controller
             }
         }
 
-        return redirect()->route('thank-you');
+        return redirect()->route('regular.home')->with('success','Your Response has been recorded and your application saved');
     }
 
     public function showDetails($slug)

@@ -15,4 +15,9 @@ class UserResponse extends Model
         'question_id',
         'response',
     ];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id');
+    }
 }

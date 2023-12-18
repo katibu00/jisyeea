@@ -45,6 +45,7 @@
                                         <th style="width: 20%">Description</th>
                                         <th>Date Range</th>
                                         <th>Category</th>
+                                        <th># Applicants</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -64,6 +65,11 @@
                                             <td>{{  date('M d, Y', strtotime($program->start_date)) . ' - ' . date('M d, Y', strtotime($program->end_date)) }}</td>
 
                                             <td>{{ $program->category->name }}</td>
+
+                                            @php
+                                                 $uniqueUsers = App\Models\UserResponse::where('program_id', $program->id)->distinct('user_id')->count('user_id');
+                                            @endphp
+                                            <td>  {{ $uniqueUsers }}</td>
                                             <td>
                                                 @if($program->is_open)
                                                     <span class="badge bg-success">Active</span>
