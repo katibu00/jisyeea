@@ -20,4 +20,9 @@ class UserResponse extends Model
     {
         return $this->belongsTo(Program::class, 'program_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

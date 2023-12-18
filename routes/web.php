@@ -130,6 +130,8 @@ Route::group(['prefix' => 'programs', 'middleware' => ['auth', 'admin']], functi
     Route::post('/form-questions/store', [ProgramQuestionController::class, 'store'])->name('form-questions.store');
     Route::get('/form-questions/index', [ProgramQuestionController::class, 'index'])->name('form-questions.index');
 
+    Route::get('/download-applicants/{program_id}', [ProgramsController::class, 'downloadApplicantsPdf'])->name('download-applicants');
+
 
 });
 

@@ -90,6 +90,7 @@
                                                             document.getElementById('delete-form-{{ $program->id }}').submit();
                                                         }">Delete</a>
                                                         <a class="dropdown-item" href="{{ route('form-questions.index', ['program_id' => $program->id]) }}">Application Questions</a>
+                                                        <a class="dropdown-item" href="{{ route('download-applicants', ['program_id' => $program->id]) }}">Download Applicants</a>
                                                         <form id="delete-form-{{ $program->id }}" action="{{ route('programs.destroy', $program->id) }}" method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
