@@ -25,7 +25,7 @@
                 <tr>
                     <th>S/N</th>
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Phone</th>
                     <th>LGA</th>
                     <th>Account Number</th>
                     <th>Bank Name</th>
@@ -39,7 +39,7 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $member['name'] ?? 'N/A' }}</td>
-                        <td>{{ $member['email'] ?? 'N/A' }}</td>
+                        <td>{{ $member['phone'] ?? 'N/A' }}</td>
                         <td>{{ $member['pre_registration']['lga_origin'] ?? 'N/A' }}</td>
                         <td>{{ isset($member['account_details']['account_number']) ? $member['account_details']['account_number'] : 'N/A' }}
                         </td>
