@@ -73,6 +73,9 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth', 'admin']], function 
 
     Route::get('/applications', [ApplicationsController::class, 'index'])->name('applications.index');
 
+    Route::delete('/admins/{admin}', [UsersController::class,'destroy'])->name('admins.destroy');
+
+
 });
 Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [CollectionController::class, 'index'])->name('collections.index');

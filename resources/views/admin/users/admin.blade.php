@@ -73,8 +73,12 @@
                                                 <td style="padding: 10px; border: 1px solid #ddd;">{{ $user->email }}</td>
                                                
                                                 <td style="padding: 10px; border: 1px solid #ddd;">
-                                                    <button class="btn btn-primary" onclick="editAdmin({{ $user->id }})">Edit</button>
-                                                    <button class="btn btn-danger" onclick="deleteAdmin({{ $user->id }})">Delete</button>
+                                                    <form action="{{ route('admins.destroy', $user->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this admin?')">Delete</button>
+                                                    </form>
                                                 </td>
                                                 
                                             </tr>
