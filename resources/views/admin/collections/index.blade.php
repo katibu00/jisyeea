@@ -121,6 +121,8 @@
                                                     <a class="dropdown-item" href="{{ route('collections.viewMembers', $collection) }}">View Members</a>
 
 
+                                                    <a class="dropdown-item" href="{{ route('collections.sendSms', $collection) }}">Send SMS</a>
+
 
                                                     <form action="{{ route('collections.toggleAccountDetails', ['collection' => $collection]) }}" method="POST" onsubmit="return confirm('Are you sure you want to toggle account details collection for this collection?')">
                                                         @csrf

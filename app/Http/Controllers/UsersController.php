@@ -50,7 +50,7 @@ class UsersController extends Controller
     {
         $admin->delete();
 
-        return redirect()->route('admin.index')->with('success', 'Admin deleted successfully');
+        return redirect()->route('users.admin.index')->with('success', 'Admin deleted successfully');
     }
 
 }

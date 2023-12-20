@@ -178,4 +178,16 @@ class CollectionController extends Controller
         return $pdf->download('account_details.pdf');
     }
 
+    public function sendSms($collectionId)
+    {
+        $collection = Collection::find($collectionId);
+    
+        if (!$collection) {
+            return abort(404); // Handle the case where the collection is not found
+        }
+    
+    
+        return view('admin.sms.compose', compact('collection'));
+    }
+
 }

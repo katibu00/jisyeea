@@ -12,6 +12,7 @@ use App\Http\Controllers\ProgramCategoryController;
 use App\Http\Controllers\ProgramQuestionController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\UserApplicationController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -97,8 +98,13 @@ Route::group(['prefix' => 'collections', 'middleware' => ['auth', 'admin']], fun
 
     Route::get('/collections/{collection}/download-account-details-pdf', [CollectionController::class, 'downloadAccountDetailsPdf'])->name('collections.downloadAccountDetailsPdf');
 
+
+    Route::get('/collections/{collection}/send-sms', [CollectionController::class, 'sendSms'])->name('collections.sendSms');
+
+
 });
 
+Route::post('/sms/send', [SmsController::class, 'sendSms'])->name('sms.send')->middleware('auth');
 
 // web.php
 
