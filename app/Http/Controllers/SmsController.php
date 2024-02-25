@@ -38,6 +38,7 @@ class SmsController extends Controller
             // Add the formatted number to the array
             $phoneNumbers[] = $formattedPhoneNumber;
         }
+       
     
         // Prepare the message payload for SendChamp API
         $messagePayload = [

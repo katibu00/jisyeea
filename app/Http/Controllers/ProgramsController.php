@@ -170,21 +170,22 @@ class ProgramsController extends Controller
     {
         // Fetch program details
         $program = Program::find($programId);
-
+    
         if (!$program) {
             return redirect()->back()->with('error', 'Program not found.');
         }
-
-        // Fetch applicants for the program
+    
+        // Fetch applicants for the program with additional fields
         $applicants = UserResponse::where('program_id', $programId)
-        ->select('user_id')
-        ->with('user')
-        ->groupBy('user_id')
-        ->get();
-        // dd($programId);
-
-        $pdf = Pdf::loadView('pdf.applicants', compact('program', 'applicants'))->setPaper('a4', 'landscape');
-
+            ->select('user_id')
+            ->with(['user' => function ($query) {
+                $query->with('preRegistration'); // Load pre-registration data
+            }])
+            ->groupBy('user_id')
+            ->get();
+    
+        $pdf = PDF::loadView('pdf.applicants', compact('program', 'applicants'))->setPaper('a4', 'landscape');
+    
         return $pdf->download('applicants.pdf');
     }
 
