@@ -23,6 +23,7 @@
         <th>Ward</th>
         <th>Qualification</th>
         <th>Course</th>
+        <th>Constituency</th>
     </tr>
     </thead>
     <tbody>
@@ -37,8 +38,8 @@
         <td>{{ optional($applicant->user->preRegistration)->lga_origin }}</td>
         <td>{{ optional($applicant->user->preRegistration)->ward }}</td>
         <td>{{ ucwords(str_replace('-', ' ', optional($applicant->user->preRegistration)->highest_education)) }}</td>
-
         <td>{{ optional($applicant->user->preRegistration)->area_of_study }}</td>
+        <td>{{ $applicant->constituency }}</td>
     </tr>
     @endforeach
     </tbody>
