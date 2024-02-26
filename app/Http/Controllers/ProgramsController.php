@@ -184,9 +184,12 @@ class ProgramsController extends Controller
             ->groupBy('user_id')
             ->get();
     
-        $pdf = PDF::loadView('pdf.applicants', compact('program', 'applicants'))->setPaper('a4', 'landscape');
+        // $pdf = PDF::loadView('pdf.applicants', compact('program', 'applicants'))->setPaper('a4', 'landscape');
     
-        return $pdf->download('applicants.pdf');
+        // return $pdf->download('applicants.pdf');
+
+        return view('pdf.applicants', compact('program', 'applicants'));
+
     }
 
 }
