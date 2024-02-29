@@ -39,7 +39,10 @@
         <td>{{ optional($applicant->user->preRegistration)->ward }}</td>
         <td>{{ ucwords(str_replace('-', ' ', optional($applicant->user->preRegistration)->highest_education)) }}</td>
         <td>{{ optional($applicant->user->preRegistration)->area_of_study }}</td>
-        <td>{{ $applicant->constituency }}</td>
+        @php
+            $response = App\Models\UserResponse::where('user_id',$applicant->user->id)->where('question_id',12)->first();
+        @endphp
+        <td>{{ optional($response)->response }}</td>
     </tr>
     @endforeach
     </tbody>
