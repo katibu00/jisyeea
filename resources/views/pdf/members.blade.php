@@ -31,6 +31,8 @@
                 <tr>
                     <th>#</th>
                     <th>Full Name</th>
+                    <th>NIN</th>
+                    <th>Email</th>
                     <th>Phone Number</th>
                     <th>LGA of Origin</th>
                     <th>Area of Study</th>
@@ -43,6 +45,8 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $user->preRegistration->full_name ?? 'N/A' }}</td>
+                        <td>{{ $user->preRegistration->nin ?? 'N/A' }}</td>
+                        <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->preRegistration->lga_origin ?? 'N/A' }}</td>
                         <td>{{ $user->preRegistration->area_of_study ?? 'N/A' }}</td>

@@ -32,7 +32,7 @@
     <tr>
         <td>{{ $key + 1 }}</td>
         <td>{{ $applicant->user->name }}</td>
-        {{-- <td>{{ $applicant->user->email }}</td> --}}
+        <td>{{ $applicant->user->email }}</td>
         <td>{{ $applicant->user->phone }}</td>
         <td>{{ optional($applicant->user->preRegistration)->nin }}</td>
         <td>{{ optional($applicant->user->preRegistration)->lga_origin }}</td>

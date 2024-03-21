@@ -137,8 +137,7 @@
 
                             // Check if the 'redirect' parameter exists in the response
                             if (response.redirect) {
-                                window.location.href = response
-                                .redirect; // Use the redirect URL from the response
+                                window.location.href = response.redirect; // Use the redirect URL from the response
                             } else {
                                 // If 'redirect' is not in the response, fall back to the default login URL
                                 window.location.href = '{{ route('login') }}';
