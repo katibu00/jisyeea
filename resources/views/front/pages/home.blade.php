@@ -206,7 +206,7 @@
                                 <i class="flaticon-running-man"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">8590</h3>
+                                <h3 class="counter-number">20119</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                 <i class="flaticon-coverage"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">3350</h3>
+                                <h3 class="counter-number">10880</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                                 <i class="flaticon-landscape"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">4388</h3>
+                                <h3 class="counter-number">11271</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -248,7 +248,7 @@
                                 <i class="flaticon-barn-3"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">888</h3>
+                                <h3 class="counter-number">2418</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -265,9 +265,9 @@
                 <div class="col-lg-6">
                     <div class="mayor-box">
                         <div class="section-title-box">
-                            <div class="section-tagline">From The Executive Secretary</div>
-                            <h2 class="section-title">Major Voice of City Government</h2>
-                            <p>Dear Youth of Jigawa State,<br />I am honored to serve as the Executive Secretary of JISYEEA.
+                            <div class="section-tagline">From The Director General</div>
+                            <h2 class="section-title">Major Voice of the Government</h2>
+                            <p>Dear Youth of Jigawa State,<br />I am honored to serve as the Director General of JISYEEA.
                                 Together, let us embark on a journey of empowerment, innovation, and opportunity. Your
                                 skills, dreams, and potential are our priority as we work towards your success and a
                                 brighter future for Jigawa State.</p>
@@ -286,6 +286,121 @@
             </div>
         </div>
     </section>
+
+
+    <section class="testimonial-two-section">
+        <div class="testimonial-two-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-4 col-xl-4">
+                        <div class="testimonial-two-content">
+                            <div class="section-title-box">
+                                <div class="section-tagline">
+                                    TESTIMONIALS
+                                </div>
+                                <h2 class="section-title">What They’re Talking About Us</h2>
+                                <p>Empowering Jigawa's youth with skills and opportunities for success.</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-author-thumb">
+                            <div class="swiper author-thumb-carousel">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="author-thumb-image">
+                                            <img src="/person1.png" class="img-fluid" alt="img-48">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="author-thumb-image">
+                                            <img src="/person2.jpeg" class="img-fluid" alt="img-49">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="author-thumb-image">
+                                            <img src="/person3.png" class="img-fluid" alt="img-50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="testimonial-author-review">
+                            <div class="swiper author-review-carousel">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-two-card">
+                                            <div class="testimonial-two-card-content">
+                                                <div class="testimonial-two-card-text">
+                                                    <p>Joining JISYEEA's ICT Training Program was a game-changer for me. The skills I gained have opened up new career opportunities, and the support from the team has been exceptional.</p>
+                                                </div>
+                                                <div class="testimonial-two-card-outer">
+                                                    <div class="testimonial-two-card-outer-title">
+                                                        <h5>Adamu Mai-Dalibai Kazaure</h5>
+                                                    </div>
+                                                    <div class="testimonial-two-card-outer-title">
+                                                        <span> ICT Program Graduate</span>
+                                                    </div>
+                                                </div>
+                                                <div class="testimonial-two-card-outer-icon">
+                                                    <i class="flaticon-quote"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-two-card">
+                                            <div class="testimonial-two-card-content">
+                                                <div class="testimonial-two-card-text">
+                                                    <p>Thanks to JISYEEA's Tricycle Empowerment Programme, I launched my own business and gained financial independence. Dr. Habib Muhammad Ubale's commitment to youth empowerment is inspiring.</p>
+                                                </div>
+                                                <div class="testimonial-two-card-outer">
+                                                    <div class="testimonial-two-card-outer-title">
+                                                        <h5>Usman Sani</h5>
+                                                    </div>
+                                                    <div class="testimonial-two-card-outer-title">
+                                                        <span> Tricycle Entrepreneur</span>
+                                                    </div>
+                                                </div>
+                                                <div class="testimonial-two-card-outer-icon">
+                                                    <i class="flaticon-quote"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-two-card">
+                                            <div class="testimonial-two-card-content">
+                                                <div class="testimonial-two-card-text">
+                                                    <p>The Solar Installation, Repair and Maintenance Training Program equipped me with practical skills and confidence. Thanks to JISYEEA, I'm now contributing to the sustainable development of my community.</p>
+                                                </div>
+                                                <div class="testimonial-two-card-outer">
+                                                    <div class="testimonial-two-card-outer-title">
+                                                        <h5>Umar Faruk Jahun</h5>
+                                                    </div>
+                                                    <div class="testimonial-two-card-outer-title">
+                                                        <span> Solar Technician Apprentice</span>
+                                                    </div>
+                                                </div>
+                                                <div class="testimonial-two-card-outer-icon">
+                                                    <i class="flaticon-quote"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="testimonial-two-img">
+                            <img src="/bg3.jpeg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>	
 
     <section class="client-section">
         <h5 class="client-text">Our partners & suppoters</h5>

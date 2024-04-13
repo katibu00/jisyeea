@@ -4664,7 +4664,7 @@ border-radius: 100px;
 	visibility: visible;
 }
 .testimonial-two-inner{
-	background-image: url("../image/bg/testimonial-two-bg.png");
+	background-image: url("public/bg1.jpeg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding-top:120px;
