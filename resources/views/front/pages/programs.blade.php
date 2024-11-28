@@ -43,7 +43,7 @@
                                                         <h5 class="card-title">{{ $program->title }}</h5>
                                                         <!-- Render HTML and limit to 100 characters -->
                                                         <p class="card-text">{!! Str::limit($program->description, 100, '...') !!}</p>
-                                                        <a  href="{{ route('programs.show', $program->id) }}" class="btn btn-primary">Read More</a>
+                                                        <a  href="{{ route('programs.show', $program->slug) }}" class="btn btn-primary">Read More</a>
                                                     </div>
                                                 </div>
                                             </div>

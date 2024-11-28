@@ -36,7 +36,7 @@
 						<div class="sidebar-widget-list-inner">
 							<ul>
                                 @foreach ($allprograms as $programs)
-                                <li><a href="{{ route('programs.show', $programs->id) }}">{{ $programs->title }}<i class="fa-solid fa-arrow-right-long"></i></a></li>
+                                <li><a href="{{ route('programs.show', $programs->slug) }}">{{ $programs->title }}<i class="fa-solid fa-arrow-right-long"></i></a></li>
                                 @endforeach
                             </ul>
 						</div>
