@@ -94,11 +94,11 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label col-lg-2">Program Date</label>
                                     <div class="col-lg-10">
-                                        <div class="input-daterange input-group" data-provide="datepicker">
-                                            <input type="text" class="form-control" id="start_date"
+                                        <div class="input-daterange input-group" data-provide="dataepicker">
+                                            <input type="date" class="form-control" id="start_date"
                                                 value="{{ old('start_date', $program->start_date) }}"
                                                 placeholder="Start Date" name="start_date" />
-                                            <input type="text" class="form-control" id="end_date"
+                                            <input type="date" class="form-control" id="end_date"
                                                 value="{{ old('end_date', $program->end_date) }}" placeholder="End Date"
                                                 name="end_date" />
                                         </div>

@@ -56,7 +56,7 @@
                     <div class="col-xl-2 col-lg-4 col-md-6">
                         <div class="department-card">
                             <div class="department-card-icon">
-                                <a href="departments.html"><i class="flaticon-industry"></i></a>
+                                <a href="#"><i class="flaticon-industry"></i></a>
                             </div>
                             <div class="department-card-content">
                                 <h5><a href="#">Entrepreneurship Support</a></h5>
@@ -206,7 +206,7 @@
                                 <i class="flaticon-running-man"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">20119</h3>
+                                <h3 class="counter-number">72330</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                 <i class="flaticon-coverage"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">10880</h3>
+                                <h3 class="counter-number">31018</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                                 <i class="flaticon-landscape"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">11271</h3>
+                                <h3 class="counter-number">38204</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -248,7 +248,7 @@
                                 <i class="flaticon-barn-3"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">2418</h3>
+                                <h3 class="counter-number">12410</h3>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
