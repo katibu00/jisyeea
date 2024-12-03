@@ -206,11 +206,11 @@
                                 <i class="flaticon-running-man"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">72330</h3>
+                                <h4 class="countera-number">199,526+</h4>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
-                        <p class="funfact-text">Number of Youth Empowered</p>
+                        <p class="funfact-text">Youth Empowered</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
@@ -220,11 +220,11 @@
                                 <i class="flaticon-coverage"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">31018</h3>
+                                <h4 class="countera-number">31,018+</h4>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
-                        <p class="funfact-text">Employment Success Rate</p>
+                        <p class="funfact-text">Employment Opportinities Created</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
@@ -234,7 +234,7 @@
                                 <i class="flaticon-landscape"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">38204</h3>
+                                <h4 class="countaer-number">176,381+</h4>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
@@ -248,7 +248,7 @@
                                 <i class="flaticon-barn-3"></i>
                             </div>
                             <div class="funfact-counter-number">
-                                <h3 class="counter-number">12410</h3>
+                                <h4 class="countera-number">12,410+</h4>
                                 <span class="funfact-counter-number-postfix"></span>
                             </div>
                         </div>
